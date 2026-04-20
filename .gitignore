@@ -1,0 +1,23 @@
+.DS_Store
+.vscode/
+.idea/
+__pycache__/
+*.log
+
+# MinerU virtual environment and outputs
+mineru_venv/
+output/
+
+# Large model directories (do not upload full models)
+mineru_models/
+
+# Common model weight files
+*.pth
+*.bin
+*.pt
+*.mdl
+*.msc
+*.mv
+
+# Local test artifacts
+test.pdf

@@ -1,0 +1,81 @@
+## Custom Specifications
+- **Topic**: [e.g. AI, Crypto, Biology]
+- **Target Audience**: [e.g. Beginners, Experts]
+- **Special Requirements**: [e.g. Must include references, Must use analogies]
+- **Writing Mode**: [e.g. Direct Draft, Structured Draft, Reference-Driven]
+- **Default Operating Policy**:
+  - **Controllable Generation**: true
+  - **Outline First For Long Writing**: true
+  - **Reviewer-Facing Review Required**: true
+  - **Code/Experiment Grounding Required For Papers**: true
+  - **Persist User Corrections To Memory**: true
+- **Context Budget**:
+  - **Max Context Tokens**: [e.g. 12000]
+  - **Target Utilization**: [e.g. 0.7]
+  - **Min Useful Tokens**: [e.g. 2000]
+  - **Compression Strategy**: [e.g. bullet_summary, outline_only]
+- **Evidence Requirements**:
+  - **Minimum References**: [e.g. 3]
+  - **Evidence Coverage**: [e.g. 0.8]
+  - **Citation Style**: [e.g. APA, MLA, IEEE]
+  - **Evidence Format**: [e.g. Inline, Footnote, Endnote]
+- **Citation Formatting**:
+  - **Author Format**: [e.g. surname_initial]
+  - **Max Authors**: [e.g. 3]
+  - **EtAl Threshold**: [e.g. 4]
+  - **Include DOI**: [e.g. true]
+  - **Include URL**: [e.g. false]
+- **Outline Validation**:
+  - **Word Deviation Tolerance**: [e.g. 0.1]
+  - **Core Point Coverage**: [e.g. 0.9]
+  - **Max Revision Rounds**: [e.g. 3]
+- **Review Settings**:
+  - **AI Tone Threshold**: [e.g. 60]
+  - **Detection Priority**: [e.g. builtin, third_party]
+  - **Disabled Detectors**: [e.g. gptzero, originality]
+- **AI Style Scrub Settings**:
+  - **Flag Mechanical Transitions**: [e.g. true]
+  - **Flag Hyperbolic Modifiers**: [e.g. true]
+  - **Flag Absolute Claims**: [e.g. true]
+  - **Flag Nominalizations**: [e.g. true]
+  - **Out-of-Domain Jargon Policy**: [e.g. replace_with_plain_english]
+  - **Tell-Tale Word List**: [e.g. delve,tapestry,testament,multifaceted,fosters,in summary,to summarize]
+- **Flow Appraisal Settings**:
+  - **Min Flow Score**: [e.g. 70]
+  - **Min Excitement Score**: [e.g. 70]
+  - **Require Killer Figure 1**: [e.g. true]
+  - **Require Intuition Before Formula**: [e.g. true]
+  - **Signposting Required**: [e.g. true]
+  - **Topic Sentence Required**: [e.g. true]
+- **Paper Writing Defaults**:
+  - **Novelty Placement**: [e.g. early]
+  - **Narrative Style**: [e.g. connected_problem_to_solution]
+  - **Terminology Consistency Required**: [e.g. true]
+  - **Symbol Consistency Required**: [e.g. true]
+  - **Quantified Claims Preferred**: [e.g. true]
+- **Reference Learning Settings**:
+  - **Library Path**: [e.g. .ai_context/memory/reference_library.json]
+  - **Ingestion Mode**: [e.g. summary_only, summary_and_quotes]
+  - **Deduplication Strategy**: [e.g. title_year, title_venue]
+  - **Term Extraction**: [e.g. enabled]
+  - **Style Extraction Scope**: [e.g. abstracts_only, full_text]
+- **PDF Reading Settings**:
+  - **PDF Engine**: [e.g. mineru, builtin]
+  - **PDF Source**: [e.g. local, online]
+  - **Max Pages**: [e.g. 30]
+  - **Section Priority**: [e.g. abstract, intro, method, results, conclusion]
+  - **Extraction Mode**: [e.g. text_first, ocr_fallback]
+  - **Chunk Size**: [e.g. 800]
+  - **Chunk Overlap**: [e.g. 120]
+- **MCP Services**:
+  - **GPTZero MCP Name**: [e.g. gptzero]
+  - **GPTZero MCP Method**: [e.g. detect]
+  - **GPTZero Timeout**: [e.g. 30s]
+  - **GPTZero Retry**: [e.g. 1]
+- **Detector API Keys**:
+  - **GPTZero**: [e.g. env:GPTZERO_API_KEY]
+  - **Originality**: [e.g. env:ORIGINALITY_API_KEY]
+  - **Copyscape**: [e.g. env:COPYSCAPE_API_KEY]
+  - **Turnitin**: [e.g. env:TURNITIN_API_KEY]
+  - **Baidu**: [e.g. env:BAIDU_AI_DETECT_KEY]
+  - **ZeroGPT**: [e.g. env:ZEROGPT_API_KEY]
