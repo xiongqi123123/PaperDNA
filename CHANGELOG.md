@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0 — 2026-09-30
+
+- Writing order: Method → Experiments → Conclusion → Introduction and Related Work → Abstract (`skills/paperdna/references/workflow.md` §3, also a hard rule in `SKILL.md`).
+- Cross-reference rules: Method never references experiments (no "ablated in Sec. 4.3", no result numbers); Introduction never references method or experiment sections, tables or figures (Figure 1 excepted) and has no paper-organization paragraph. Main results may still appear in the Introduction as plain numbers.
+- Removed guidance that contradicted these rules from the method, experiments, introduction and story-type guides; added checks to the review criteria and the introduction checklist.
+
 ## 1.0.1 — 2026-09-30
 
 - Codex support: `.codex-plugin/plugin.json` and `.agents/plugins/marketplace.json`. Install with `codex plugin marketplace add xiongqi123123/PaperDNA` and `codex plugin add paperdna@paperdna`.

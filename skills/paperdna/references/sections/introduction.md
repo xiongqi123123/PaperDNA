@@ -451,7 +451,7 @@
 | 用法 | 位置 | 句式 / 例证 |
 |---|---|---|
 | 图证缺口 | GAP | "As illustrated in Figure 1, IGPP suffers from two core drawbacks."（VPDR）；"As illustrated in Fig. 1, existing reinforcement learning–based post-training methods...are dominated by majority classes..."（CMR-RD） |
-| 图证洞察 / 类比 | INS | "This mirrors how humans perceive the world: as illustrated in Fig. 1, …"（CUPID）；"as illustrated in Fig.2(a)"（Scone） |
+| 图证洞察 / 类比 | INS | "This mirrors how humans perceive the world: as illustrated in Fig. 1, …"（CUPID） |
 | 挂在命名句上 | MTH | "…we build LagerNVS, a Latent Geometry model for Real-time NVS (Fig. 1)."（LagerNVS）；"As shown in Figure 1, our framework, called X (...), is capable of..."（RESCUE） |
 | 结果预告 | RES | "As shown in Figure 1, TiM shows superior performance …"（Transition Models）；"Fig. 1 features our work."（Wan-Weaver，极简） |
 | 一图分段引用 | GAP 与 INS 分别引用 | Fig. 1(a)(b) 分别在缺口段和洞察段引用，形成问题→方案闭环（SCORE、SGAD、DUO）；"upper half of Fig.1" / "lower half of Fig.1"（See-NeRF） |
@@ -618,3 +618,4 @@
 - [ ] 同一概念全文用同一措辞，没有术语漂移。
 - [ ] 段首的衔接标记是有逻辑内容的回指、转折、因果或对比，不是 Furthermore / Moreover / Additionally 这类机械过渡（`references/word_style.md` 第 4.2 节）。
 - [ ] 语法无误，例如引导句不漏 "as"。
+- [ ] 没有指向正文的引用（Sec. / Table / Fig.，首页 Figure 1 除外），没有"论文结构"段；主结果只写结论性数字（`references/workflow.md` 第 3 节）。

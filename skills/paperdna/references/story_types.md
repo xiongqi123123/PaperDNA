@@ -390,7 +390,7 @@ P6 贡献列表（bullet）+ 核心数字。
 ### 5.4 全文递进
 
 - **方法**：问题驱动的求解链。小节以 "Motivation" 开场（《FedSDR》），或写 "This motivates us to leverage ..."（《FILTR》），或在子问题末尾标注 "Motivation: ...(Sec. 4.1)"（《MetaScope》）。另一种写法是先写理想公式、指出不可解、再逐步修正：《CounterPC》从 Eq.1 走到 Eq.6；《Counting Stacked Objects》从 N=V/v 改为 N=γV/v。
-- **实验**：一条贡献一张表（《4D-RGPT》）；RQ1/2/3（《SAME》《URICA》）；问题直接当标题："How well do existing models reflect physics?"（《PAVAS》）；方法小节末尾预告 "which are ablated in Section 4.3"（《Human-in-the-Loop Local Corrections》）；消融按贡献顺序累加（《CounterPC》Table 2）。
+- **实验**：一条贡献一张表（《4D-RGPT》）；RQ1/2/3（《SAME》《URICA》）；问题直接当标题："How well do existing models reflect physics?"（《PAVAS》）；消融按贡献顺序累加（《CounterPC》Table 2）。
 - **局限与结论**：约七成没有独立 Limitations；本 skill 的做法是最多 2 条、简短。好做法：编号列出最关键的假设（《SceneMI》(i)(ii)(iii)，照搬时只取两条）；"边界 + 方向"合成一句："While FluoCLIP assumes predefined stain categories, future work will ..."；把局限框定为正交技术可解（《Teeth Reconstruction》依赖 SAM2，可用 Personalize-SAM 自动化）。结论与引言首句同构，常用 "paving the way for ..." 收尾。
 
 ### 5.5 代表论文
@@ -599,7 +599,7 @@ P6 贡献列表（bullet）+ 核心数字。
 ### 7.4 全文递进
 
 - **方法**：问题驱动的求解链（LDP-Slicing 4.2→4.3），衔接句 "While X aims to…may still fall short…"。先直觉后公式；理论驱动型可以 Theorem → Proof sketch → Intuition（《AdaPrior》）。如果用模块罗列，每个模块要对应一条编号 Finding（《KDAS》4 个 Finding 映射到 2 个模块）。
-- **实验**：贡献句末标章节号 "(§N)"（《Selection-as-Nonlinearity》）；消融逐项累加（《Pluggable Pruning》Baseline→+LP→+DP→+WP）；纯实证论文用 "Summary of findings" 代替贡献列表，每条括注对应图表（《Scaling Laws》）。
+- **实验**：实验小节标题复用贡献列表的措辞（引言里的贡献句不标章节号）；消融逐项累加（《Pluggable Pruning》Baseline→+LP→+DP→+WP）；纯实证论文用 "Summary of findings" 代替贡献列表（《Scaling Laws》），引言里的发现条目不括注图表。
 - **局限与结论**：局限最多 2 条，写出发现成立的前提和后续方向（《GRPO-Guard》写明方法的作用边界及其根因）；失败案例可选，放补充材料即可（《Combinative Matching》Fig.9）。
 
 ### 7.5 代表论文
@@ -629,7 +629,7 @@ P6 贡献列表（bullet）+ 核心数字。
 - [ ] 发现有专名，比方法名更早出场
 - [ ] 方法名在洞察之后出场，每个模块都能回指一条诊断
 - [ ] 至少有一处干预或因果实验，不止于相关性
-- [ ] 贡献、实验小节、消融行三者颗粒度一致，已标章节号
+- [ ] 贡献、实验小节、消融行三者颗粒度一致（对应关系用于规划，引言里不标章节号）
 - [ ] 结论和局限没有层层叠加的限定语，也没有自我削弱词
 
 ---
@@ -759,7 +759,7 @@ P6 贡献列表（bullet）+ 核心数字。
 - 应用场景枚举，逐个配引用（Anatomica）。
 - 可比数字制造反差：AutoOcc "4k+ human hours"；HumanNOVA "800K vs a few thousand"。
 - 历史地位或权威赛事背书："first posed in 1911"、"CG:SHOP 2019"（《Visual Diffusion Models are Geometric Solvers》）。
-- 具体失败案例图，而不是空泛断言（FEAT Fig.2(a)(b)(c)）。
+- 用具体失败案例图代替空泛断言，放进首页的 Figure 1（FEAT 用失败案例图说明问题）。
 
 **2. 瓶颈与根因**
 - 编号拆解 (I)(II) / (i)(ii)（LEGION、PET-DINO）。

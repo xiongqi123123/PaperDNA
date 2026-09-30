@@ -42,7 +42,7 @@
 | 引言 | 问题、根因、洞察、方法名、贡献列表 | 方法章节的 Overview 复述引言的目标句；引言 P5 里"每个模块对应一个根因或挑战"的顺序，就是方法小节的顺序（story_types 原 §3.2）；根因与现象的名字全文一致（`word_style.md` 原则 8） |
 | 预备 / 分析节 | 记号、背景方法回顾；发现-解释型的实证分析 | 方法各设计点显式回指分析结论："Based on the layer-wise analysis in Sec. 3, ..."（《AVGGT》） |
 | 方法 | 每个设计、它的动机、它的公式 | 本文 |
-| 实验 | 证据 | 贡献 i ↔ 方法 3.i ↔ 表 i；方法小节末尾可以预告 "which are ablated in Section 4.3"（《Human-in-the-Loop Local Corrections》）；方法小节标题与消融小节标题同构（《PET-DINO》）。写法见 `sections/experiments.md` |
+| 实验 | 证据 | 贡献 i ↔ 方法 3.i ↔ 表 i；方法小节标题与消融小节标题同构（《PET-DINO》），但方法正文不写 "ablated in Sec. 4.3" 这类指向实验的引用（章节之间的引用规则见 `references/workflow.md` 第 3 节）。写法见 `sections/experiments.md` |
 | 局限 / 结论 | 适用边界与后续方向（最多 2 条） | 方法里显式写出的假设和前提，是局限最主要的来源（见第 3.12 节）。写法见 `sections/conclusion.md` 和 `references/anti_defensive.md` §5 |
 | 附录 / 补充材料 | 证明、完整推导、完整超参、额外细节 | 只补充，不替代；理论型"证明放附录、正文只留命题 + 直觉"（《Drainage》《D-Convexity》） |
 
@@ -349,7 +349,6 @@ where [symbol_1] denotes [...], and [symbol_2] is [...]. In effect, Eq. (k) [phy
 - "Note here that solving (10) still requires the global forward operator and its adjoint"（《Efficient Unrolled Networks》4.1 末，直接抛出下一节的问题）
 - "Up to this point, the model captures geometric and temporal patterns, but remains agnostic to motion dynamics. In the next section, we introduce a mechanism..."（《PAD-Hand》）
 - "BA processes only a sparse set of query points...we need global refinement"（《BA-Track》3.3）
-- 方法小节末尾预告对应消融："which are ablated in Section 4.3"（《Human-in-the-Loop Local Corrections》）
 
 **模板**：
 ```
@@ -406,6 +405,7 @@ where λ_1 and λ_2 balance [...]. We train X in [k] stages: [...]. At inference
 
 （合并自 story_types 原 §3.5–3.6。实验和局限的完整写法见 `sections/experiments.md` 和 `sections/conclusion.md`，这里只写方法章节要为它们准备什么。）
 
+- **不引用实验**：方法正文不写 "ablated in Sec. 4.3"、"as shown in Table 5"，也不写实验结果数字；下面的对应关系只用于规划（章节之间的引用规则见 `references/workflow.md` 第 3 节）。
 - **贡献 i ↔ 方法 3.i ↔ 表 i**：每条贡献对应一个方法小节，每个方法小节对应一个实验小节或一张表。消融变体用 "w/o 模块名" 命名，消融顺序与引言列举挑战的顺序一致。《Mamba Learns in Context》3.2–3.4 三个组件与贡献列表严格对应。
 - **设计理由要能被验证**：3.4 节写下的"朴素方案为什么失败"，实验里要有"朴素方案 vs 我们的方案"的对照；洞察本身要有机制实验支撑（t-SNE、注意力图、频谱、oracle、干预实验）。64.8% 的论文把 Insight 列为贡献 [stats]。
 - **方法里说出的额外能力都要有实验**：写进方法的应用、泛化声明、效率声明，事先要写进贡献列表，实验里有独立验证。
@@ -472,6 +472,7 @@ where λ_1 and λ_2 balance [...]. We train X in [k] stages: [...]. At inference
 
 **对接**
 - [ ] 贡献 i ↔ 方法 3.i ↔ 表 i；每个设计理由在实验里有对应的对照或消融
+- [ ] 方法正文没有引用实验章节、实验图表或实验数字
 - [ ] 方法里提到的应用、泛化、效率声明在实验里都有验证
 - [ ] 方法依赖的假设已写明，局限一节能从中挑出 1–2 条写成"适用边界 + 方向"
 - [ ] 核心公式和关键超参在正文，附录只作补充

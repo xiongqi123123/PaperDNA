@@ -58,6 +58,7 @@ description: 学术论文写作与修改助手，规范提炼自 1040 篇 CVPR 2
 
 ## 硬规则
 
+- 写作顺序：Method → Experiments → Conclusion → Introduction 与 Related Work → Abstract。Method 不引用实验；Introduction 不引用方法和实验，首页 Figure 1 除外（`references/workflow.md` 第 3 节）。
 - 不编造引用、数据或实验结果。缺依据的地方写 `% TODO: ...` 并告诉用户。只引用 `.bib` 中已有或用户提供的文献。
 - 技术描述要与代码、公式和实验设置一致。论文仓库或用户指定的位置有代码和结果时，先读再写。
 - 编辑 `.tex` 时不破坏 `\cite{}`、`\ref{}`、`\label{}` 和公式环境，也不做与任务无关的排版改动。

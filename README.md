@@ -6,7 +6,7 @@
   <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-yellow.svg" alt="License: MIT"></a>
   <img src="https://img.shields.io/badge/Claude%20Code-plugin-8A63D2" alt="Claude Code plugin">
   <img src="https://img.shields.io/badge/Codex-plugin-111111" alt="Codex plugin">
-  <img src="https://img.shields.io/badge/version-1.0.1-informational" alt="Version 1.0.1">
+  <img src="https://img.shields.io/badge/version-1.1.0-informational" alt="Version 1.1.0">
   <img src="https://img.shields.io/badge/corpus-1040%20papers-2F80ED" alt="Corpus: 1040 papers">
   <img src="https://img.shields.io/badge/venues-CVPR%202026%20%7C%20ICCV%202025-0F9D58" alt="Venues: CVPR 2026 | ICCV 2025">
   <img src="https://img.shields.io/badge/python-3.8%2B-3776AB?logo=python&logoColor=white" alt="Python 3.8+">

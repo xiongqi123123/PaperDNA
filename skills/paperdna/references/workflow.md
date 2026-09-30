@@ -26,6 +26,24 @@
 
 ## 3. 写作（逐节进行）
 
+### 写作顺序
+
+按下面的顺序写，前面的章节定稿后再写后面的：
+
+1. **Method**：先把做了什么写清楚。
+2. **Experiments**：用结果验证方法，主数字从这里确定。
+3. **Conclusion**：收束方法和实验。
+4. **Introduction** 和 **Related Work**：方法和结果都已确定，再回头讲故事、定位本文。
+5. **Abstract**：最后写，数字和措辞与正文保持一致。
+
+用户只要求写某一节时照做；但如果它依赖的前序章节还没有定稿（例如先写引言而方法还没写），先提醒用户，并以 spec 里确定的内容为准。
+
+### 章节之间的引用
+
+- **Method 不引用实验**：不写 "ablated in Sec. 4.3"、"as shown in Table 5"、"we show in the experiments that ..."，也不写实验结果数字。方法可以引用自己的公式、图和前面的方法小节，以及方法之前的分析/观察小节。方法小节与实验的对应关系（贡献 i ↔ 方法 3.i ↔ 表 i）只用于规划，不写进方法正文。
+- **Introduction 不引用方法和实验**：不写 "detailed in Sec. 3"、"see Table 2"、"(§4)"，不写 "The rest of the paper is organized as ..." 这类结构段。唯一例外是首页的 Figure 1。主结果可以直接写成结论性的数字，例如 "improves mIoU by 3.2 on nuScenes"，但不附指向表格或章节的引用。
+- 其他章节不受限：实验可以回指方法小节，结论可以回收方法和实验。
+
 对每一节：
 
 1. 读 `references/word_style.md` 第 1 节（写作原则）和第 4 节（去 AI 味规则）、`references/sections/<节>.md`，以及 spec 和大纲中这一节的内容。

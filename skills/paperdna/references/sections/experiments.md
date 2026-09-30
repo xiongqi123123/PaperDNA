@@ -48,7 +48,7 @@
 | 章节 | 分工与接口 |
 |---|---|
 | 引言 / 贡献列表 | 贡献列表定义了实验要兑现的清单。74.4% 的论文用 bullet 列贡献（`references/corpus_stats.md`），实验小节应能逐条对上。引言里提出的 RQ、"How to...?" 问句、挑战编号，实验里原样复用（《AdvDreamer》三段 "How to...?" ↔ ❶❷❸ 三个模块 ↔ RQ1–RQ3）。 |
-| 方法 | 方法按问题驱动的求解链写，每个小节解决上一节遗留的问题（story_types §3.4）。实验的消融应沿着这条链逐环验证：变体名复用方法小节的模块名（《AT-VLA》Ex1 "With Adaptive Cross Attention"），方法小节末尾可以预告 "which are ablated in Section 4.3"（《Human-in-the-Loop Local Corrections》）。方法里提出的假设在实验中要有对应的消融（《Spherical Leech Quantization》Table 8 对应 Sec. 3.3 的假设）。 |
+| 方法 | 方法按问题驱动的求解链写，每个小节解决上一节遗留的问题（story_types §3.4）。实验的消融应沿着这条链逐环验证：变体名复用方法小节的模块名（《AT-VLA》Ex1 "With Adaptive Cross Attention"）。方法正文不预告消融（不写 "ablated in Sec. 4.3"，见 `references/workflow.md` 第 3 节），对应关系由实验这一侧建立。方法里提出的假设在实验中要有对应的消融（《Spherical Leech Quantization》Table 8 对应 Sec. 3.3 的假设）。 |
 | 相关工作 | 基线按相关工作的分类分组，并在实验里点名回指（《D4RT》"4.2 对比 3.2 中的方法，4.3 对比 3.1 中的方法"；《RawMetaDiff》single-frame / generative / dual-frame 三组）。 |
 | 摘要 / 结论 | 实验中的核心数字是摘要、引言、贡献、结论引用的唯一来源，四处必须一致（story_types §3.7）。结论里的主张不越过实验表格：不是第一的地方收缩主张，也不在结论里专门写一句输了（`references/anti_defensive.md` §3）。 |
 | 局限 | 局限最多 2 条，每条写成"适用边界 + 方向"，放在结论之前的 Limitations 段或结论中间（`references/anti_defensive.md` §5）。实验里的不利结果按 §3.8 处理，不搬进局限。顶会论文多数不设独立 Limitations 小节，本 skill 的做法是最多 2 条、简短。具体写法见 references/sections/conclusion.md。 |
@@ -91,7 +91,7 @@
 | 瓶颈突破型（56.0%） | 三层证据：主表（多数据集 × 多骨干 × 多指标）→ 逐组件消融（w/o 模块名）→ 验证洞察本身的机制实验 | 排除替代解释（参数量对照《OASIS》、"只是加了噪声"对照《SD-IF》Tab.7/8、Discussion 自问"提升是否只来自外部先验"《CAD》）；在对自己不利的设置下仍然胜出（"our evaluation setup is conservative"《LLSA》） | 《SD-IF》两个瓶颈、两个模块、两组排除性实验，三层闭环 |
 | 新问题定义型（11.0%） | 先用与自身方法无关的诊断实验证明问题存在 → 方法有效 → 消融 | 一类质疑配一类证据（《IQA-Adapter》用 21 个 IQA 模型、GenEval、千人主观研究、参考图实验回应四类质疑）；拆开方法贡献与数据贡献（《OACIR》同一 SPRC 模型两个数据集训练，37.30% vs 74.05%）；自设劣势仍胜出（《CObL》对手用 oracle mask，自己不用）；反事实实验、人类基线、显著性检验 | 《4D-RGPT》一条贡献一张表；《PAVAS》问题当标题；《CounterPC》Table 2 按贡献顺序累加 |
 | 统一框架型（10.8%） | 每条贡献一张表或一组消融；消融顺序复现引言挑战的列举顺序 | "统一"本身要有映射表、推导或实验证明（《CFG-Ctrl》Table 1 把前人方法映射进统一公式）；正反双向消融（"w/o Geometry vs. Joint Modeling"《GeoRelight》）；失败变体（《Optical Flow Matching》OFM-Naive EPE 在 15 以上）；显著性（《D-Convexity》10 次配对 t-test） | 《M2SFormer》Table 3/4；《PiLoT》按 "impossible triangle" 三维依次消融 |
-| 发现-解释型（10.7%） | 主实验 → 归因 / 机制实验 → 鲁棒性或自适应攻击（《ARGUS》《D3》《BLiM》） | 从相关升级到因果：先观测再干预（《WSDT》Fig.3 → Fig.4）；用数字而不是"更高"（"0.613 vs 0.300"；《PCR》r=0.836）；跨底座复现（WSDT 在三个 SD 版本上）；至少一处干预或因果实验 | 贡献句末标章节号 "(§N)"（《Selection-as-Nonlinearity》）；纯实证论文用 "Summary of findings"，每条括注对应图表（《Scaling Laws》） |
+| 发现-解释型（10.7%） | 主实验 → 归因 / 机制实验 → 鲁棒性或自适应攻击（《ARGUS》《D3》《BLiM》） | 从相关升级到因果：先观测再干预（《WSDT》Fig.3 → Fig.4）；用数字而不是"更高"（"0.613 vs 0.300"；《PCR》r=0.836）；跨底座复现（WSDT 在三个 SD 版本上）；至少一处干预或因果实验 | 实验小节标题复用贡献列表的措辞，让读者能对上号（引言里的贡献句不标章节号）；纯实证论文用 "Summary of findings"，每条括注对应图表（《Scaling Laws》） |
 | 数据与基准型（7.0%） | **先证明数据可信**（人工核验一致性、R²）→ 证明基线或方法有效 → 消融 | 多条独立证据线（RDFace：landmark 相似度 + VLM 语义相似度 + 专家 Cohen's κ）；外部校准（PAI-Bench 用人类偏好 ELO 验证指标，Pearson r=0.918）；控制实验戳穿假提升（AbstainEQA 随机化视觉输入）；分层评测（零样本 → 迁移 / 微调 → 更难场景，NitroGen Fig.5–7） | GeoMMBench First/Second/Third 对应第 3/4/5 节；RealAppliance 5.2 用五个问句做小标题 |
 | 能力扩展型（2.4%） | 方法-实验镜像；客观指标 + 用户研究 + 效率对比三重链（CoordSpeaker、FEAT） | 链式消融，每加一个模块给数字（FoleyDirector Tab.3：①Base → ②+STS → ③+RoPE → ④+Bi-Frame）；难量化的能力用定性图 + 视频补强（4D Primitive-Mâché） | HouseCrafter "3.2 Floorplan-guided..." ↔ "4.3 Ablation" |
 | 效率优化型（2.0%） | 贡献逐条对应实验小节或消融表；消融表命名复用方法小节标题 | 速度、质量、内存、用户研究一起报（TurboVSR：DOVER + MUSIQ + user study + 4K 案例）；逐步消融复现构建过程（DeltaTok Step0→3）；效率单独成节兑现标题承诺（《Sparfels》Running Time 验证标题里的 "Fast"） | EDM Table 7 分 (a)(b)(c)(d) 对应四条贡献 |
