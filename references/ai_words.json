@@ -1,0 +1,545 @@
+{
+ "_readme": "AI 味与空洞用词表，是唯一来源：scripts/ai_style_scan.py 与 references/word_style.md 第 4 节（去 AI 味规则）都用这份。level=avoid 默认不用；level=review 需逐条判断（领域术语场景下合法）；带 max 的是限量词，同一文件超过 max 次才提示。pattern 是 Python 正则，lang=en 时忽略大小写。上限与频次依据 1040 篇 CVPR 2026 / ICCV 2025 论文统计（references/word_style.md 第 3 节）。",
+ "rules": [
+  {
+   "id": "delve",
+   "lang": "en",
+   "level": "avoid",
+   "category": "AI 高频词",
+   "pattern": "\\bdelv(?:e|es|ed|ing)\\b",
+   "suggest": "examine / investigate / analyze"
+  },
+  {
+   "id": "tapestry",
+   "lang": "en",
+   "level": "avoid",
+   "category": "AI 高频词",
+   "pattern": "\\btapestry\\b",
+   "suggest": "network / combination，或去掉比喻"
+  },
+  {
+   "id": "testament",
+   "lang": "en",
+   "level": "avoid",
+   "category": "AI 高频词",
+   "pattern": "\\btestament\\b",
+   "suggest": "demonstrates / shows"
+  },
+  {
+   "id": "multifaceted",
+   "lang": "en",
+   "level": "avoid",
+   "category": "AI 高频词",
+   "pattern": "\\bmultifaceted\\b",
+   "suggest": "complex / varied"
+  },
+  {
+   "id": "foster",
+   "lang": "en",
+   "level": "avoid",
+   "category": "AI 高频词",
+   "pattern": "\\bfoster(?:s|ed|ing)?\\b",
+   "suggest": "promote / encourage / build"
+  },
+  {
+   "id": "underscore",
+   "lang": "en",
+   "level": "avoid",
+   "category": "AI 高频词",
+   "pattern": "\\bunderscor(?:e|es|ed|ing)\\b",
+   "suggest": "show / emphasize"
+  },
+  {
+   "id": "shed-light",
+   "lang": "en",
+   "level": "avoid",
+   "category": "AI 高频词",
+   "pattern": "\\bshed(?:s|ding)? (?:new )?light on\\b",
+   "suggest": "show / explain"
+  },
+  {
+   "id": "realm",
+   "lang": "en",
+   "level": "avoid",
+   "category": "AI 高频词",
+   "pattern": "\\brealms?\\b",
+   "suggest": "field / area"
+  },
+  {
+   "id": "showcase",
+   "lang": "en",
+   "level": "avoid",
+   "category": "AI 高频词",
+   "pattern": "\\bshowcas(?:e|es|ed|ing)\\b",
+   "suggest": "show / present"
+  },
+  {
+   "id": "meticulous",
+   "lang": "en",
+   "level": "avoid",
+   "category": "AI 高频词",
+   "pattern": "\\bmeticulous(?:ly)?\\b",
+   "suggest": "careful / detailed"
+  },
+  {
+   "id": "embark",
+   "lang": "en",
+   "level": "avoid",
+   "category": "AI 高频词",
+   "pattern": "\\bembark(?:s|ed|ing)?\\b",
+   "suggest": "start / begin"
+  },
+  {
+   "id": "intricate",
+   "lang": "en",
+   "level": "avoid",
+   "category": "AI 高频词",
+   "pattern": "\\bintrica(?:te|tely|cies)\\b",
+   "suggest": "complex / detailed / details"
+  },
+  {
+   "id": "demystify",
+   "lang": "en",
+   "level": "avoid",
+   "category": "AI 高频词",
+   "pattern": "\\bdemystif(?:y|ies|ied|ying)\\b",
+   "suggest": "explain / clarify"
+  },
+  {
+   "id": "utilize",
+   "lang": "en",
+   "level": "avoid",
+   "category": "AI 高频词",
+   "pattern": "\\butili[sz](?:e|es|ed|ing|ation)\\b",
+   "suggest": "use"
+  },
+  {
+   "id": "worth-noting",
+   "lang": "en",
+   "level": "avoid",
+   "category": "套话",
+   "pattern": "\\bit is (?:worth noting|important to note|noteworthy) that\\b",
+   "suggest": "删去，直接陈述内容"
+  },
+  {
+   "id": "in-summary",
+   "lang": "en",
+   "level": "avoid",
+   "category": "套话",
+   "pattern": "\\b(?:in summary|to summarize|to sum up|in conclusion)\\b",
+   "suggest": "删去，直接写结论句"
+  },
+  {
+   "id": "paramount",
+   "lang": "en",
+   "level": "avoid",
+   "category": "夸张修饰",
+   "pattern": "\\bparamount\\b",
+   "suggest": "删去，或写出具体约束"
+  },
+  {
+   "id": "crucial",
+   "lang": "en",
+   "level": "avoid",
+   "category": "夸张修饰",
+   "pattern": "\\bcrucial(?:ly)?\\b",
+   "suggest": "全文不超过 2 次；改为 key / necessary，或直接写后果：without X, accuracy drops by N",
+   "max": 2
+  },
+  {
+   "id": "vital",
+   "lang": "en",
+   "level": "avoid",
+   "category": "夸张修饰",
+   "pattern": "\\bvital(?:ly)?\\b",
+   "suggest": "necessary，或用数据说明"
+  },
+  {
+   "id": "pivotal",
+   "lang": "en",
+   "level": "avoid",
+   "category": "夸张修饰",
+   "pattern": "\\bpivotal\\b",
+   "suggest": "key / central，或说明具体作用"
+  },
+  {
+   "id": "revolutionary",
+   "lang": "en",
+   "level": "avoid",
+   "category": "夸张修饰",
+   "pattern": "\\brevolutioni[sz](?:e|es|ed|ing)\\b|\\brevolutionary\\b",
+   "suggest": "用数字说明改进幅度"
+  },
+  {
+   "id": "groundbreaking",
+   "lang": "en",
+   "level": "avoid",
+   "category": "夸张修饰",
+   "pattern": "\\b(?:groundbreaking|game[- ]chang(?:er|ing))\\b",
+   "suggest": "用数字说明改进幅度"
+  },
+  {
+   "id": "unprecedented",
+   "lang": "en",
+   "level": "avoid",
+   "category": "夸张修饰",
+   "pattern": "\\bunprecedented\\b",
+   "suggest": "给出对比数字"
+  },
+  {
+   "id": "paradigm-shift",
+   "lang": "en",
+   "level": "avoid",
+   "category": "夸张修饰",
+   "pattern": "\\bparadigm shifts?\\b|\\ba new paradigm\\b",
+   "suggest": "写清改变了哪个具体假设：X removes the need for Y"
+  },
+  {
+   "id": "seamless",
+   "lang": "en",
+   "level": "avoid",
+   "category": "夸张修饰",
+   "pattern": "\\bseamless(?:ly)?\\b",
+   "suggest": "默认删除；确是即插即用时写出证据：without modifying X / adds N ms latency"
+  },
+  {
+   "id": "cornerstone",
+   "lang": "en",
+   "level": "avoid",
+   "category": "夸张修饰",
+   "pattern": "\\bcornerstones?\\b",
+   "suggest": "basis / foundation，或说明具体作用"
+  },
+  {
+   "id": "synergy",
+   "lang": "en",
+   "level": "avoid",
+   "category": "领域外行话",
+   "pattern": "\\bsynerg(?:y|ies|istic)\\b",
+   "suggest": "说明两者如何互补"
+  },
+  {
+   "id": "leverage",
+   "lang": "en",
+   "level": "review",
+   "category": "限量词",
+   "pattern": "\\bleverag(?:e|es|ed|ing)\\b",
+   "suggest": "全文不超过 2 次且带具体宾语（24% 的顶会摘要用过）；其余改为 use / exploit / build on / draw on，或直接写动作",
+   "max": 2
+  },
+  {
+   "id": "undoubtedly",
+   "lang": "en",
+   "level": "avoid",
+   "category": "绝对化断言",
+   "pattern": "\\b(?:undoubtedly|unquestionably|indisputabl[ey])\\b",
+   "suggest": "删去，让数据说话"
+  },
+  {
+   "id": "this-proves",
+   "lang": "en",
+   "level": "review",
+   "category": "绝对化断言",
+   "pattern": "\\b(?:this|which|these results?) (?:clearly )?proves?\\b",
+   "suggest": "suggest / indicate（数学证明除外）"
+  },
+  {
+   "id": "obviously",
+   "lang": "en",
+   "level": "review",
+   "category": "绝对化断言",
+   "pattern": "\\bobviously\\b",
+   "suggest": "删去，或给出理由"
+  },
+  {
+   "id": "transition",
+   "lang": "en",
+   "level": "review",
+   "category": "机械过渡",
+   "pattern": "(?:^|(?<=[.!?:]\\s))(?:Furthermore|Moreover|Additionally)\\b",
+   "suggest": "用上一句或上一段的关键词承接"
+  },
+  {
+   "id": "nominalization",
+   "lang": "en",
+   "level": "review",
+   "category": "僵尸名词",
+   "pattern": "\\b(?:perform(?:s|ed|ing)?|conduct(?:s|ed|ing)?|carr(?:y|ies|ied|ying) out|mak(?:e|es|ing)|made)\\s+(?:an?\\s+|the\\s+)?(?:\\w+\\s+)?\\w+(?:tion|ment|ance|ence|sis)s?\\s+(?:of|on|between)\\b",
+   "suggest": "改用动词（evaluate / analyze / compare）"
+  },
+  {
+   "id": "robust",
+   "lang": "en",
+   "level": "review",
+   "category": "需看语境",
+   "pattern": "\\brobust(?:ly)?\\b",
+   "suggest": "写出对什么扰动鲁棒、扰动多大；鲁棒性术语可保留",
+   "max": 3
+  },
+  {
+   "id": "landscape",
+   "lang": "en",
+   "level": "review",
+   "category": "需看语境",
+   "pattern": "\\blandscapes?\\b",
+   "suggest": "loss landscape 可保留；比喻用法改为 field / state of research"
+  },
+  {
+   "id": "navigate",
+   "lang": "en",
+   "level": "review",
+   "category": "需看语境",
+   "pattern": "\\bnavigat(?:e|es|ed|ing)\\b",
+   "suggest": "机器人导航可保留；比喻用法改为 handle / address"
+  },
+  {
+   "id": "nuanced",
+   "lang": "en",
+   "level": "review",
+   "category": "需看语境",
+   "pattern": "\\bnuanced?\\b",
+   "suggest": "subtle / fine-grained，或说明具体差别"
+  },
+  {
+   "id": "orthogonal",
+   "lang": "en",
+   "level": "review",
+   "category": "领域外行话",
+   "pattern": "\\borthogonal(?:ly)?\\b",
+   "suggest": "数学语境可保留；否则改为 independent / complementary"
+  },
+  {
+   "id": "ecosystem",
+   "lang": "en",
+   "level": "review",
+   "category": "领域外行话",
+   "pattern": "\\becosystems?\\b",
+   "suggest": "system / environment / community"
+  },
+  {
+   "id": "comprehensive",
+   "lang": "en",
+   "level": "review",
+   "category": "需看语境",
+   "pattern": "\\bcomprehensive(?:ly)?\\b",
+   "suggest": "默认删掉，或写出覆盖范围：on N datasets spanning A, B, and C"
+  },
+  {
+   "id": "notably",
+   "lang": "en",
+   "level": "review",
+   "category": "需看语境",
+   "pattern": "\\bnotably\\b",
+   "suggest": "多次出现时删去，直接陈述"
+  },
+  {
+   "id": "harness",
+   "lang": "en",
+   "level": "review",
+   "category": "需看语境",
+   "pattern": "\\bharness(?:es|ed|ing)?\\b",
+   "suggest": "use（test harness 等名词用法可保留）"
+  },
+  {
+   "id": "zh-wuyong",
+   "lang": "zh",
+   "level": "avoid",
+   "category": "绝对化断言",
+   "pattern": "毋庸置疑|不言而喻|不可否认的是",
+   "suggest": "删去，用证据支撑"
+  },
+  {
+   "id": "zh-zhide",
+   "lang": "zh",
+   "level": "avoid",
+   "category": "套话",
+   "pattern": "值得注意的是|需要指出的是",
+   "suggest": "删去，直接陈述"
+  },
+  {
+   "id": "zh-zongshang",
+   "lang": "zh",
+   "level": "avoid",
+   "category": "套话",
+   "pattern": "综上所述",
+   "suggest": "删去，直接写结论句"
+  },
+  {
+   "id": "zh-shenru",
+   "lang": "zh",
+   "level": "avoid",
+   "category": "AI 高频词",
+   "pattern": "深入探讨|深入剖析",
+   "suggest": "分析 / 研究"
+  },
+  {
+   "id": "zh-tuxian",
+   "lang": "zh",
+   "level": "avoid",
+   "category": "AI 高频词",
+   "pattern": "凸显了|彰显",
+   "suggest": "表明 / 说明"
+  },
+  {
+   "id": "zh-funeng",
+   "lang": "zh",
+   "level": "avoid",
+   "category": "AI 高频词",
+   "pattern": "赋能|重塑",
+   "suggest": "支持 / 改进 / 改变（写出具体作用）"
+  },
+  {
+   "id": "zh-metaphor",
+   "lang": "zh",
+   "level": "avoid",
+   "category": "AI 高频词",
+   "pattern": "画卷|织锦|里程碑|双刃剑|基石",
+   "suggest": "去掉比喻，写具体内容"
+  },
+  {
+   "id": "zh-hyperbole",
+   "lang": "zh",
+   "level": "avoid",
+   "category": "夸张修饰",
+   "pattern": "前所未有的|错综复杂的|至关重要",
+   "suggest": "用数据或具体描述代替"
+  },
+  {
+   "id": "zh-beijing",
+   "lang": "zh",
+   "level": "review",
+   "category": "套话",
+   "pattern": "在[^，。；,.;]{1,20}的背景下",
+   "suggest": "开头套话，考虑直接从问题写起"
+  },
+  {
+   "id": "zh-suizhe",
+   "lang": "zh",
+   "level": "review",
+   "category": "套话",
+   "pattern": "随着[^，。；,.;]{1,20}的(?:快速|飞速|迅猛|不断|日益)?发展",
+   "suggest": "开头套话，考虑用具体问题或数字开头"
+  },
+  {
+   "id": "zh-zhizai",
+   "lang": "zh",
+   "level": "review",
+   "category": "需看语境",
+   "pattern": "旨在",
+   "suggest": "多次出现时改为 用于 / 目的是"
+  },
+  {
+   "id": "zh-lubang",
+   "lang": "zh",
+   "level": "review",
+   "category": "需看语境",
+   "pattern": "鲁棒",
+   "suggest": "鲁棒性术语可保留；泛泛夸赞时改为具体描述"
+  },
+  {
+   "id": "zh-xianzhu",
+   "lang": "zh",
+   "level": "review",
+   "category": "需看语境",
+   "pattern": "显著(?:的|地|提升|提高|改善|优于)",
+   "suggest": "做过统计检验才用；否则给出数字"
+  },
+  {
+   "id": "zh-quanmian",
+   "lang": "zh",
+   "level": "review",
+   "category": "需看语境",
+   "pattern": "全面的|全面地",
+   "suggest": "说明具体覆盖了什么"
+  },
+  {
+   "id": "zh-zongeryan",
+   "lang": "zh",
+   "level": "review",
+   "category": "套话",
+   "pattern": "总而言之|总的来说",
+   "suggest": "删去，直接写结论句"
+  },
+  {
+   "id": "zh-nominal",
+   "lang": "zh",
+   "level": "review",
+   "category": "僵尸名词",
+   "pattern": "进行了?[^，。；]{0,6}(?:分析|研究|评估|比较|优化|处理)",
+   "suggest": "改用动词：分析了… / 比较了…"
+  },
+  {
+   "id": "novel",
+   "lang": "en",
+   "level": "review",
+   "category": "空洞自评",
+   "pattern": "\\bnovel\\b",
+   "suggest": "默认删掉；新意靠对比体现：Unlike X, which ..., our Y ...（33.6% 的顶会摘要用过，但被审稿人视为空词）"
+  },
+  {
+   "id": "first",
+   "lang": "en",
+   "level": "review",
+   "category": "绝对化断言",
+   "pattern": "\\b(?:the|are|is) first\\b",
+   "suggest": "写成 To our knowledge, X is the first to ...，并在相关工作说明检索范围"
+  },
+  {
+   "id": "significantly",
+   "lang": "en",
+   "level": "review",
+   "category": "结论强度",
+   "pattern": "\\bsignificant(?:ly)?\\b",
+   "suggest": "做了显著性检验才用；否则写 by N points / from A to B"
+  },
+  {
+   "id": "sota-bare",
+   "lang": "en",
+   "level": "review",
+   "category": "结论强度",
+   "pattern": "\\bstate[- ]of[- ]the[- ]art\\b|\\bSOTA\\b",
+   "suggest": "后面紧跟基准名和数字"
+  },
+  {
+   "id": "simple-effective",
+   "lang": "en",
+   "level": "review",
+   "category": "空洞自评",
+   "pattern": "\\bsimple (?:yet|but) (?:effective|powerful)\\b",
+   "suggest": "用组件数、参数量说明 simple，用数字说明 effective"
+  },
+  {
+   "id": "holistic",
+   "lang": "en",
+   "level": "review",
+   "max": 1,
+   "category": "空洞自评",
+   "pattern": "\\b(?:holistic|versatile|generalizable|high-fidelity)\\b",
+   "suggest": "写出具体维度、支持的任务列表、保真指标或测试过的未见设置"
+  },
+  {
+   "id": "hype",
+   "lang": "en",
+   "level": "avoid",
+   "category": "夸张修饰",
+   "pattern": "\\b(?:holy grail|fundamentally break\\w*|staggering|remarkable leap|catastrophic(?:ally)?|innovatively|exceptional(?:ly)?)\\b",
+   "suggest": "删除，改为数字对比；形容词强度要和数量级匹配（<1 个点的变化不用情绪化形容词）"
+  },
+  {
+   "id": "absolute-claim",
+   "lang": "en",
+   "level": "avoid",
+   "category": "绝对化断言",
+   "pattern": "\\bzero interference\\b|\\bdoes not suffer from any\\b|\\bwithout any (?:loss|limitation)s?\\b",
+   "suggest": "改为可测量的表述，并在局限一节说明例外"
+  },
+  {
+   "id": "unlock",
+   "lang": "en",
+   "level": "avoid",
+   "category": "AI 高频词",
+   "pattern": "\\bunlock(?:s|ed|ing)?\\b|\\bboasts?\\b",
+   "suggest": "enable / allow，或直接写出新能力"
+  }
+ ]
+}

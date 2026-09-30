@@ -1,0 +1,25 @@
+# 论文大纲。复制到论文仓库的 .vibepaper/outline.yaml 后填写。
+#
+# status 的取值：todo | drafted | reviewed | done
+# dod（definition of done，验收条件）必须能检查，例如：
+#   - 引用 smith2023 的结论
+#   - 给出 Table 2 中 ImageNet 上的 top-1 数字
+#   - 使用术语 "token pruning"，不用 "token dropping"
+#   - 不超过 150 词
+
+title: ""
+core_points:            # 全文要让读者记住的 2–4 个要点
+  - ""
+
+sections:
+  - id: intro
+    title: Introduction
+    file: sections/intro.tex        # 这一节对应的论文文件
+    goal: ""                        # 这一节要完成什么
+    word_range: [0, 0]
+    status: todo
+    paragraphs:
+      - id: intro-p1
+        thesis: ""                  # 本段论点，一句话
+        evidence: []                # 支撑：实验 / 表 / 图 / 引用 key / spec 中的事实
+        dod: []
