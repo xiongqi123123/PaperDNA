@@ -4,7 +4,9 @@
 
 <p align="center">
   <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-yellow.svg" alt="License: MIT"></a>
-  <img src="https://img.shields.io/badge/Claude%20Code-Skill-8A63D2" alt="Claude Code Skill">
+  <img src="https://img.shields.io/badge/Claude%20Code-plugin-8A63D2" alt="Claude Code plugin">
+  <img src="https://img.shields.io/badge/Codex-plugin-111111" alt="Codex plugin">
+  <img src="https://img.shields.io/badge/version-1.0.1-informational" alt="Version 1.0.1">
   <img src="https://img.shields.io/badge/corpus-1040%20papers-2F80ED" alt="Corpus: 1040 papers">
   <img src="https://img.shields.io/badge/venues-CVPR%202026%20%7C%20ICCV%202025-0F9D58" alt="Venues: CVPR 2026 | ICCV 2025">
   <img src="https://img.shields.io/badge/python-3.8%2B-3776AB?logo=python&logoColor=white" alt="Python 3.8+">
@@ -22,7 +24,7 @@
 
 ---
 
-**PaperDNA** 是一个 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skill，用来写和改学术论文，面向 CV、自动驾驶和具身智能方向。它的写作规范不是凭经验写的：我们逐篇精读了 **1040 篇 CVPR 2026 / ICCV 2025 的获奖、oral 和 highlight 论文**，提炼出它们怎么讲故事、每一章怎么组织、句子怎么写、词怎么选、方法怎么取名。它遵循的每条默认做法，都能追溯到语料统计或具体论文。同时，它会学习你的文风，记住你每次的纠正，用得越久越像你写的。
+**PaperDNA** 是一个 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 与 [Codex](https://developers.openai.com/codex) 插件，用来写和改学术论文，面向 CV、自动驾驶和具身智能方向。它的写作规范不是凭经验写的：我们逐篇精读了 **1040 篇 CVPR 2026 / ICCV 2025 的获奖、oral 和 highlight 论文**，提炼出它们怎么讲故事、每一章怎么组织、句子怎么写、词怎么选、方法怎么取名。它遵循的每条默认做法，都能追溯到语料统计或具体论文。同时，它会学习你的文风，记住你每次的纠正，用得越久越像你写的。
 
 > **语言说明**：规范文件用中文写成，句式模板和例句是英文。PaperDNA 帮你写英文论文，你可以用中文或英文和它交流。
 
@@ -64,7 +66,7 @@
 | 贡献列表用 bullet | 74.4% |
 | 摘要里出现 leverage | 24.1% |
 
-完整统计见 [`references/corpus_stats.md`](references/corpus_stats.md)。
+完整统计见 [`skills/paperdna/references/corpus_stats.md`](skills/paperdna/references/corpus_stats.md)。
 
 ## 能做什么
 
@@ -85,13 +87,15 @@
 
 ### 环境
 
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code)
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 或 [Codex](https://developers.openai.com/codex)
 - Python 3.8+（扫描脚本只依赖标准库）
 - 可选：`pip install pymupdf`（PDF 转文本）；`brew install poppler`（让 Claude 查看 PDF 页面）
 
 ### 安装
 
-以 Claude Code 插件的方式安装。在 Claude Code 会话中输入：
+#### Claude Code
+
+在 Claude Code 会话中输入：
 
 ```
 /plugin marketplace add xiongqi123123/PaperDNA
@@ -119,12 +123,21 @@ claude plugin install paperdna@paperdna
 从本地目录添加的市场，插件直接从仓库目录加载，修改后下次会话（或执行 `/reload-plugins`）即生效。推送前运行 `claude plugin validate ./PaperDNA`；每次发布都要提高 `.claude-plugin/plugin.json` 里的 `version`，用户只有在版本号变化时才会收到更新。
 </details>
 
+#### Codex
+
+```bash
+codex plugin marketplace add xiongqi123123/PaperDNA
+codex plugin add paperdna@paperdna
+```
+
+安装后新开一个会话即可使用。同一次安装也适用于 Codex 桌面版（安装后重启应用）。在 Codex 中，个人画像保存在 `~/.paperdna/profile/`。更新用 `codex plugin marketplace upgrade`，卸载用 `codex plugin remove paperdna`。
+
 ### 第一次使用
 
 1. **提取文风**：给出 3–5 篇你自己写的论文，说"用 paperdna 分析这几篇，更新我的文风画像"。
 2. **开始写作**：在论文仓库里说"帮我写 introduction"。第一次使用时会在论文仓库创建 `.paperdna/`，里面放 spec、大纲和文献笔记，建议和论文一起纳入 git。
 
-在 Claude Code 中输入 `/paperdna:paperdna` 可以直接调用；写论文、改论文时它也会自动触发。
+在 Claude Code 中输入 `/paperdna:paperdna`，或在 Codex 中提到 PaperDNA，可以直接调用；写论文、改论文时它也会自动触发。
 
 ## 工作原理
 
@@ -145,35 +158,38 @@ flowchart LR
 
 | 类别 | 位置 | 内容 |
 |---|---|---|
-| 写作规范 | `references/`、`templates/`、`scripts/` | 随 skill 发布，所有人共用 |
-| 个人画像 | 插件的数据目录（`~/.claude/plugins/data/…/profile/`） | 文风画像、错题本、跨论文术语表、个人补充词表；插件更新时保留，不进 git |
+| 写作规范 | `skills/paperdna/`（`references/`、`templates/`、`scripts/`） | 随 skill 发布，所有人共用 |
+| 个人画像 | Claude Code：插件的数据目录（`~/.claude/plugins/data/…/profile/`）；Codex：`~/.paperdna/profile/` | 文风画像、错题本、跨论文术语表、个人补充词表；插件更新时保留，不进 git |
 | 单篇论文状态 | 论文仓库的 `.paperdna/` | spec、大纲、文献笔记 |
 
 ```
-.claude-plugin/                plugin.json（插件清单）与 marketplace.json（插件市场）
-SKILL.md                       入口：必读文件、任务路由、硬规则
-references/
-  story_types.md               8 种叙事类型：判断流程、骨架、逐步写法、代表论文
-  sections/                    六个章节：abstract / introduction / related_work / method / experiments / conclusion
-  sentence_bank.md             句式库：13 类写作功能的英文模板与原句
-  word_style.md                写作原则、用词、结论强度、去 AI 味、风格参数、定稿检查清单
-  naming.md                    取名：标题结构、方法名构造、首次引入、取名流程
-  anti_defensive.md            发布会原则：不利结果的处理顺序、局限（最多 2 条）、交稿前自查
-  corpus_stats.md              语料统计
-  ai_words.json                AI 味与空洞用词表（扫描脚本也读它）
-  workflow.md / review.md      写作流程、审查标准
-  close_reading.md / literature.md / latex.md / proofread.md / ...
-templates/                     spec、大纲、文献笔记、精读笔记、个人画像的模板
-scripts/                       ai_style_scan.py（去 AI 味扫描）、parse_pdf.py（PDF 转文本）
+.claude-plugin/                Claude Code：plugin.json 与 marketplace.json
+.codex-plugin/plugin.json      Codex 插件清单
+.agents/plugins/marketplace.json  Codex 插件市场
+skills/paperdna/               skill 本体，Claude Code 与 Codex 共用
+  SKILL.md                     入口：必读文件、任务路由、硬规则
+  references/
+    story_types.md             8 种叙事类型：判断流程、骨架、逐步写法、代表论文
+    sections/                  六个章节：abstract / introduction / related_work / method / experiments / conclusion
+    sentence_bank.md           句式库：13 类写作功能的英文模板与原句
+    word_style.md              写作原则、用词、结论强度、去 AI 味、风格参数、定稿检查清单
+    naming.md                  取名：标题结构、方法名构造、首次引入、取名流程
+    anti_defensive.md          发布会原则：不利结果的处理顺序、局限（最多 2 条）、交稿前自查
+    corpus_stats.md            语料统计
+    ai_words.json              AI 味与空洞用词表（扫描脚本也读它）
+    workflow.md / review.md    写作流程、审查标准
+    close_reading.md / literature.md / latex.md / proofread.md / ...
+  templates/                   spec、大纲、文献笔记、精读笔记、个人画像的模板
+  scripts/                     ai_style_scan.py（去 AI 味扫描）、parse_pdf.py（PDF 转文本）
 tools/corpus/                  语料流水线（维护用，skill 运行时不需要）
-asset/                         Logo
+asset/                         Logo 与图标
 ```
 
 脚本：
 
 ```bash
-python3 scripts/ai_style_scan.py path/to/paper                   # 扫描 .tex/.md/.txt；--level avoid 只看必须改的项
-python3 scripts/parse_pdf.py paper.pdf --main-only -o paper.txt  # PDF 转文本，截到参考文献之前
+python3 skills/paperdna/scripts/ai_style_scan.py path/to/paper                   # 扫描 .tex/.md/.txt；--level avoid 只看必须改的项
+python3 skills/paperdna/scripts/parse_pdf.py paper.pdf --main-only -o paper.txt  # PDF 转文本，截到参考文献之前
 ```
 
 扫描有命中时退出码为 1，可以接到 pre-commit 或 CI 中使用。
@@ -184,14 +200,14 @@ python3 scripts/parse_pdf.py paper.pdf --main-only -o paper.txt  # PDF 转文本
 
 | 想改的内容 | 文件 |
 |---|---|
-| 禁用或限量某个词 | `references/ai_words.json` |
-| 写作原则、用词、结论强度、去 AI 味 | `references/word_style.md` |
-| 叙事类型与故事骨架 | `references/story_types.md` |
-| 某个章节怎么写 | `references/sections/<节>.md` |
-| 可复用句式 | `references/sentence_bank.md` |
-| 标题与方法名 | `references/naming.md` |
-| 不利结果、局限、防御性措辞 | `references/anti_defensive.md` |
-| 审查查什么 | `references/review.md` |
+| 禁用或限量某个词 | `skills/paperdna/references/ai_words.json` |
+| 写作原则、用词、结论强度、去 AI 味 | `skills/paperdna/references/word_style.md` |
+| 叙事类型与故事骨架 | `skills/paperdna/references/story_types.md` |
+| 某个章节怎么写 | `skills/paperdna/references/sections/<节>.md` |
+| 可复用句式 | `skills/paperdna/references/sentence_bank.md` |
+| 标题与方法名 | `skills/paperdna/references/naming.md` |
+| 不利结果、局限、防御性措辞 | `skills/paperdna/references/anti_defensive.md` |
+| 审查查什么 | `skills/paperdna/references/review.md` |
 | 我自己的语气和习惯 | `profile/style_profile.md` |
 | 具体的纠正记录 | `profile/error_log.md`（同类条目多了，合并进文风画像） |
 

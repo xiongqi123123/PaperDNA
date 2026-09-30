@@ -1,0 +1,21 @@
+{
+  "name": "paperdna",
+  "interface": {
+    "displayName": "PaperDNA"
+  },
+  "plugins": [
+    {
+      "name": "paperdna",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/xiongqi123123/PaperDNA.git",
+        "ref": "main"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

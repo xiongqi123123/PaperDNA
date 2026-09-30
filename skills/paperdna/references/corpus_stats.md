@@ -1,6 +1,6 @@
 # 1040 篇精读笔记统计（CVPR2026 + ICCV2025）
 
-> 数据来源：CVPR 2026（713 篇）与 ICCV 2025（327 篇）获奖、oral、highlight 论文的逐篇精读笔记，由 `tools/corpus/prep_synthesis.py` 生成。
+> 数据来源：CVPR 2026（713 篇）与 ICCV 2025（327 篇）获奖、oral、highlight 论文的逐篇精读笔记，由 仓库根目录的 `tools/corpus/prep_synthesis.py` 生成。
 
 
 ## 故事类型

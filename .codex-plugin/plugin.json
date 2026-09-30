@@ -1,0 +1,31 @@
+{
+  "name": "paperdna",
+  "version": "1.0.1",
+  "description": "Corpus-grounded academic paper writing: story types, section guides, sentence bank, word choice, naming, anti-defensive writing and independent review, distilled from 1040 CVPR 2026 / ICCV 2025 award, oral and highlight papers.",
+  "author": {
+    "name": "xiongqi123123",
+    "url": "https://github.com/xiongqi123123"
+  },
+  "homepage": "https://github.com/xiongqi123123/PaperDNA",
+  "repository": "https://github.com/xiongqi123123/PaperDNA",
+  "license": "MIT",
+  "keywords": ["academic-writing", "paper-writing", "latex", "computer-vision", "autonomous-driving", "cvpr", "iccv"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "PaperDNA",
+    "shortDescription": "Write top-venue papers in your own voice",
+    "longDescription": "Story-first, corpus-grounded guidance for writing and revising papers: 8 story types, section guides, a sentence bank, word-choice and naming rules, anti-defensive writing and independent review, distilled from 1040 CVPR 2026 / ICCV 2025 papers.",
+    "developerName": "xiongqi123123",
+    "category": "Productivity",
+    "capabilities": ["Instructions"],
+    "websiteURL": "https://github.com/xiongqi123123/PaperDNA",
+    "defaultPrompt": [
+      "Use PaperDNA to plan the story of my paper.",
+      "Write the introduction with PaperDNA.",
+      "Review this section like a top-venue reviewer."
+    ],
+    "brandColor": "#4F5BD5",
+    "composerIcon": "./asset/paperdna_icon.png",
+    "logo": "./asset/paperdna_icon.png"
+  }
+}

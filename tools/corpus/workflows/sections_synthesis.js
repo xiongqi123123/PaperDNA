@@ -56,8 +56,8 @@ const results = await parallel(Object.entries(SECTIONS).map(([key, s]) => async 
   return agent(`${GUARD}请写出论文写作 skill 中"${s.name}"一章的写作规范，读者是正在替用户写这一节的 AI 助手，它会照着写。
 
 先读取：
-1. 现有的早期规范 ${repo}/references/sections/${key}.md：其中的要求（如与实现一致、先直觉后公式、局限要具体等）要保留，并与新材料合并。
-2. ${repo}/references/story_types.md 的第 3.4–3.6 节（方法、实验、局限与结论的共享写法，已从同一批语料提炼）：这些内容要并入本章对应部分，之后会从 story_types.md 中移除，只留指引。
+1. 现有的早期规范 ${repo}/skills/paperdna/references/sections/${key}.md：其中的要求（如与实现一致、先直觉后公式、局限要具体等）要保留，并与新材料合并。
+2. ${repo}/skills/paperdna/references/story_types.md 的第 3.4–3.6 节（方法、实验、局限与结论的共享写法，已从同一批语料提炼）：这些内容要并入本章对应部分，之后会从 story_types.md 中移除，只留指引。
 3. 统计文件 ${stats}（如有与本章相关的数字，可以引用）。
 
 然后结合下面 ${mids.length} 份汇总材料，写成完整规范，结构：

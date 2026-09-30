@@ -4,7 +4,9 @@
 
 <p align="center">
   <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-yellow.svg" alt="License: MIT"></a>
-  <img src="https://img.shields.io/badge/Claude%20Code-Skill-8A63D2" alt="Claude Code Skill">
+  <img src="https://img.shields.io/badge/Claude%20Code-plugin-8A63D2" alt="Claude Code plugin">
+  <img src="https://img.shields.io/badge/Codex-plugin-111111" alt="Codex plugin">
+  <img src="https://img.shields.io/badge/version-1.0.1-informational" alt="Version 1.0.1">
   <img src="https://img.shields.io/badge/corpus-1040%20papers-2F80ED" alt="Corpus: 1040 papers">
   <img src="https://img.shields.io/badge/venues-CVPR%202026%20%7C%20ICCV%202025-0F9D58" alt="Venues: CVPR 2026 | ICCV 2025">
   <img src="https://img.shields.io/badge/python-3.8%2B-3776AB?logo=python&logoColor=white" alt="Python 3.8+">
@@ -22,7 +24,7 @@
 
 ---
 
-**PaperDNA** is a [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skill for writing and revising academic papers, tuned for computer vision, autonomous driving and embodied AI. Its writing guidance does not come from rules of thumb: we close-read **1040 award, oral and highlight papers from CVPR 2026 and ICCV 2025**, one by one, and distilled how they tell their story, structure every section, phrase their sentences, choose their words and name their methods. Every default it follows can be traced back to corpus statistics or to specific papers. It also learns your personal style and remembers every correction you make, so it sounds more like you the longer you use it.
+**PaperDNA** is a plugin for [Claude Code](https://docs.anthropic.com/en/docs/claude-code) and [Codex](https://developers.openai.com/codex) for writing and revising academic papers, tuned for computer vision, autonomous driving and embodied AI. Its writing guidance does not come from rules of thumb: we close-read **1040 award, oral and highlight papers from CVPR 2026 and ICCV 2025**, one by one, and distilled how they tell their story, structure every section, phrase their sentences, choose their words and name their methods. Every default it follows can be traced back to corpus statistics or to specific papers. It also learns your personal style and remembers every correction you make, so it sounds more like you the longer you use it.
 
 > **Language note.** The guidance files are written in Chinese; sentence templates and examples are in English. PaperDNA helps you write English papers, and you can talk to it in Chinese or English.
 
@@ -64,7 +66,7 @@
 | Contributions listed as bullets | 74.4% |
 | Abstracts that use *leverage* | 24.1% |
 
-Full statistics: [`references/corpus_stats.md`](references/corpus_stats.md).
+Full statistics: [`skills/paperdna/references/corpus_stats.md`](skills/paperdna/references/corpus_stats.md).
 
 ## What You Can Ask
 
@@ -85,13 +87,15 @@ Full statistics: [`references/corpus_stats.md`](references/corpus_stats.md).
 
 ### Requirements
 
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code)
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) or [Codex](https://developers.openai.com/codex)
 - Python 3.8+ (standard library only for the scanner)
 - Optional: `pip install pymupdf` to extract text from PDFs, and `brew install poppler` so Claude can view PDF pages
 
 ### Installation
 
-Install PaperDNA as a Claude Code plugin. In a Claude Code session:
+#### Claude Code
+
+In a Claude Code session:
 
 ```
 /plugin marketplace add xiongqi123123/PaperDNA
@@ -119,12 +123,21 @@ claude plugin install paperdna@paperdna
 A plugin installed from a local marketplace loads in place, so your edits take effect at the next session (or after `/reload-plugins`). Run `claude plugin validate ./PaperDNA` before pushing, and bump `version` in `.claude-plugin/plugin.json` for every release: users only receive an update when the version changes.
 </details>
 
+#### Codex
+
+```bash
+codex plugin marketplace add xiongqi123123/PaperDNA
+codex plugin add paperdna@paperdna
+```
+
+Start a new thread afterwards. The same install also covers the Codex desktop app (restart it after installing). In Codex, your profile lives in `~/.paperdna/profile/`. To update, run `codex plugin marketplace upgrade`; to uninstall, `codex plugin remove paperdna`.
+
 ### First run
 
 1. **Extract your style.** Share 3–5 papers you wrote and say: *"Use paperdna to analyze these and update my style profile."*
 2. **Start writing.** In your paper repository, say: *"Write the introduction."* On first use, PaperDNA creates a `.paperdna/` folder there for the spec, outline and reference notes; we recommend committing it with your paper.
 
-Type `/paperdna:paperdna` in Claude Code to invoke it directly. It also triggers automatically when you work on a paper.
+Type `/paperdna:paperdna` in Claude Code, or mention PaperDNA in Codex, to invoke it directly. It also triggers automatically when you work on a paper.
 
 ## How It Works
 
@@ -145,35 +158,38 @@ The guidance itself was built by a corpus pipeline: fetch conference data, selec
 
 | Kind | Location | Contents |
 |---|---|---|
-| Writing guidance | `references/`, `templates/`, `scripts/` | Shipped with the skill and shared by everyone |
-| Personal profile | the plugin's data directory (`~/.claude/plugins/data/…/profile/`) | Style profile, error log, cross-paper glossary, personal word list; kept across plugin updates, never committed |
+| Writing guidance | `skills/paperdna/` (`references/`, `templates/`, `scripts/`) | Shipped with the skill and shared by everyone |
+| Personal profile | Claude Code: the plugin's data directory (`~/.claude/plugins/data/…/profile/`); Codex: `~/.paperdna/profile/` | Style profile, error log, cross-paper glossary, personal word list; kept across plugin updates, never committed |
 | Per-paper state | `.paperdna/` in your paper repo | Spec, outline, reference notes |
 
 ```
-.claude-plugin/                plugin.json (plugin manifest) and marketplace.json (marketplace)
-SKILL.md                       Entry point: required reading, task routing, hard rules
-references/
-  story_types.md               8 story types: decision flow, skeletons, step-by-step writing, exemplar papers
-  sections/                    Six section guides: abstract / introduction / related_work / method / experiments / conclusion
-  sentence_bank.md             English templates and original sentences for 13 writing functions
-  word_style.md                Principles, word choice, claim strength, de-AI rules, style defaults, final checklist
-  naming.md                    Titles, method-name construction, first mention, naming process
-  anti_defensive.md            Press-release principle: unfavorable results, limitations (max 2), self-audit checklist
-  corpus_stats.md              Corpus statistics
-  ai_words.json                AI-tone and empty-word list (also read by the scanner)
-  workflow.md / review.md      Writing workflow and review criteria
-  close_reading.md / literature.md / latex.md / proofread.md / ...
-templates/                     Templates for spec, outline, reference notes, close-reading notes, profile
-scripts/                       ai_style_scan.py (AI-tone scanner), parse_pdf.py (PDF to text)
+.claude-plugin/                Claude Code: plugin.json and marketplace.json
+.codex-plugin/plugin.json      Codex plugin manifest
+.agents/plugins/marketplace.json  Codex marketplace
+skills/paperdna/               The skill itself, shared by Claude Code and Codex
+  SKILL.md                     Entry point: required reading, task routing, hard rules
+  references/
+    story_types.md             8 story types: decision flow, skeletons, step-by-step writing, exemplar papers
+    sections/                  Six section guides: abstract / introduction / related_work / method / experiments / conclusion
+    sentence_bank.md           English templates and original sentences for 13 writing functions
+    word_style.md              Principles, word choice, claim strength, de-AI rules, style defaults, final checklist
+    naming.md                  Titles, method-name construction, first mention, naming process
+    anti_defensive.md          Press-release principle: unfavorable results, limitations (max 2), self-audit checklist
+    corpus_stats.md            Corpus statistics
+    ai_words.json              AI-tone and empty-word list (also read by the scanner)
+    workflow.md / review.md    Writing workflow and review criteria
+    close_reading.md / literature.md / latex.md / proofread.md / ...
+  templates/                   Templates for spec, outline, reference notes, close-reading notes, profile
+  scripts/                     ai_style_scan.py (AI-tone scanner), parse_pdf.py (PDF to text)
 tools/corpus/                  Corpus pipeline (for maintenance; not needed at runtime)
-asset/                         Logo
+asset/                         Logo and icon
 ```
 
 Scripts:
 
 ```bash
-python3 scripts/ai_style_scan.py path/to/paper                   # scan .tex/.md/.txt; --level avoid shows must-fix items only
-python3 scripts/parse_pdf.py paper.pdf --main-only -o paper.txt  # PDF to text, cut before the references
+python3 skills/paperdna/scripts/ai_style_scan.py path/to/paper                   # scan .tex/.md/.txt; --level avoid shows must-fix items only
+python3 skills/paperdna/scripts/parse_pdf.py paper.pdf --main-only -o paper.txt  # PDF to text, cut before the references
 ```
 
 The scanner exits with code 1 when it finds hits, so it fits into pre-commit hooks or CI.
@@ -184,14 +200,14 @@ The scanner exits with code 1 when it finds hits, so it fits into pre-commit hoo
 
 | What to change | File |
 |---|---|
-| Ban or cap a word | `references/ai_words.json` |
-| Principles, word choice, claim strength, de-AI rules | `references/word_style.md` |
-| Story types and skeletons | `references/story_types.md` |
-| How a section is written | `references/sections/<section>.md` |
-| Reusable sentence patterns | `references/sentence_bank.md` |
-| Titles and method names | `references/naming.md` |
-| Unfavorable results, limitations, defensive wording | `references/anti_defensive.md` |
-| What the review checks | `references/review.md` |
+| Ban or cap a word | `skills/paperdna/references/ai_words.json` |
+| Principles, word choice, claim strength, de-AI rules | `skills/paperdna/references/word_style.md` |
+| Story types and skeletons | `skills/paperdna/references/story_types.md` |
+| How a section is written | `skills/paperdna/references/sections/<section>.md` |
+| Reusable sentence patterns | `skills/paperdna/references/sentence_bank.md` |
+| Titles and method names | `skills/paperdna/references/naming.md` |
+| Unfavorable results, limitations, defensive wording | `skills/paperdna/references/anti_defensive.md` |
+| What the review checks | `skills/paperdna/references/review.md` |
 | Your own tone and habits | `profile/style_profile.md` |
 | Individual corrections | `profile/error_log.md` (merge recurring ones into your style profile) |
 

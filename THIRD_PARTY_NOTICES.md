@@ -18,7 +18,7 @@ Copyright (c) 2024 AI Vibe Writing Skill Contributors
 
 - Source: https://github.com/Adkid-Zephyr/anti-defensive-writing-Skill
 - License: MIT
-- Used for: `references/anti_defensive.md` (the press-release principle, the order for handling unfavorable results, and the "don't hand the reviewer a knife" checklist), and the self-undermining entries in `references/ai_words.json`. PaperDNA adapted the rules, added a floor (numbers and tables stay accurate; claims never exceed the evidence) and caps limitations at two.
+- Used for: `skills/paperdna/references/anti_defensive.md` (the press-release principle, the order for handling unfavorable results, and the "don't hand the reviewer a knife" checklist), and the self-undermining entries in `skills/paperdna/references/ai_words.json`. PaperDNA adapted the rules, added a floor (numbers and tables stay accurate; claims never exceed the evidence) and caps limitations at two.
 
 ```
 MIT License

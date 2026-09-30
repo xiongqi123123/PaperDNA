@@ -7,11 +7,11 @@ description: 学术论文写作与修改助手，规范提炼自 1040 篇 CVPR 2
 
 按用户的个人文风写论文，并把每次纠正沉淀下来，下次不再犯。
 
-本 skill 目录：`${CLAUDE_SKILL_DIR}`。本文件和 references 中出现的 `references/`、`templates/`、`scripts/` 都相对这个目录。
+本 skill 目录：`${CLAUDE_SKILL_DIR}`。如果这里显示的是未替换的字面量（例如在 Codex 中），本 skill 目录就是这个 SKILL.md 所在的目录；下文命令里的 `${CLAUDE_SKILL_DIR}` 同样替换成它。本文件和 references 中出现的 `references/`、`templates/`、`scripts/` 都相对这个目录。
 
 **个人画像目录**（本文件和 references 中写作 `profile/` 的地方都指它）：
 - 通常是 `${CLAUDE_PLUGIN_DATA}/profile/`。这是插件的持久数据目录，插件更新时保留；插件安装目录会随更新整体替换，不要把个人数据写进 skill 目录。
-- 如果上一行显示的是未替换的字面量 `${CLAUDE_PLUGIN_DATA}`（没有作为插件加载），改用 `${CLAUDE_SKILL_DIR}/profile/`。
+- 如果上一行显示的是未替换的字面量 `${CLAUDE_PLUGIN_DATA}`（例如在 Codex 中，或没有作为插件加载），改用 `~/.paperdna/profile/`。不要放在 skill 目录里，插件更新时 skill 目录会被整体替换。
 - 目录不存在时，先把 `templates/profile/` 整个复制过去。
 
 ## 文件分三类
