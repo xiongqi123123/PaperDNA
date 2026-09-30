@@ -48,7 +48,7 @@
 ### 原则 3：一个概念只用一个词，一个量只用一个符号
 - 术语漂移是 9/9 批次都点名的最高频细节问题。
 - 一个概念只用一个主术语，在摘要、引言、方法、图表和实验中保持一致；符号同理，同一个量全文只用一个符号。不要为了避免重复而换说法，审稿人会以为那是另一个东西。
-- 确定下来的术语写进论文仓库 `.vibepaper/spec.md` 的术语表。
+- 确定下来的术语写进论文仓库 `.paperdna/spec.md` 的术语表。
 - 正例：批次 050 的论文整体上定名后缩写和词序始终不变，笔记把这种稳定本身评为一种品味。
 - 反例：CFG-Ctrl 中 e(t) 有五种说法；EthoCLIP 的图模块有四种命名；DOSFMVC / DOSMFVC / DOSFMNVC 三种拼写混用；WIR3D 的核心方法先后被叫作 "visually meaningful curves / semantically-informed curves / 3D strokes / visually-informed curves"；IDGH 用 flawed / terrible / inaccurate / detective 四个词形容同一缺陷。
 - 检查动作：建一张术语表（见 2.3 节），逐项全文搜索同义变体。

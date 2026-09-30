@@ -1,9 +1,9 @@
 ---
-name: vibepaper
+name: paperdna
 description: 学术论文写作与修改助手，规范提炼自 1040 篇 CVPR 2026 / ICCV 2025 获奖、oral 与 highlight 论文。用于构思论文的叙事与故事线，撰写、重写、润色或审查论文与学位论文章节（Abstract、Introduction、Related Work、Method、Experiments、Conclusion），起标题和方法名，编辑 LaTeX 论文与修复编译错误，去除 AI 味，精读范文学习写法，阅读文献 PDF 并整理为可引用的证据，以及维护个人文风画像和错题本。Use when the user drafts, revises, polishes, proofreads or reviews an academic paper or thesis (LaTeX or Markdown), plans a paper's story, names a method or titles a paper, asks to reduce AI tone in academic writing, close-reads exemplar papers, or wants to read papers as evidence for writing.
 ---
 
-# VibePaper
+# PaperDNA
 
 按用户的个人文风写论文，并把每次纠正沉淀下来，下次不再犯。
 
@@ -15,16 +15,16 @@ description: 学术论文写作与修改助手，规范提炼自 1040 篇 CVPR 2
 |---|---|---|---|
 | 写作规范 | `references/`、`templates/`、`scripts/` | 通用规则、章节写法、模板、脚本 | 用户维护；要改先问用户 |
 | 个人画像 | `profile/`（不进 git，只在本地） | 文风画像、错题本、跨论文术语表 | 按 `references/feedback.md` 更新；目录不存在时，先从 `templates/profile/` 复制一份 |
-| 单篇论文状态 | 论文仓库的 `.vibepaper/` | spec、大纲、文献笔记 | 写作过程中随时更新 |
+| 单篇论文状态 | 论文仓库的 `.paperdna/` | spec、大纲、文献笔记 | 写作过程中随时更新 |
 
-论文仓库指用户当前论文所在的目录（包含主 `.tex` 或 `.md` 文件）。需要 `.vibepaper/` 而它不存在时：从 `templates/` 复制 `spec.md` 和 `outline.yaml` 过去，并创建 `refs/` 目录。
+论文仓库指用户当前论文所在的目录（包含主 `.tex` 或 `.md` 文件）。需要 `.paperdna/` 而它不存在时：从 `templates/` 复制 `spec.md` 和 `outline.yaml` 过去，并创建 `refs/` 目录。
 
 ## 动笔前必读
 
 1. `profile/style_profile.md`：文风画像
 2. `profile/error_log.md`：错题本
 3. `references/word_style.md` 第 4 节：去 AI 味规则
-4. 论文仓库中存在 `.vibepaper/spec.md` 时也要读。其中的术语、数字和约束优先于其他所有规则。
+4. 论文仓库中存在 `.paperdna/spec.md` 时也要读。其中的术语、数字和约束优先于其他所有规则。
 
 ## 按任务选择
 
@@ -55,7 +55,7 @@ description: 学术论文写作与修改助手，规范提炼自 1040 篇 CVPR 2
 - 技术描述要与代码、公式和实验设置一致。论文仓库或用户指定的位置有代码和结果时，先读再写。
 - 编辑 `.tex` 时不破坏 `\cite{}`、`\ref{}`、`\label{}` 和公式环境，也不做与任务无关的排版改动。
 - 大范围重写（跨段落的结构调整，或用户说"重写"）时，先给出修改方案：目标、影响哪些段落、对应的 DoD 变化。用户同意后再动笔。
-- 已确定的决定（术语、口径、结构）写进 `.vibepaper/spec.md` 的决策记录，不要只留在对话里。
+- 已确定的决定（术语、口径、结构）写进 `.paperdna/spec.md` 的决策记录，不要只留在对话里。
 
 ## 脚本
 

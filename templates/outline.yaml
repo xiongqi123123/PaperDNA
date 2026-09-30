@@ -1,4 +1,4 @@
-# 论文大纲。复制到论文仓库的 .vibepaper/outline.yaml 后填写。
+# 论文大纲。复制到论文仓库的 .paperdna/outline.yaml 后填写。
 #
 # status 的取值：todo | drafted | reviewed | done
 # dod（definition of done，验收条件）必须能检查，例如：

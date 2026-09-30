@@ -2,7 +2,7 @@
 
 用来维护 skill 的写作规范：下载顶会论文 → 转文本 → 逐篇精读写笔记 → 汇总提炼成 `references/` 中的规范。skill 运行时用不到这里的任何文件。
 
-语料放在 NAS 上，根目录默认是 `/Volumes/personal_folder/Paper/Temp/vibepaper/`（skill 仓库上一级的 `Temp` 是指向它的软链接），可用环境变量 `VIBEPAPER_CORPUS` 覆盖。目录结构见 `config.py`。
+语料放在 NAS 上，根目录默认是 `/Volumes/personal_folder/Paper/Temp/vibepaper/`（skill 仓库上一级的 `Temp` 是指向它的软链接），可用环境变量 `PAPERDNA_CORPUS` 覆盖。目录结构见 `config.py`。
 
 当前语料：CVPR 2026 + ICCV 2025 共 1040 篇获奖、oral、highlight 论文，都已有精读笔记；另有 ECCV 2026、NeurIPS 2025、ICML 2026、ICLR 2026 的 PDF 与少量笔记。
 

@@ -1,6 +1,6 @@
 # 文献阅读与证据整理
 
-目标是把一篇文献整理成写作时可以放心引用的笔记。笔记存放在论文仓库的 `.vibepaper/refs/<citekey>.md`。
+目标是把一篇文献整理成写作时可以放心引用的笔记。笔记存放在论文仓库的 `.paperdna/refs/<citekey>.md`。
 
 ## 1. 获取文本
 
@@ -19,7 +19,7 @@
 
 ## 3. 沉淀
 
-- 本篇论文要用的术语 → `.vibepaper/spec.md` 的术语表。
+- 本篇论文要用的术语 → `.paperdna/spec.md` 的术语表。
 - 跨论文通用的术语 → `profile/glossary.md`。
 - 值得借鉴的写法 → 笔记中的"可借鉴写法"一节。只有用户明确要求学习这篇文献的风格时，才按 `references/style_extraction.md` 更新文风画像。
 - 新的 BibTeX 条目：问过用户之后再写入论文的 `.bib`。

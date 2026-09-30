@@ -5,12 +5,12 @@
 ## 0. 准备论文工作区
 
 - 确认论文仓库根目录和主文件（如 `main.tex`），不确定就问用户。
-- 没有 `.vibepaper/` 时按 SKILL.md 的说明创建。
+- 没有 `.paperdna/` 时按 SKILL.md 的说明创建。
 - 找到代码和实验结果的位置（日志、csv、画表脚本），记到 spec 的"基本信息"里。
 
 ## 1. Spec
 
-- 按 `templates/spec.md` 的结构填写 `.vibepaper/spec.md`，已有的就在原基础上更新。
+- 按 `templates/spec.md` 的结构填写 `.paperdna/spec.md`，已有的就在原基础上更新。
 - 信息来源：用户、已有的 .tex 草稿、代码和结果文件。缺少关键信息（贡献、核心数字、投稿目标）时问用户，不要猜。
 - **选故事类型**：按 `references/story_types.md` 第 2 节的判断流程确定主类型（必要时加一个辅类型），把该类型的叙事骨架套到本文，写进 spec 的"叙事骨架"，并找出钩子（反直觉的数字、现象或对比）。故事类型决定了摘要和引言的骨架、方法怎么组织、实验要证明什么。
 - **定名字**：按 `references/naming.md` 的取名流程产出 3–5 个标题和方法名候选，和用户一起定稿，写进 spec。名字一旦确定，全文统一。
@@ -18,7 +18,7 @@
 
 ## 2. 大纲
 
-- 按 `templates/outline.yaml` 在 `.vibepaper/outline.yaml` 写大纲：每节写明目标；每段写明论点（thesis）、证据和 DoD（验收条件）。
+- 按 `templates/outline.yaml` 在 `.paperdna/outline.yaml` 写大纲：每节写明目标；每段写明论点（thesis）、证据和 DoD（验收条件）。
 - DoD 必须能检查，例如"引用 X 的结论""给出 Table 2 的主要数字""使用术语 Y""不超过 N 词"。"写得清楚"这类无法判断的条件不算 DoD。
 - 检查大纲的对应关系：每条贡献都要在 Introduction 中提出，在 Method 中有对应机制，在 Experiments 中有对应证据。
 - 摘要和引言的大纲直接从 spec 的叙事骨架展开：摘要按 `references/sections/abstract.md` 第 1 节选作用序列，逐句写出每句的作用；引言按 `references/sections/introduction.md` 第 1 节选段落序列，逐段写出每段的功能。
@@ -42,7 +42,7 @@
 > 请读取：
 > - `<skill 目录>/references/review.md`：审查标准和输出格式
 > - `<skill 目录>/references/word_style.md`（第 1 节写作原则、第 4 节去 AI 味规则、第 7 节定稿前总检查清单）、`<skill 目录>/references/sections/<节>.md`
-> - `<论文仓库>/.vibepaper/spec.md` 和 `<论文仓库>/.vibepaper/outline.yaml`
+> - `<论文仓库>/.paperdna/spec.md` 和 `<论文仓库>/.paperdna/outline.yaml`
 > - 待审文件：`<路径>`，范围是 `<节名>`
 > 代码和结果在 `<位置>`，涉及方法或数字时请核对。
 > 按 review.md 规定的格式返回审查结果。

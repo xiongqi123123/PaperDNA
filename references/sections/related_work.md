@@ -4,7 +4,7 @@
 >
 > **数据来源**：CVPR 2026 + ICCV 2025 共 1040 篇精读笔记（Oral 195、Highlight 836、Best 9）。本章内容来自三份跨批次的"Related Work 写法"汇总，以及 `story_types.md` 各类型章节里与文献定位有关的条目。`references/corpus_stats.md` 里没有本章的专门统计（例如分组数、放在第几节的比例），下面说的"绝大多数""少数"都是汇总材料里的定性判断，不要当精确数字写进论文。
 >
-> **合并说明**：旧版 `sections/related_work.md` 的要求全部保留：按主题或技术路线分组、每组一段；段首概括共同思路、段尾说明区别；不写成 "A did X. B did Y." 式罗列，而是组织成指向缺口的论证链；比较写清假设、设定或代价上的差别；最接近的 1–3 篇单独比较；只引用 `.bib` 中已有的条目，描述要能在 `.vibepaper/refs/` 笔记或用户提供的信息里找到依据，拿不准时标 `% TODO: verify`。`story_types.md` §3.4（方法）、§3.5（实验）、§3.6（局限与结论）的主体分别归 `sections/method.md`、`sections/experiments.md`、`sections/conclusion.md`；本文件只取其中与本章接口有关的四条：方法小节开头要交代遗留问题，所以 Related Work 末句要把问题交到方法手里（§3.6）；"首个框架"类声明必须有独立验证，所以对比表的每一列都要有实验兑现（§3.4）；局限要写成"失效场景 + 根因 + 方向"，这一要求同样用于描述前人工作的局限（§3.2）；本文自己的局限不要前置到 Related Work 里当反衬（§4）。"先直觉后公式"用于 Related Work 兼做背景铺垫的情形（§3.7）。
+> **合并说明**：旧版 `sections/related_work.md` 的要求全部保留：按主题或技术路线分组、每组一段；段首概括共同思路、段尾说明区别；不写成 "A did X. B did Y." 式罗列，而是组织成指向缺口的论证链；比较写清假设、设定或代价上的差别；最接近的 1–3 篇单独比较；只引用 `.bib` 中已有的条目，描述要能在 `.paperdna/refs/` 笔记或用户提供的信息里找到依据，拿不准时标 `% TODO: verify`。`story_types.md` §3.4（方法）、§3.5（实验）、§3.6（局限与结论）的主体分别归 `sections/method.md`、`sections/experiments.md`、`sections/conclusion.md`；本文件只取其中与本章接口有关的四条：方法小节开头要交代遗留问题，所以 Related Work 末句要把问题交到方法手里（§3.6）；"首个框架"类声明必须有独立验证，所以对比表的每一列都要有实验兑现（§3.4）；局限要写成"失效场景 + 根因 + 方向"，这一要求同样用于描述前人工作的局限（§3.2）；本文自己的局限不要前置到 Related Work 里当反衬（§4）。"先直觉后公式"用于 Related Work 兼做背景铺垫的情形（§3.7）。
 >
 > **相关文件**：分组名、缺口名、方法名的取法和全文措辞统一见 `references/naming.md`；"first""novel""significantly"等词的用法和结论强度见 `references/word_style.md`。本文件不重复这些内容。
 >
@@ -53,7 +53,7 @@
 
 ### 1.3 与实现一致
 
-- 写"Unlike X, our method does Y"之前，确认方法和代码里确实做了 Y，而且 X 确实没做（查 `.vibepaper/refs/` 笔记或原文）。差别写错比不写更伤。
+- 写"Unlike X, our method does Y"之前，确认方法和代码里确实做了 Y，而且 X 确实没做（查 `.paperdna/refs/` 笔记或原文）。差别写错比不写更伤。
 - 对前作局限的描述要具体到假设、设定或代价，和 `story_types.md` §3.6 对本文局限的要求一样：写"在什么场景失效、因为什么"。例：《ForestFormer3D》直接批评 ForAINet "tends to over-segment trees...fails to accurately identify small trees"；《EcoSplat》点明前作 "provide neither explicit control...nor a guaranteed, optimal trade-off"。
 - 用 "first" / "unique" / "unexplored" 的声明，必须有检索依据，并在实验里有独立验证（`story_types.md` §3.5）；强度把握见 `word_style.md`。
 
@@ -264,7 +264,7 @@ Closest to our work is [X], which also [相同点]. However, [X] [不同点 1]; 
 | 开篇无衔接 | 综述式总起句直接切入，或直接回到领域史起点 | 《RAVEN》《Modeling Saliency Dataset Bias》 | §3.1 |
 | 后置但无过渡 | 放到实验之后，却没有说明为何此时回顾 | 《Straighten Viscous Rectified Flow》 | 后置时开头一句说明"在看到 X 的结果后，我们把本文放回文献中定位" |
 | 与 Preliminaries 重复 | 综述开篇与前一节结尾同义重复 | 《Learning Visual Hierarchies in Hyperbolic Space》 | 合并两节，或删去重复句 |
-| 对前作描述无依据 | 凭印象写前作做了什么或没做什么 | — | 查 `.vibepaper/refs/` 笔记；拿不准标 `% TODO: verify`（旧版规范） |
+| 对前作描述无依据 | 凭印象写前作做了什么或没做什么 | — | 查 `.paperdna/refs/` 笔记；拿不准标 `% TODO: verify`（旧版规范） |
 
 ---
 
@@ -272,7 +272,7 @@ Closest to our work is [X], which also [相同点]. However, [X] [不同点 1]; 
 
 ### 5.1 写作步骤
 
-1. **收集素材**：从引言抄出根因名、缺口名、编号挑战、贡献列表和已经提到的前作；从 `.bib` 和 `.vibepaper/refs/` 列出可用文献，给每篇记一行"它做了什么、假设了什么、代价是什么"。
+1. **收集素材**：从引言抄出根因名、缺口名、编号挑战、贡献列表和已经提到的前作；从 `.bib` 和 `.paperdna/refs/` 列出可用文献，给每篇记一行"它做了什么、假设了什么、代价是什么"。
 2. **定结构**：按 §2.1 的选择规则选 A–F，按 §2.2 确认本类型的重点，按 §2.3 确认位置（默认第 2 节）。
 3. **分组**：把文献分成 2–4 组，给每组起一个技术路线名；标出最接近的 1–3 篇。
 4. **写每组的共性局限**：一句话，写到假设、设定或代价，最好和引言根因同名。
@@ -310,6 +310,6 @@ Closest to our work is [X], which also [相同点]. However, [X] [不同点 1]; 
 **声明与引用**
 - [ ] "first" / "unique" / "unexplored" 全节最多一处，有检索依据，并有对比表或实验支撑（强度见 `word_style.md`）
 - [ ] 对比表的每一列都在实验里有验证，表后有一两句读表
-- [ ] 所有引用都在 `.bib` 里；对前作的描述能在 `.vibepaper/refs/` 或用户材料中找到依据，拿不准的地方标了 `% TODO: verify`
+- [ ] 所有引用都在 `.bib` 里；对前作的描述能在 `.paperdna/refs/` 或用户材料中找到依据，拿不准的地方标了 `% TODO: verify`
 - [ ] "Unlike X, we do Y" 中的 Y 确实在方法和代码里实现了
 - [ ] 正文精简时，开头一句说明完整讨论在附录

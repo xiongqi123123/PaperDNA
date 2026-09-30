@@ -1,102 +1,192 @@
-# VibePaper
+<p align="center">
+  <img src="asset/paperdna_logo_light.png" alt="PaperDNA — Research Writing, Encoded" width="640">
+</p>
 
-个人论文写作 skill（Claude Code）：按自己的文风写论文，并把每次纠正沉淀下来。
+<p align="center">
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-yellow.svg" alt="License: MIT"></a>
+  <img src="https://img.shields.io/badge/Claude%20Code-Skill-8A63D2" alt="Claude Code Skill">
+  <img src="https://img.shields.io/badge/corpus-1040%20papers-2F80ED" alt="Corpus: 1040 papers">
+  <img src="https://img.shields.io/badge/venues-CVPR%202026%20%7C%20ICCV%202025-0F9D58" alt="Venues: CVPR 2026 | ICCV 2025">
+  <img src="https://img.shields.io/badge/python-3.8%2B-3776AB?logo=python&logoColor=white" alt="Python 3.8+">
+  <a href="https://github.com/xiongqi123123/PaperDNA/pulls"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome"></a>
+  <a href="https://github.com/xiongqi123123/PaperDNA/stargazers"><img src="https://img.shields.io/github/stars/xiongqi123123/PaperDNA?style=social" alt="GitHub stars"></a>
+</p>
 
-写作规范（叙事类型、摘要与引言写法、句式库、用词与风格、取名）提炼自 1040 篇 CVPR 2026 / ICCV 2025 获奖、oral 与 highlight 论文的逐篇精读笔记，数字都有统计依据（`references/corpus_stats.md`）。
+<p align="center">
+  <b>Writing top-venue papers in your own voice, distilled from 1040 CVPR / ICCV papers.</b>
+</p>
 
-## 安装
+<p align="center">
+  <b>English</b> | <a href="./README_zh-CN.md">简体中文</a>
+</p>
 
-把仓库链接到 Claude Code 的个人 skill 目录：
+---
 
-```bash
-ln -s "$(pwd)" ~/.claude/skills/vibepaper
-```
+**PaperDNA** is a [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skill for writing and revising academic papers, tuned for computer vision, autonomous driving and embodied AI. Its writing guidance does not come from rules of thumb: we close-read **1040 award, oral and highlight papers from CVPR 2026 and ICCV 2025**, one by one, and distilled how they tell their story, structure every section, phrase their sentences, choose their words and name their methods. Every default it follows can be traced back to corpus statistics or to specific papers. It also learns your personal style and remembers every correction you make, so it sounds more like you the longer you use it.
 
-然后创建个人画像目录（它不进 git，只保存在本地）：
+> **Language note.** The guidance files are written in Chinese; sentence templates and examples are in English. PaperDNA helps you write English papers, and you can talk to it in Chinese or English.
 
-```bash
-cp -r templates/profile profile
-```
+## Contents
 
-在 Claude Code 中输入 `/vibepaper` 可以手动调用。写论文、改论文时它也会自动触发。
+- [Highlights](#highlights)
+- [What 1040 Top-Venue Papers Taught Us](#what-1040-top-venue-papers-taught-us)
+- [What You Can Ask](#what-you-can-ask)
+- [Quick Start](#quick-start)
+- [How It Works](#how-it-works)
+- [Project Structure](#project-structure)
+- [Customization](#customization)
+- [Extending the Corpus](#extending-the-corpus)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+- [Acknowledgements](#acknowledgements)
+- [License](#license)
 
-## 首次使用
+## Highlights
 
-1. **提取文风**：提供 3–5 篇自己写的论文，然后说"用 vibepaper 分析这几篇，更新我的文风画像"。
-2. **开始写作**：在论文仓库里说"帮我写 introduction"。第一次使用时，skill 会在论文仓库中创建 `.vibepaper/` 目录（spec、大纲、文献笔记），建议把它一起纳入 git 管理。
+- **Corpus-grounded guidance.** Every default comes with evidence: a statistic from the corpus or the papers that do it, never "be clear and fluent".
+- **Story first.** Before writing, PaperDNA picks one of 8 story types through a decision flow, then drafts the narrative skeleton and the hook. The abstract, introduction, method and experiments all follow that skeleton.
+- **Your voice.** It extracts a style profile from your past papers and logs every correction you make, so the same mistake never comes back.
+- **Reviewer's eye.** Each finished section goes to an independent reviewer subagent that never saw the drafting process, which keeps the review honest.
+- **Less AI tone.** A scanner flags AI-sounding and empty words line by line. Words that top papers also use, such as *leverage* and *crucial*, are capped rather than banned.
 
-## 目录
+## What 1040 Top-Venue Papers Taught Us
 
-```
-SKILL.md                 入口：文件分类、必读文件、任务路由、硬规则
-references/
-  workflow.md            完整流程：spec（故事类型、取名）→ 大纲 → 写作 → 独立审查 → 修订
-  story_types.md         8 种叙事类型：如何选、骨架、逐步写法、代表论文、检查清单   ┐
-  sections/abstract.md   摘要写法：句数、作用序列、逐句模板、范例、检查清单        │
-  sections/introduction.md 引言写法：段落功能序列、逐段模板、衔接、检查清单        │ 提炼自
-  sentence_bank.md       句式库：按写作功能分 13 类的英文模板与原句                │ 1040 篇
-  word_style.md          写作原则、用词、结论强度、去 AI 味、风格参数、检查清单    │ 顶会论文
-  naming.md              取名：标题结构、方法名构造、首次引入、取名流程            │
-  corpus_stats.md        语料统计（故事类型、摘要与引言结构等）                    ┘
-  ai_words.json          AI 味与空洞用词表（唯一来源，扫描脚本也读它；支持限量词）
-  sections/related_work.md / method.md / experiments.md / conclusion.md
-                         正文各章节：组织方式、按故事类型的差异、逐部分写法与句式、检查清单（同样提炼自语料）
-  review.md              审查标准与输出格式
-  close_reading.md       范文精读（笔记模板见 templates/close_reading_note.md）
-  literature.md          文献阅读与证据整理
-  latex.md               LaTeX 编辑与编译报错修复
-  proofread.md           语法拼写校对
-  style_extraction.md    从样本提取文风
-  feedback.md            用户纠正写到哪里
-  thesis.md              学位论文补充
-profile/                 个人画像（所有论文共用；不进 git，首次使用从 templates/profile/ 复制）
-  style_profile.md       文风画像
-  error_log.md           错题本
-  glossary.md            跨论文术语表
-templates/               复制到论文仓库 .vibepaper/ 的模板
-scripts/
-  ai_style_scan.py       去 AI 味扫描（只依赖标准库）
-  parse_pdf.py           PDF 转文本（PyMuPDF：合并断词、按页标记、可截到参考文献前）
-tools/corpus/            维护用的语料流水线：抓取 → 选论文 → 下载 → 转文本 → 精读 → 汇总（skill 运行时不用）
-```
-
-## 维护约定
-
-**每条规则只写在一个文件里。** 想改某类规则时，按下表找到对应的文件：
-
-| 想改的内容 | 文件 |
+| Finding | Value |
 |---|---|
-| 禁用或慎用某个词 | `references/ai_words.json` |
-| 去 AI 味的判断方法 | `references/word_style.md` 第 4 节 |
-| 某个章节怎么写 | `references/sections/<节>.md` |
-| 叙事类型与故事骨架 | `references/story_types.md` |
-| 可复用句式 | `references/sentence_bank.md` |
-| 用词、结论强度、风格参数 | `references/word_style.md` 第 2、3、5 节 |
-| 标题与方法名 | `references/naming.md`（取名的唯一来源，其他文件只放指引） |
-| 跨章节的写作与论证原则 | `references/word_style.md` 第 1 节 |
-| 审查时查什么、按什么格式输出 | `references/review.md` |
-| 我自己的语气和习惯 | `profile/style_profile.md` |
-| 具体的纠正记录 | `profile/error_log.md`（同类条目积累多了，合并进 style_profile） |
+| The most common story is the *bottleneck breakthrough*: pin down the concrete bottleneck of mainstream methods and its root cause, then fix it | 56.0% |
+| Autonomous driving papers define a *new problem* more often | 18.8% (CV: 10.5%) |
+| Abstract length | median 8 sentences; half fall in 7–9 |
+| Split each abstract into five equal parts: the first is mostly background, the second already turns to the method | background 57%; method 44% |
+| The abstract's last sentence is a code or project link | 43.1% |
+| Introduction length | median 6 paragraphs; half fall in 5–6 |
+| A teaser figure (Figure 1) on the first page | 91.3% |
+| Contributions listed as bullets | 74.4% |
+| Abstracts that use *leverage* | 24.1% |
 
-## 脚本
+Full statistics: [`references/corpus_stats.md`](references/corpus_stats.md).
+
+## What You Can Ask
+
+| You say | PaperDNA does |
+|---|---|
+| "How should I tell the story of this paper?" | Picks a story type through the decision flow, drafts the narrative skeleton and the hook, and saves them to the paper's spec |
+| "Write the introduction" | Chooses a paragraph sequence for the story type, writes paragraph by paragraph with the sentence bank, then scans and sends it to independent review |
+| "Revise the abstract" | Checks each sentence's role and structure against the abstract guide and lists every change |
+| "Name my method" | Proposes 3–5 title and method-name candidates, checks each against the naming checklist, and searches for name collisions |
+| "Review Section 3" | An independent subagent reports blocking issues, suggestions, definition-of-done checks and readability problems |
+| "Turn these PDFs into evidence" | Reads the PDFs and writes reference notes with quotable sentences and page numbers; BibTeX only contains verified fields |
+| "Close-read this paper" | Breaks down the abstract and introduction sentence by sentence and extracts reusable patterns, wording and style |
+| "My LaTeX won't compile" | Reads the log, locates the first error, fixes it and recompiles, for up to 3 rounds |
+| "Never use this word again" | Records it in your error log or the AI-tone word list, then rewrites the sentence |
+
+## Quick Start
+
+### Requirements
+
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code)
+- Python 3.8+ (standard library only for the scanner)
+- Optional: `pip install pymupdf` to extract text from PDFs, and `brew install poppler` so Claude can view PDF pages
+
+### Installation
 
 ```bash
-# 扫描整个论文目录；--level avoid 只看必须改的项
-python3 scripts/ai_style_scan.py path/to/paper
-# 额外输出困惑度（需要 pip install torch transformers；只作参考）
-python3 scripts/ai_style_scan.py path/to/paper --ppl
+git clone https://github.com/xiongqi123123/PaperDNA.git
+cd PaperDNA
+ln -s "$(pwd)" ~/.claude/skills/paperdna      # install as a personal skill
+cp -r templates/profile profile               # your profile stays local and is git-ignored
 ```
 
-有命中时退出码为 1，可以接到 pre-commit 或 CI 中使用。
+### First run
 
-## 来源
+1. **Extract your style.** Share 3–5 papers you wrote and say: *"Use paperdna to analyze these and update my style profile."*
+2. **Start writing.** In your paper repository, say: *"Write the introduction."* On first use, PaperDNA creates a `.paperdna/` folder there for the spec, outline and reference notes; we recommend committing it with your paper.
 
-基于 [AI-Vibe-Writing-Skills](https://github.com/donghuixin/AI-Vibe-Writing-Skills)（MIT）重构，主要改变：
+Type `/paperdna` in Claude Code to invoke it directly. It also triggers automatically when you work on a paper.
 
-- 只支持 Claude Code：13 个角色 prompt 合并为按需加载的 `references/`，审查改由独立子代理完成，单篇论文的状态放在论文仓库的 `.vibepaper/`。
-- 写作规范改为语料驱动：叙事类型、摘要与引言、句式、用词、取名、各章节写法，全部提炼自 1040 篇 CVPR 2026 / ICCV 2025 论文的逐篇精读笔记（流程见 `tools/corpus/`）。
-- 本地检测改为只依赖标准库的扫描脚本，词表统一在 `ai_words.json`，支持限量词；去掉了逐句 AI 分数、第三方检测 API 与 MinerU。
+## How It Works
+
+```mermaid
+flowchart LR
+  A["Spec<br/>story type · skeleton · hook · name"] --> B["Outline<br/>claim + checkable DoD per paragraph"]
+  B --> C["Draft section by section<br/>section guide + sentence bank + your style"]
+  C --> D["Scan + independent review"]
+  D -->|blocking issues| C
+  D --> E["Final"]
+  F["Your corrections"] -.-> G["Error log / word list / glossary"]
+  G -.-> C
+```
+
+The guidance itself was built by a corpus pipeline: fetch conference data, select papers, download PDFs, extract text, close-read every paper into a structured note, then synthesize the notes into guides. Both close reading and synthesis run as multi-agent workflows.
+
+## Project Structure
+
+| Kind | Location | Contents |
+|---|---|---|
+| Writing guidance | `references/`, `templates/`, `scripts/` | Shipped with the skill and shared by everyone |
+| Personal profile | `profile/` | Style profile, error log, cross-paper glossary; local only |
+| Per-paper state | `.paperdna/` in your paper repo | Spec, outline, reference notes |
+
+```
+SKILL.md                       Entry point: required reading, task routing, hard rules
+references/
+  story_types.md               8 story types: decision flow, skeletons, step-by-step writing, exemplar papers
+  sections/                    Six section guides: abstract / introduction / related_work / method / experiments / conclusion
+  sentence_bank.md             English templates and original sentences for 13 writing functions
+  word_style.md                Principles, word choice, claim strength, de-AI rules, style defaults, final checklist
+  naming.md                    Titles, method-name construction, first mention, naming process
+  corpus_stats.md              Corpus statistics
+  ai_words.json                AI-tone and empty-word list (also read by the scanner)
+  workflow.md / review.md      Writing workflow and review criteria
+  close_reading.md / literature.md / latex.md / proofread.md / ...
+templates/                     Templates for spec, outline, reference notes, close-reading notes, profile
+scripts/                       ai_style_scan.py (AI-tone scanner), parse_pdf.py (PDF to text)
+tools/corpus/                  Corpus pipeline (for maintenance; not needed at runtime)
+asset/                         Logo
+```
+
+Scripts:
+
+```bash
+python3 scripts/ai_style_scan.py path/to/paper                   # scan .tex/.md/.txt; --level avoid shows must-fix items only
+python3 scripts/parse_pdf.py paper.pdf --main-only -o paper.txt  # PDF to text, cut before the references
+```
+
+The scanner exits with code 1 when it finds hits, so it fits into pre-commit hooks or CI.
+
+## Customization
+
+**Each rule lives in exactly one file.** To change a rule, edit the file below:
+
+| What to change | File |
+|---|---|
+| Ban or cap a word | `references/ai_words.json` |
+| Principles, word choice, claim strength, de-AI rules | `references/word_style.md` |
+| Story types and skeletons | `references/story_types.md` |
+| How a section is written | `references/sections/<section>.md` |
+| Reusable sentence patterns | `references/sentence_bank.md` |
+| Titles and method names | `references/naming.md` |
+| What the review checks | `references/review.md` |
+| Your own tone and habits | `profile/style_profile.md` |
+| Individual corrections | `profile/error_log.md` (merge recurring ones into your style profile) |
+
+## Extending the Corpus
+
+`tools/corpus/` contains the full pipeline that produced the guidance: fetching conference data, selecting papers, downloading PDFs, extracting text, close-reading each paper and synthesizing the notes. To add a venue or a new year, see [`tools/corpus/README.md`](tools/corpus/README.md).
+
+## Roadmap
+
+- [x] Close-read CVPR 2026 and ICCV 2025 (1040 award, oral and highlight papers) and distill the guides
+- [ ] Close-read the already collected ECCV 2026, NeurIPS 2025, ICML 2026 and ICLR 2026 papers
+- [ ] English version of the guidance files
+
+## Contributing
+
+Issues and pull requests are welcome. When you change a guide, keep each rule in a single file (see [Customization](#customization)), and back new claims with corpus statistics or the papers that support them.
+
+## Acknowledgements
+
+PaperDNA started as a fork of [AI-Vibe-Writing-Skills](https://github.com/donghuixin/AI-Vibe-Writing-Skills) (MIT), which contributed the ideas of a style profile, an error log and spec-driven writing. PaperDNA rebuilt it as a Claude Code skill with corpus-driven guidance, a new workflow, review process and scripts. Thanks to the authors of all the papers in the corpus, whose writing is what this project learns from.
 
 ## License
 
-MIT，保留上游的版权声明，见 [LICENSE](./LICENSE)。
+[MIT](./LICENSE). The upstream copyright notice is retained.

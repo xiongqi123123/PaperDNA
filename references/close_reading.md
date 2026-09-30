@@ -10,7 +10,7 @@
    - 分析要具体到这篇论文，每个判断都指向具体的句子或词，不写"逻辑清晰"这类空话。
    - `story_type` 按 `references/story_types.md` 第 2 节的判断流程选。
 3. **保存**：
-   - 用户在写自己的论文时：保存到论文仓库的 `.vibepaper/refs/<citekey>_reading.md`；
+   - 用户在写自己的论文时：保存到论文仓库的 `.paperdna/refs/<citekey>_reading.md`；
    - 否则：保存到用户指定的位置。
 4. **汇报**：告诉用户这篇论文的故事类型、最值得借鉴的 2–3 个写法，以及笔记路径。
 
