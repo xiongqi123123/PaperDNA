@@ -1,4 +1,4 @@
-"""把 topconf_papers 下所有 PDF 转成文本（正文到参考文献为止），存到 paper_text/ 同名 .txt。"""
+"""把 corpus/papers 下所有 PDF 转成文本（正文到参考文献为止），存到 corpus/text/ 同名 .txt。"""
 import json, re, sys
 from multiprocessing import Pool
 from pathlib import Path

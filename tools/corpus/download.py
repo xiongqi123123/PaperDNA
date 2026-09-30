@@ -1,4 +1,4 @@
-"""按 _meta/selection.json 下载论文 PDF 到 topconf_papers/。可重复运行：已下载且校验通过的文件会跳过。
+"""按 corpus/meta/selection.json 下载论文 PDF 到 corpus/papers/。可重复运行：已下载且校验通过的文件会跳过。
 
 python3 download.py direct          # CVF / ECVA 直链（6 线程）
 python3 download.py arxiv           # 没有直链的论文（OpenReview 系、CVF 缺失）走 arXiv

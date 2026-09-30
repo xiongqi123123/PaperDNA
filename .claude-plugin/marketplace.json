@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "paperdna",
+  "description": "PaperDNA: write top-venue papers in your own voice, with guidance distilled from 1040 CVPR / ICCV papers.",
+  "owner": {
+    "name": "xiongqi123123",
+    "url": "https://github.com/xiongqi123123"
+  },
+  "plugins": [
+    {
+      "name": "paperdna",
+      "source": "./",
+      "description": "Corpus-grounded paper writing: story types, section guides, sentence bank, naming, anti-defensive writing and independent review.",
+      "category": "productivity"
+    }
+  ]
+}

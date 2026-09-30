@@ -7,14 +7,19 @@ description: 学术论文写作与修改助手，规范提炼自 1040 篇 CVPR 2
 
 按用户的个人文风写论文，并把每次纠正沉淀下来，下次不再犯。
 
-本 skill 目录：`${CLAUDE_SKILL_DIR}`。本文件和 references 中出现的 `references/`、`profile/`、`templates/`、`scripts/` 都相对这个目录。
+本 skill 目录：`${CLAUDE_SKILL_DIR}`。本文件和 references 中出现的 `references/`、`templates/`、`scripts/` 都相对这个目录。
+
+**个人画像目录**（本文件和 references 中写作 `profile/` 的地方都指它）：
+- 通常是 `${CLAUDE_PLUGIN_DATA}/profile/`。这是插件的持久数据目录，插件更新时保留；插件安装目录会随更新整体替换，不要把个人数据写进 skill 目录。
+- 如果上一行显示的是未替换的字面量 `${CLAUDE_PLUGIN_DATA}`（没有作为插件加载），改用 `${CLAUDE_SKILL_DIR}/profile/`。
+- 目录不存在时，先把 `templates/profile/` 整个复制过去。
 
 ## 文件分三类
 
 | 类别 | 位置 | 内容 | 更新方式 |
 |---|---|---|---|
 | 写作规范 | `references/`、`templates/`、`scripts/` | 通用规则、章节写法、模板、脚本 | 用户维护；要改先问用户 |
-| 个人画像 | `profile/`（不进 git，只在本地） | 文风画像、错题本、跨论文术语表 | 按 `references/feedback.md` 更新；目录不存在时，先从 `templates/profile/` 复制一份 |
+| 个人画像 | 个人画像目录 `profile/`（见上） | 文风画像、错题本、跨论文术语表、个人补充词表 `ai_words.json` | 按 `references/feedback.md` 更新 |
 | 单篇论文状态 | 论文仓库的 `.paperdna/` | spec、大纲、文献笔记 | 写作过程中随时更新 |
 
 论文仓库指用户当前论文所在的目录（包含主 `.tex` 或 `.md` 文件）。需要 `.paperdna/` 而它不存在时：从 `templates/` 复制 `spec.md` 和 `outline.yaml` 过去，并创建 `refs/` 目录。
@@ -61,8 +66,8 @@ description: 学术论文写作与修改助手，规范提炼自 1040 篇 CVPR 2
 
 ## 脚本
 
-- 去 AI 味扫描。只依赖 Python 标准库，词表读自 `references/ai_words.json`：
-  `python3 ${CLAUDE_SKILL_DIR}/scripts/ai_style_scan.py <文件或目录>...`
+- 去 AI 味扫描。只依赖 Python 标准库，词表读自 `references/ai_words.json`，再追加个人画像目录里的补充词表：
+  `python3 ${CLAUDE_SKILL_DIR}/scripts/ai_style_scan.py <文件或目录>... --extra <个人画像目录>/ai_words.json`
   有命中时退出码为 1。加 `--level avoid` 只看必须改的项；加 `--ppl` 会额外输出困惑度，这项需要 torch 和 transformers，结果只作参考。
 - PDF 转文本（需要 pymupdf）：
   `python3 ${CLAUDE_SKILL_DIR}/scripts/parse_pdf.py <pdf> --main-only [-o out.txt]`

@@ -91,19 +91,40 @@ Full statistics: [`references/corpus_stats.md`](references/corpus_stats.md).
 
 ### Installation
 
+Install PaperDNA as a Claude Code plugin. In a Claude Code session:
+
+```
+/plugin marketplace add xiongqi123123/PaperDNA
+/plugin install paperdna@paperdna
+```
+
+Or from your shell:
+
+```bash
+claude plugin marketplace add xiongqi123123/PaperDNA
+claude plugin install paperdna@paperdna
+```
+
+Your style profile, error log and personal word list live in the plugin's data directory (`~/.claude/plugins/data/…`), so they survive plugin updates. To update, run `/plugin update paperdna@paperdna`, or enable auto-update for the `paperdna` marketplace in `/plugin`.
+
+<details>
+<summary>For contributors: install from a local clone</summary>
+
 ```bash
 git clone https://github.com/xiongqi123123/PaperDNA.git
-cd PaperDNA
-ln -s "$(pwd)" ~/.claude/skills/paperdna      # install as a personal skill
-cp -r templates/profile profile               # your profile stays local and is git-ignored
+claude plugin marketplace add ./PaperDNA
+claude plugin install paperdna@paperdna
 ```
+
+A plugin installed from a local marketplace loads in place, so your edits take effect at the next session (or after `/reload-plugins`). Run `claude plugin validate ./PaperDNA` before pushing, and bump `version` in `.claude-plugin/plugin.json` for every release: users only receive an update when the version changes.
+</details>
 
 ### First run
 
 1. **Extract your style.** Share 3–5 papers you wrote and say: *"Use paperdna to analyze these and update my style profile."*
 2. **Start writing.** In your paper repository, say: *"Write the introduction."* On first use, PaperDNA creates a `.paperdna/` folder there for the spec, outline and reference notes; we recommend committing it with your paper.
 
-Type `/paperdna` in Claude Code to invoke it directly. It also triggers automatically when you work on a paper.
+Type `/paperdna:paperdna` in Claude Code to invoke it directly. It also triggers automatically when you work on a paper.
 
 ## How It Works
 
@@ -125,10 +146,11 @@ The guidance itself was built by a corpus pipeline: fetch conference data, selec
 | Kind | Location | Contents |
 |---|---|---|
 | Writing guidance | `references/`, `templates/`, `scripts/` | Shipped with the skill and shared by everyone |
-| Personal profile | `profile/` | Style profile, error log, cross-paper glossary; local only |
+| Personal profile | the plugin's data directory (`~/.claude/plugins/data/…/profile/`) | Style profile, error log, cross-paper glossary, personal word list; kept across plugin updates, never committed |
 | Per-paper state | `.paperdna/` in your paper repo | Spec, outline, reference notes |
 
 ```
+.claude-plugin/                plugin.json (plugin manifest) and marketplace.json (marketplace)
 SKILL.md                       Entry point: required reading, task routing, hard rules
 references/
   story_types.md               8 story types: decision flow, skeletons, step-by-step writing, exemplar papers

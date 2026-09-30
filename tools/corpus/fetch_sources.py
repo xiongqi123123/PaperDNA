@@ -1,4 +1,4 @@
-"""抓取会议的论文列表、摘要和开放获取页面，存到 _meta/raw/。已存在的文件跳过（加 --force 重新抓）。
+"""抓取会议的论文列表、摘要和开放获取页面，存到 corpus/meta/raw/。已存在的文件跳过（加 --force 重新抓）。
 
 各会议网站（CVPR/ICCV/ECCV/NeurIPS/ICML/ICLR）用同一套 MiniConf 系统：
     https://<站点>/static/virtual/data/<会议>-<年份>-orals-posters.json   论文列表，含 decision、eventtype、PDF/OpenReview 链接

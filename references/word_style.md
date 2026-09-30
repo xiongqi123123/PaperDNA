@@ -248,7 +248,7 @@
 
 ### 4.1 词表：`references/ai_words.json` 是唯一来源
 
-词表只在 `references/ai_words.json` 里维护，`scripts/ai_style_scan.py` 也读这份词表；本文件只讲规则和判断方法，不重复列词。想新增或调整某个词，改 `ai_words.json`。
+词表只在 `references/ai_words.json` 里维护，`scripts/ai_style_scan.py` 也读这份词表；本文件只讲规则和判断方法，不重复列词。想新增或调整某个词，改 `ai_words.json`。用户个人追加的词写在个人画像目录的 `profile/ai_words.json`，扫描时用 `--extra` 一起读取（见 `references/feedback.md`）。
 
 - `level: avoid`：默认不用。按 `suggest` 替换。如果是套话（如 "It is worth noting that"），整段删掉，让句子直接从实际内容开始。
 - `level: review`：这些词在某些领域是正常术语，比如 robust（鲁棒性实验）、orthogonal（线性代数）、landscape（loss landscape）、显著（统计检验）。只有非术语用法才替换。

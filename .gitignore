@@ -8,3 +8,6 @@ venv/
 
 # 个人画像（文风、错题本、术语表）只留在本地；初始模板见 templates/profile/
 /profile/
+
+# 临时文件（软链接到 /Volumes/personal_folder/WorkTemp/vibepaper_skill/dev）
+/Temp

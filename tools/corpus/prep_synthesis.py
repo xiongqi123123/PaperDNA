@@ -1,7 +1,7 @@
 """把精读笔记切分成汇总工作流的批次文件，并计算可程序化的统计（stats.md）。
 
 用法: python3 prep_synthesis.py CVPR2026 ICCV2025        # 参与汇总的会议
-输出到 paper_notes/_synthesis/：
+输出到 synthesis/：
   batches/d1_<故事类型>_NNN.md  叙事类型（一句话概括、Story 逻辑、引言小结、全文递进）
   batches/d2a_abs_NNN.md        摘要逐句（§3）          batches/d2b_intro_NNN.md  引言（§4）
   batches/d3a_tpl_NNN.md        句式模板（§6）          batches/d3b_style_NNN.md  用词、风格、借鉴、不足（§7–§10）

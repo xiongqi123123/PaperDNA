@@ -1,5 +1,5 @@
-"""从 _meta/raw/ 的会议数据中选出 best / oral / highlight(spotlight) 论文，按标题和摘要分类主题（自动驾驶、具身、LLM、CV），
-解析 PDF 地址，输出 _meta/selection.json。
+"""从 corpus/meta/raw/ 的会议数据中选出 best / oral / highlight(spotlight) 论文，按标题和摘要分类主题（自动驾驶、具身、LLM、CV），
+解析 PDF 地址，输出 corpus/meta/selection.json。
 
 奖项名单（AWARDS）来自各会议官方公告，需要每年手动更新。选择规则见文件末尾"分类与筛选"：
 视觉会议全收；ML 会议只收 CV、自动驾驶、具身方向，LLM 只收 oral。

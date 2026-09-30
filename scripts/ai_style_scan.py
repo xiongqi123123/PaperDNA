@@ -7,7 +7,7 @@
 - 目录会递归扫描 .tex / .md / .txt 文件，跳过以 . 开头的目录。
 - .tex 会先去掉注释、公式、代码与表格环境、\\cite / \\ref / \\label 等，只检查正文，
   行号与源文件一致。
-- 词表默认读取 ../references/ai_words.json。带 max 字段的是"限量词"：同一文件内不超过 max 次不报，超过才全部列出。
+- 词表默认读取 ../references/ai_words.json；--extra 追加个人补充词表（格式相同，可重复使用，文件不存在时跳过）。带 max 字段的是"限量词"：同一文件内不超过 max 次不报，超过才全部列出。
 - 退出码：有命中为 1，无命中为 0，出错为 2。
 - --ppl 额外计算每个文件的困惑度（需要 torch 与 transformers，首次运行会下载 distilgpt2）。
   只适用于英文；学术文本本身困惑度偏低，这个数字只能作参考，不能单独用来判断是否 AI 生成。
@@ -179,11 +179,15 @@ def main():
     ap = argparse.ArgumentParser(description="扫描论文中的 AI 味用词")
     ap.add_argument("paths", nargs="+", help="文件或目录")
     ap.add_argument("--words", default=str(DEFAULT_WORDS), help="词表 JSON 路径")
+    ap.add_argument("--extra", action="append", default=[], help="追加的个人补充词表（可重复；不存在则跳过）")
     ap.add_argument("--level", choices=["avoid", "review"], help="只显示某一级别的命中")
     ap.add_argument("--ppl", action="store_true", help="额外计算困惑度（仅供参考）")
     args = ap.parse_args()
 
     rules = load_rules(args.words)
+    for extra in args.extra:
+        if Path(extra).is_file():
+            rules += load_rules(extra)
     counter = Counter()
     level_count = Counter()
     n_files = 0

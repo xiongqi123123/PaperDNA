@@ -91,19 +91,40 @@
 
 ### 安装
 
+以 Claude Code 插件的方式安装。在 Claude Code 会话中输入：
+
+```
+/plugin marketplace add xiongqi123123/PaperDNA
+/plugin install paperdna@paperdna
+```
+
+也可以在终端里执行：
+
+```bash
+claude plugin marketplace add xiongqi123123/PaperDNA
+claude plugin install paperdna@paperdna
+```
+
+文风画像、错题本和个人补充词表保存在插件的数据目录（`~/.claude/plugins/data/…`），插件更新时不会丢失。更新插件用 `/plugin update paperdna@paperdna`，也可以在 `/plugin` 里为 `paperdna` 市场打开自动更新。
+
+<details>
+<summary>参与开发：从本地仓库安装</summary>
+
 ```bash
 git clone https://github.com/xiongqi123123/PaperDNA.git
-cd PaperDNA
-ln -s "$(pwd)" ~/.claude/skills/paperdna      # 安装为个人 skill
-cp -r templates/profile profile               # 个人画像只存在本地，不进 git
+claude plugin marketplace add ./PaperDNA
+claude plugin install paperdna@paperdna
 ```
+
+从本地目录添加的市场，插件直接从仓库目录加载，修改后下次会话（或执行 `/reload-plugins`）即生效。推送前运行 `claude plugin validate ./PaperDNA`；每次发布都要提高 `.claude-plugin/plugin.json` 里的 `version`，用户只有在版本号变化时才会收到更新。
+</details>
 
 ### 第一次使用
 
 1. **提取文风**：给出 3–5 篇你自己写的论文，说"用 paperdna 分析这几篇，更新我的文风画像"。
 2. **开始写作**：在论文仓库里说"帮我写 introduction"。第一次使用时会在论文仓库创建 `.paperdna/`，里面放 spec、大纲和文献笔记，建议和论文一起纳入 git。
 
-在 Claude Code 中输入 `/paperdna` 可以直接调用；写论文、改论文时它也会自动触发。
+在 Claude Code 中输入 `/paperdna:paperdna` 可以直接调用；写论文、改论文时它也会自动触发。
 
 ## 工作原理
 
@@ -125,10 +146,11 @@ flowchart LR
 | 类别 | 位置 | 内容 |
 |---|---|---|
 | 写作规范 | `references/`、`templates/`、`scripts/` | 随 skill 发布，所有人共用 |
-| 个人画像 | `profile/` | 文风画像、错题本、跨论文术语表，只在本地 |
+| 个人画像 | 插件的数据目录（`~/.claude/plugins/data/…/profile/`） | 文风画像、错题本、跨论文术语表、个人补充词表；插件更新时保留，不进 git |
 | 单篇论文状态 | 论文仓库的 `.paperdna/` | spec、大纲、文献笔记 |
 
 ```
+.claude-plugin/                plugin.json（插件清单）与 marketplace.json（插件市场）
 SKILL.md                       入口：必读文件、任务路由、硬规则
 references/
   story_types.md               8 种叙事类型：判断流程、骨架、逐步写法、代表论文
