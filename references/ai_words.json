@@ -1,5 +1,5 @@
 {
- "_readme": "AI 味与空洞用词表，是唯一来源：scripts/ai_style_scan.py 与 references/word_style.md 第 4 节（去 AI 味规则）都用这份。level=avoid 默认不用；level=review 需逐条判断（领域术语场景下合法）；带 max 的是限量词，同一文件超过 max 次才提示。pattern 是 Python 正则，lang=en 时忽略大小写。上限与频次依据 1040 篇 CVPR 2026 / ICCV 2025 论文统计（references/word_style.md 第 3 节）。",
+ "_readme": "AI 味与空洞用词表，是唯一来源：scripts/ai_style_scan.py 与 references/word_style.md 第 4 节（去 AI 味规则）都用这份。level=avoid 默认不用；level=review 需逐条判断（领域术语场景下合法）；带 max 的是限量词，同一文件超过 max 次才提示。pattern 是 Python 正则，lang=en 时忽略大小写。上限与频次依据 1040 篇 CVPR 2026 / ICCV 2025 论文统计（references/word_style.md 第 3 节）。类别\"自我削弱\"的条目来自防御性写作规则（references/anti_defensive.md）。",
  "rules": [
   {
    "id": "delve",
@@ -540,6 +540,118 @@
    "category": "AI 高频词",
    "pattern": "\\bunlock(?:s|ed|ing)?\\b|\\bboasts?\\b",
    "suggest": "enable / allow，或直接写出新能力"
+  },
+  {
+   "id": "unfortunately",
+   "lang": "en",
+   "level": "avoid",
+   "category": "自我削弱",
+   "pattern": "\\bunfortunately\\b",
+   "suggest": "删掉，直接陈述事实"
+  },
+  {
+   "id": "must-acknowledge",
+   "lang": "en",
+   "level": "avoid",
+   "category": "自我削弱",
+   "pattern": "\\b(?:we|it)\\s+(?:must|have to|should)\\s+(?:acknowledge|admit|be acknowledged|be admitted)\\b|\\badmittedly\\b",
+   "suggest": "删掉，局限写成一句'边界 + 方向'"
+  },
+  {
+   "id": "interpret-caution",
+   "lang": "en",
+   "level": "avoid",
+   "category": "自我削弱",
+   "pattern": "\\b(?:should|must) be interpreted with caution\\b",
+   "suggest": "删掉；不替审稿人质疑自己的结果"
+  },
+  {
+   "id": "severely-insufficient",
+   "lang": "en",
+   "level": "avoid",
+   "category": "自我削弱",
+   "pattern": "\\bseverely (?:insufficient|limited|lacking)\\b|\\bsignificant shortcomings?\\b",
+   "suggest": "按 references/anti_defensive.md 第 3、4 节处理：删掉，或改为中性比较（comparable / competitive with）"
+  },
+  {
+   "id": "merely",
+   "lang": "en",
+   "level": "review",
+   "category": "自我削弱",
+   "pattern": "\\bmerely\\b|\\bonly (?:achieves?|marginally|slightly)\\b",
+   "suggest": "描述本方法结果时删掉 merely / only，直接给数字"
+  },
+  {
+   "id": "lags-behind",
+   "lang": "en",
+   "level": "review",
+   "category": "自我削弱",
+   "pattern": "\\b(?:still\\s+)?lags?\\s+(?:far\\s+|significantly\\s+)?behind\\b|\\bfails? to (?:surpass|outperform|beat)\\b|\\bis (?:weaker|inferior) than\\b",
+   "suggest": "按 references/anti_defensive.md 第 3、4 节处理：删掉，或改为中性比较（comparable / competitive with）"
+  },
+  {
+   "id": "limited-improvement",
+   "lang": "en",
+   "level": "review",
+   "category": "自我削弱",
+   "pattern": "\\blimited (?:improvements?|gains?|performance)\\b|\\bmodest (?:improvements?|gains?)\\b",
+   "suggest": "给出具体数字；或按 anti_defensive.md 第 3 节收缩主张"
+  },
+  {
+   "id": "zh-yihan",
+   "lang": "zh",
+   "level": "avoid",
+   "category": "自我削弱",
+   "pattern": "遗憾的是|令人遗憾|不幸的是",
+   "suggest": "删掉，直接陈述事实"
+  },
+  {
+   "id": "zh-chengren",
+   "lang": "zh",
+   "level": "avoid",
+   "category": "自我削弱",
+   "pattern": "必须承认|不得不承认|需要承认",
+   "suggest": "删掉，局限写成一句'边界 + 方向'"
+  },
+  {
+   "id": "zh-jinshen",
+   "lang": "zh",
+   "level": "avoid",
+   "category": "自我削弱",
+   "pattern": "应谨慎(?:理解|看待|解读)",
+   "suggest": "删掉；不替审稿人质疑自己的结果"
+  },
+  {
+   "id": "zh-yanzhong",
+   "lang": "zh",
+   "level": "avoid",
+   "category": "自我削弱",
+   "pattern": "存在严重不足|严重不足|很大不足",
+   "suggest": "按 references/anti_defensive.md 第 3、4 节处理：删掉，或改为中性比较（comparable / competitive with）"
+  },
+  {
+   "id": "zh-luohou",
+   "lang": "zh",
+   "level": "review",
+   "category": "自我削弱",
+   "pattern": "(?:仍|依然|明显)?(?:明显)?落后于?|弱于|未能超过|不如",
+   "suggest": "按 references/anti_defensive.md 第 3、4 节处理：删掉，或改为中性比较（comparable / competitive with）"
+  },
+  {
+   "id": "zh-youxian",
+   "lang": "zh",
+   "level": "review",
+   "category": "自我削弱",
+   "pattern": "效果有限|提升有限|改进有限|收益有限",
+   "suggest": "给出具体数字；或按 anti_defensive.md 第 3 节收缩主张"
+  },
+  {
+   "id": "zh-jin",
+   "lang": "zh",
+   "level": "review",
+   "category": "自我削弱",
+   "pattern": "仅(?:达到|取得|提升|获得|实现)",
+   "suggest": "描述本方法结果时删掉'仅'，直接给数字"
   }
  ]
 }

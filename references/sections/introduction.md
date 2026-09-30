@@ -343,6 +343,7 @@
 
 **注意事项**：
 - 要限定比较范围，避免过度宣称："…representing the state-of-the-art performance among single-X-based methods."（HyperGait）
+- 引言只建立问题、缺口、方案、最强结果和意义，不提本文的不足或局限，也不预告哪里不如对手（`references/anti_defensive.md` §0）。
 - 同一句里可以用两种强度的动词，与实际结果对应："...is comparable to state-of-the-art reflection-aware methods...while it better estimates the albedo..."（PhyGaP）
 - 数据与基准型论文预告的是"问题有多难"："Top methods developed by academia are still far from solving this benchmark."（Benchmarking Egocentric VI-SLAM）；"Comprehensive evaluation across 25 LMMs exposes key challenges: 1)...2)...3)..."（Multi-Crit）
 - 用规模作证据也可以："We evaluate the pretrained model on 33 downstream tasks."（CARE）
@@ -598,6 +599,7 @@
 - [ ] 至少有 1 个具体数字（相对提升、倍数、绝对值）。
 - [ ] 数字与实验表格一致。
 - [ ] 用 "up to" / "respectively" / "while maintaining" 或限定比较范围，避免绝对化。
+- [ ] 引言里没有本文的局限或不足。
 
 **Figure 1**
 - [ ] 有 teaser 图（91.3% 的论文有）。

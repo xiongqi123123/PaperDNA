@@ -196,11 +196,11 @@ P6 贡献列表（bullet）+ 核心数字。
 
 ### 3.5 实验：贡献 i ↔ 方法 3.i ↔ 表 i
 
-三层证据、排除替代解释、诚实分级、各类型的实验侧重见 `references/sections/experiments.md` 第 0、2 节。
+三层证据、排除替代解释、主张强度分级、各类型的实验侧重见 `references/sections/experiments.md` 第 0、2 节。
 
 ### 3.6 局限与结论
 
-局限写成"失效场景 + 根因 + 方向"、结论不复述摘要、各类型的收尾重点见 `references/sections/conclusion.md` 第 0、2 节。约六到七成论文没有独立的局限小节，这一点不要模仿。
+局限最多 2 条，每条写成"适用边界 + 方向"，放在结论之前的 Limitations 段或结论中间，不放在摘要、引言，不作为全文最后一句；结论不复述摘要，只强化记忆点，最后一句落在意义上。各类型的收尾重点见 `references/sections/conclusion.md` 第 0、2 节；不利结果和局限的处理以 `references/anti_defensive.md` 为准。顶会论文多数不设独立局限小节，本 skill 的做法是最多 2 条、简短。
 
 ### 3.7 Figure 1 与数字一致性
 
@@ -221,9 +221,9 @@ P6 贡献列表（bullet）+ 核心数字。
 - [ ] 有排除替代解释的实验，也有验证洞察本身的机制实验
 - [ ] 核心数字在摘要、引言、贡献、结论四处一致；贡献条数前后一致
 - [ ] Fig.1 在引言正文被显式引用
-- [ ] 不利结果在正文和结论里都提到，措辞强度与实际排名一致
-- [ ] Limitations 写成"失效场景 + 根因 + 方向"
-- [ ] 结论有摘要之外的新信息
+- [ ] 措辞强度与实际排名一致：不是第一的地方收缩主张，不专门写一句输了（`references/anti_defensive.md` §3）
+- [ ] 局限最多 2 条，写成"适用边界 + 方向"；摘要、引言里没有局限，局限不是全文最后一句
+- [ ] 结论有摘要之外的新信息，最后一句落在意义上
 - [ ] 定稿前检查拼写（反例：标题里的 RhythmGuassian、"soficsticated"、"that that"）
 
 ---
@@ -288,7 +288,7 @@ P6 贡献列表（bullet）+ 核心数字。
 - 三层证据：主表 → 逐组件消融（w/o 模块名）→ 验证洞察本身的机制实验。
 - 排除替代解释：参数量对照（《OASIS》）、"只是加了噪声"对照（《SD-IF》Tab.7/8）、Discussion 自问"提升是否只来自外部先验"（《CAD》）。
 - 在对自己不利的设置下仍然胜出："our evaluation setup is conservative"（《LLSA》）。
-- 诚实分级（《GPERT》）、具体比值（《SAM 3D》5:1）、主动展示失败案例（《PixelRush》《WeaveSeg》）。
+- 主张强度分级（《GPERT》：全面领先才写 SOTA，部分领先写 competitive）、具体比值（《SAM 3D》5:1）。失败案例可选，放补充材料即可（《PixelRush》《WeaveSeg》）。
 
 取名建议见 references/naming.md §6.2（瓶颈突破型）。
 
@@ -296,7 +296,7 @@ P6 贡献列表（bullet）+ 核心数字。
 
 - **方法**：问题驱动的求解链（见 §3.4）。模块只有真正独立时才并列，并按数据流排序。
 - **实验**：贡献 i ↔ 3.i ↔ 表 i；小节标题可以写成它回答的问题（《DocSeeker》4.3）或 Q1/Q2/Q3（《Moto》）。数据集、理论界、"首个框架"类贡献必须独立验证。
-- **局限与结论**：写清"失效场景 + 根因 + 方向"（《HairCUP》《Gallant》；《TMFS》报告强湍流下 PSNR 仅 19.671）。结论首句回收引言中定义方法的那句话，补上边界和代价。
+- **局限与结论**：局限最多 2 条，写到所修环节的"适用边界 + 方向"（《HairCUP》《Gallant》）。结论首句回收引言中定义方法的那句话，补上摘要之外的信息，最后一句落在意义上。
 
 ### 4.5 代表论文
 
@@ -312,8 +312,6 @@ P6 贡献列表（bullet）+ 核心数字。
 ### 4.6 常见失误与检查清单
 
 **常见失误**
-- 局限缺席、推给附录，或包装成方向："a promising extension rather than a core limitation"（《SuP》）。
-- 结论隐藏不利结果：《SeDiR》没提 P-AUROC 只排第二；《RS-vHeat》没提在 Tab.4/5/8 不如对手。
 - 贡献与实验错位：数据集或理论界没有独立验证（《Ditto》《Stable Mean Flow》）；贡献列表里有 "Extensive experiments..." 这类务虚条目；用词与数字不符（《SeeGroup》声称 "all metrics"，实际是 14/15）。
 - 消融降幅被轻描淡写：《FlexMem》51.0→45.7，只写了 "minimal"。
 - 宣称超出实验范围（《CAC》声称 "embodied AI"）；模块名前后不一致（《RAVEN》）。
@@ -385,7 +383,7 @@ P6 贡献列表（bullet）+ 核心数字。
 - 拆开方法贡献与数据贡献：《OACIR》用同一个 SPRC 模型在两个数据集上训练，37.30% vs 74.05%。
 - 自设劣势仍胜出：《CObL》的对手用 oracle mask，自己不用。
 - 一类质疑配一类证据：《IQA-Adapter》用 21 个 IQA 模型、GenEval、千人主观研究和参考图实验，分别回应四类质疑。
-- 反事实实验（《No Calibration》的 Pre-GS Comparison）、人类基线（《Counting Stacked Objects》）、显著性检验（《FedHarmony》Wilcoxon）、主动报告反例（《Better than Average》《StolenLoRA》《LaRender》Fig.6）。
+- 反事实实验（《No Calibration》的 Pre-GS Comparison）、人类基线（《Counting Stacked Objects》）、显著性检验（《FedHarmony》Wilcoxon）。
 
 取名建议见 references/naming.md §6.2（新问题定义型）。
 
@@ -393,7 +391,7 @@ P6 贡献列表（bullet）+ 核心数字。
 
 - **方法**：问题驱动的求解链。小节以 "Motivation" 开场（《FedSDR》），或写 "This motivates us to leverage ..."（《FILTR》），或在子问题末尾标注 "Motivation: ...(Sec. 4.1)"（《MetaScope》）。另一种写法是先写理想公式、指出不可解、再逐步修正：《CounterPC》从 Eq.1 走到 Eq.6；《Counting Stacked Objects》从 N=V/v 改为 N=γV/v。
 - **实验**：一条贡献一张表（《4D-RGPT》）；RQ1/2/3（《SAME》《URICA》）；问题直接当标题："How well do existing models reflect physics?"（《PAVAS》）；方法小节末尾预告 "which are ablated in Section 4.3"（《Human-in-the-Loop Local Corrections》）；消融按贡献顺序累加（《CounterPC》Table 2）。
-- **局限与结论**：约七成没有独立 Limitations。好做法：编号列出假设（《SceneMI》(i)(ii)(iii)）；"承认 + 方向"合成一句："While FluoCLIP assumes predefined stain categories, future work will ..."；把局限框定为正交技术可解（《Teeth Reconstruction》依赖 SAM2，可用 Personalize-SAM 自动化）。结论与引言首句同构，常用 "paving the way for ..." 收尾。
+- **局限与结论**：约七成没有独立 Limitations；本 skill 的做法是最多 2 条、简短。好做法：编号列出最关键的假设（《SceneMI》(i)(ii)(iii)，照搬时只取两条）；"边界 + 方向"合成一句："While FluoCLIP assumes predefined stain categories, future work will ..."；把局限框定为正交技术可解（《Teeth Reconstruction》依赖 SAM2，可用 Personalize-SAM 自动化）。结论与引言首句同构，常用 "paving the way for ..." 收尾。
 
 ### 5.5 代表论文
 
@@ -412,7 +410,7 @@ P6 贡献列表（bullet）+ 核心数字。
 - 贡献与实验脱节：《GM-R²》的 Denoising-Agnostic 没有消融；《UPA-RFAS》宣称 "strong baseline for future defenses" 却没有防御实验；《VeilGen》只有定性图；《DropletVideo》缺少与 SOTA 的定量表。
 - 贡献条数或句式不统一：《Harmonic Canvas》说 threefold 实际四条；《DIMO》第 4 条是无主谓的凑数条目；《Human-Centric MEF》只有一条用了被动语态。
 - Fig.1 未被引用：《CounterPC》全文最大的钩子只出现在图注里；《Action Motifs》《BRICKGPT》同样如此。
-- 局限缺失或空泛：《FGAesQ》只写 "remains challenging"，没点出 AIGC 分支 0.709 低于 Natural 分支 0.779；《Agile Deliberation》把局限全推到附录；《Heavy Labels Out!》对 IPC=50 时逊于 RDED 只字未提。
+- 局限空泛：《FGAesQ》只写 "remains challenging"，读者不知道边界在哪。
 - 引言复述摘要（《SVLTrack》）、方法与实验之间无过渡（《BiPreManip》）、语病（《A Style is Worth One Code》"establishes opens up"）。
 
 **检查清单**（在 §3.8 基础上）
@@ -493,7 +491,7 @@ P6 贡献列表（bullet）+ 核心数字。
 - 失败变体：《Optical Flow Matching》的 OFM-Naive EPE 在 15 以上。
 - 假设–消融闭环：《Spherical Leech Quantization》Table 8 对应 Sec. 3.3 的假设。
 - 显著性：《D-Convexity》10 次配对 t-test。
-- 用词强度匹配证据；主动披露劣势："MSPT is weaker on Elasticity"；《Ov3R》承认 VGGT-SLAM 在 7Scenes 上更准。
+- 用词强度匹配证据：不是第一的地方收缩主张，或用 comparable / competitive with，不专门写一句输了（`references/anti_defensive.md` §3）。
 - 反差钩子贯穿全文：《ReMoT》4B 胜 30B；《Transition Models》865M 胜 8B/12B；《DataTailor》的 "101.3%" 在摘要、引言、结论各出现一次。
 
 取名建议见 references/naming.md §6.2（统一框架型）。
@@ -502,7 +500,7 @@ P6 贡献列表（bullet）+ 核心数字。
 
 - **方法**：问题驱动的求解链，段首复用上一节的变量名（《ComPose》；《x2-Fusion》"Benefiting from the tri-modal alignment..."）。先直觉后公式（反例：《ConFu》《BQ-SRC》《CUPID》公式先行）。模块多时"总览图 + 路线图句"（《AAA-Gaussians》）。沿数据流平铺模块（《Easy3D》《Uni3R》《UniLight》）只适合工程系统。
 - **实验**：每条贡献一张表或一组消融（《M2SFormer》Table 3/4）；消融顺序复现挑战列举顺序（《PiLoT》按 "impossible triangle" 三维依次消融）；RQ 式小标题（《CrossHA》Q1–Q3、《VeriDou》RQ1–5）。额外实验要预先写进贡献（反例：《UniDxMD》4.5 节、《DataTailor》4.3 节）。
-- **局限与结论**：局限写成具体失败模式——"struggles with occluded structures in limited-view training and deformable scenes"（《HiNeuS》）、"may underperform under extremely fast dynamics"（《AeroGS》）、依赖针孔相机模型（《AAA-Gaussians》）。列完可缓和语气："First…Second…Third…" → "not fundamental limitations"（《CUPID》）。让步模板："Although our study focuses on X, Y is modality-agnostic."（《SGDIR》《x2-Fusion》）
+- **局限与结论**：局限最多 2 条，写成具体的适用边界——"struggles with occluded structures in limited-view training and deformable scenes"（《HiNeuS》）、"may underperform under extremely fast dynamics"（《AeroGS》）、依赖针孔相机模型（《AAA-Gaussians》）。让步模板："Although our study focuses on X, Y is modality-agnostic."（《SGDIR》《x2-Fusion》）
 
 ### 6.5 代表论文
 
@@ -512,7 +510,7 @@ P6 贡献列表（bullet）+ 核心数字。
 4. **《Ov3R》**：双缺口收敛范本，一句 "unifies" 收敛，贡献、方法、实验呈总–分–分–总映射。
 5. **《AToken》**：借 LLM 的统一能力建立信任，再反转指出视觉 tokenizer 碎片化，19% rFID 下降贯穿全文。
 6. **《ComPose》**：oracle 实验和对朴素方案的反驳直接写进引言。
-7. **《POLAR》**：先建立数据集优势，再自曝数据集范式的天花板，引出模型方案，用 "chicken-and-egg" 收束两个贡献。
+7. **《POLAR》**：先建立数据集优势，再指出数据集范式本身的天花板，引出模型方案，用 "chicken-and-egg" 收束两个贡献。
 8. **《All in One》（LIDMark）**：把"统一"翻译成三个可验证的问题，先定评价标准再给方案。
 
 ### 6.6 常见失误与检查清单
@@ -521,17 +519,17 @@ P6 贡献列表（bullet）+ 核心数字。
 - 结论复述摘要：《Residual Diffusion Bridge Model》几乎逐句照抄；《MSPT》《GeniNav》《HR-NVC》结论与摘要或引言同构。
 - Teaser 图悬挂：《CD-Buffer》《AToken》《MotionCrafter》《RnG》《POLAR》。
 - 贡献与实验错位：《AeroGS》把 HSTD 和 Scale-Comp 合成一条；《SenCache》贡献 3、5 缺专门消融；《CFG-Ctrl》"统一"本身没有被实验量化；《UniPhys》数据集没做质量评测。
-- 局限被回避：正文承认的弱点结论不提（《SoccerMaster》《TUNA》《DPoser-X》《Real-Time Neural Video Compression》）；局限太抽象（《Drainage》）。
+- 局限太抽象（《Drainage》）。
 - 贡献条目注水：与标题重复（《MTU3D》）、前后重复（《RARE》）、只有定性描述（《Copernicus-FM》）、笔误（《M2SFormer》"that that"）。
-- 引言与 Related Work 重复（《Unified Vector Floorplan Generation via Markup Representation》）；承认劣势后立刻换维度找回场子（《StreamFormer》）。
+- 引言与 Related Work 重复（《Unified Vector Floorplan Generation via Markup Representation》）。
 
 **检查清单**（在 §3.8 基础上）
 - [ ] 能用一句话说出被统一对象的共同根因
 - [ ] 每个被批评的方法只配一个病症，并用 (i)(ii)(iii) 编号
 - [ ] "统一"本身有映射表、推导或实验证明
 - [ ] 额外实验已写进贡献列表
-- [ ] 至少写出一处真实劣势，用词强度匹配
-- [ ] Limitations 覆盖正文暴露过的负面结果
+- [ ] 用词强度匹配证据；不是第一的地方收缩了主张
+- [ ] 局限最多 2 条，写成"适用边界 + 方向"
 - [ ] 名字与方法内核共振、不硬凑字母，副标题保留了可检索的任务描述
 
 ---
@@ -550,7 +548,7 @@ P6 贡献列表（bullet）+ 核心数字。
 
 ### 7.2 叙事骨架
 
-**标准链**：领域重要性 → 现有范式或公认结论 → 具体瓶颈（量化）→ 排除肤浅归因 → 根因揭示并命名 → 核心洞察 → 对症的方法 → 分层证据 → 意义与局限
+**标准链**：领域重要性 → 现有范式或公认结论 → 具体瓶颈（量化）→ 排除肤浅归因 → 根因揭示并命名 → 核心洞察 → 对症的方法 → 分层证据 → 局限（可选，最多 2 条）→ 意义
 
 | 变体 | 适用情况 | 代表 |
 |---|---|---|
@@ -595,7 +593,6 @@ P6 贡献列表（bullet）+ 核心数字。
 - 从相关升级到因果：先观测再干预（《WSDT》Fig.3 → Fig.4；《ReME》用 GT 参考集做 oracle）。
 - 给数字：相关系数（《PCR》r=0.836），"0.613 vs 0.300" 而不是"更高"。
 - 跨底座复现（WSDT 在三个 SD 版本上）。
-- 主动报告不利结果：《CLIP Is Shortsighted》承认在 COCO 上被 SmartCLIP 反超；《Rethinking Model Selection》报告 MutualNN 出现负相关。
 
 取名建议见 references/naming.md §6.2（发现-解释型）。
 
@@ -603,7 +600,7 @@ P6 贡献列表（bullet）+ 核心数字。
 
 - **方法**：问题驱动的求解链（LDP-Slicing 4.2→4.3），衔接句 "While X aims to…may still fall short…"。先直觉后公式；理论驱动型可以 Theorem → Proof sketch → Intuition（《AdaPrior》）。如果用模块罗列，每个模块要对应一条编号 Finding（《KDAS》4 个 Finding 映射到 2 个模块）。
 - **实验**：贡献句末标章节号 "(§N)"（《Selection-as-Nonlinearity》）；消融逐项累加（《Pluggable Pruning》Baseline→+LP→+DP→+WP）；纯实证论文用 "Summary of findings" 代替贡献列表，每条括注对应图表（《Scaling Laws》）。
-- **局限与结论**：独立成段，写出假设边界和失败模式（LumiMotion 四条局限；《Combinative Matching》Fig.9 失败案例；《GRPO-Guard》写明无法消除 reward hacking 的根因）。
+- **局限与结论**：局限最多 2 条，写出发现成立的前提和后续方向（《GRPO-Guard》写明方法的作用边界及其根因）；失败案例可选，放补充材料即可（《Combinative Matching》Fig.9）。
 
 ### 7.5 代表论文
 
@@ -619,8 +616,8 @@ P6 贡献列表（bullet）+ 核心数字。
 ### 7.6 常见失误与检查清单
 
 **常见失误**
-- 没有独立 Limitations，结论只是摘要的同义改写（《KDAS》等六篇、《ViT3》《FedAdamom》）。
-- 用 hedge 词回避局限："potentially / could be / a hint"、"seems plausible...may"。
+- 结论只是摘要的同义改写（《KDAS》等六篇、《ViT3》《FedAdamom》）。
+- 结论层层叠加限定语："potentially / could be / a hint"、"seems plausible...may"，读起来心虚（`references/anti_defensive.md` §4）。
 - 贡献与消融颗粒度错位：《CSL》合并成一条贡献、消融拆成三项；《STAC》三条贡献对应四个组件。
 - 贡献悬空：ASO 的 Mechanism Analysis、《AdaPrior》的收敛性只在附录验证。
 - Figure 1 未被引用（《AVGGT》《STAC》《WSDT》）。
@@ -633,7 +630,7 @@ P6 贡献列表（bullet）+ 核心数字。
 - [ ] 方法名在洞察之后出场，每个模块都能回指一条诊断
 - [ ] 至少有一处干预或因果实验，不止于相关性
 - [ ] 贡献、实验小节、消融行三者颗粒度一致，已标章节号
-- [ ] 局限没有用 hedge 词回避
+- [ ] 结论和局限没有层层叠加的限定语，也没有自我削弱词
 
 ---
 
@@ -661,7 +658,7 @@ P6 贡献列表（bullet）+ 核心数字。
 | 现象或场景驱动 | 任务新、文献少，从生活场景切入 | AlbumBench、SegEarth-R2、DENALI |
 | 先给资源再自我戳破 | 已有数据集直接拿来用没效果 | RelayFlow-4K |
 | 链式尝试 | 要证明简单补救不够 | VideoNet：基准表现差 → few-shot 补不了 → post-training 可以 |
-| 局限前置 | 适用范围容易被误读 | DENALI 的 "Scope of this Work"、Single-Chip Radar |
+| 范围声明 | 适用范围容易被误读 | 在基准设计处正面写清评测范围（测什么、在什么设定下测），不写成不足，也不放进引言；DENALI 的 "Scope of this Work" |
 
 ### 8.3 逐步写法
 
@@ -693,7 +690,6 @@ P6 贡献列表（bullet）+ 核心数字。
 - 外部校准：PAI-Bench 用人类偏好 ELO 验证指标，Pearson r=0.918。
 - 控制实验戳穿假提升：AbstainEQA 随机化视觉输入，证明 SFT 的提升是假的。
 - 反直觉发现：图像复原后人眼看着更好，姿态估计却变差（EgoXtreme）。
-- 主动报告不足："24 hours…is not enough to saturate even a 4M parameter model!"（Single-Chip Radar）
 - 用百分点报差值："improves by 10.54 and 7.85 percentage points"（RMIR）。
 
 取名建议见 references/naming.md §6.2（数据与基准型）。
@@ -702,7 +698,7 @@ P6 贡献列表（bullet）+ 核心数字。
 
 - **方法组织**三种：模块罗列（纯资源论文最常用：SA-FARI 七步流水线、PAI-Bench 三条对称赛道、RDFace 4.1–4.5）；问题驱动的求解链（有新算法时："simply discarding low-confidence triplets is insufficient... To address this, ..."，RMIR 3.1.5）；混合结构（整体平铺，模块内部先动机后流程：NitroGen、OmniFood8K；先写 Overview 用 (1)(2)(3) 编号再展开：Real-IISR）。20 篇里有 14 篇方法部分几乎没有公式，靠流程图和伪代码。有训练目标或新指标时先直觉后公式："Intuitively, the router should place probability mass only on models that answer correctly..."（VL-RouterBench），公式后再用自然语言复述含义。
 - **实验顺序**：先证明数据可信（人工核验一致性、R²）→ 证明基线或方法有效 → 消融。每条贡献一节或一张表：GeoMMBench 的 First/Second/Third 对应第 3/4/5 节；RealAppliance 5.2 节用五个问句做小标题；Wanderland 每节开头先写 A1/A2/A3 加粗结论句再摆证据。
-- **局限与结论**：推荐独立成节、写到数据集自身（EgoXtreme：依赖 OptiTrack、只能在室内专用场地；Wanderland：采集频率 1 FPS、只建模静态环境，并逐条给补救方向）；也可包装成指南（WorldLens "Guidelines for Future World Model Design"）；完全不提（ChartCap、FPEM）不推荐。结论首句可以呼应引言核心句（"We introduced GeoMMBench..."），但后面必须有新信息。
+- **局限与结论**：局限最多 2 条，写到数据集自身的覆盖范围（EgoXtreme：依赖 OptiTrack、只能在室内专用场地；Wanderland：采集频率 1 FPS、只建模静态环境，并给补救方向）；也可写成指南（WorldLens "Guidelines for Future World Model Design"）。结论首句可以呼应引言核心句（"We introduced GeoMMBench..."），但后面必须有新信息。
 
 ### 8.5 代表论文
 
@@ -713,7 +709,6 @@ P6 贡献列表（bullet）+ 核心数字。
 - **CARD**：五段漏斗式排除，逐步收窄到本文方案。
 - **EgoSound**：一句口号贯穿全文，Table 1 一整列叉号直接证明缺口。
 - **RefAV**：方法藏在五级 baseline 阶梯的最后一级，逐级上涨的分数讲完整个论证。
-- **Single-Chip Radar**：结尾按"贡献—发现—局限"三段收束，主动暴露不足反而更可信。
 
 ### 8.6 常见失误与检查清单
 
@@ -721,7 +716,6 @@ P6 贡献列表（bullet）+ 核心数字。
 - 贡献条数和实验对不上：MV-Fashion 5 条贡献只有 3 个实验小节；3DReflecNet 声称五项任务，两项推迟到补充材料。
 - 贡献不透明地合并或重复：Real-IISR 把三个模块塞进一条；OccuFly 先叙述一遍方案又用列表重讲。
 - Figure 1 引而不用：CARD、EgoSound、PAI-Bench。
-- 局限被包装成优点，或只写模型局限：M3DLayout 把指标落后说成"复杂度不匹配"；VRR-QA 没提样本只有 1K、标注者就是作者本人。
 - 提出竞争性假设却不去区分：PAI-Bench。
 - 章节衔接跳跃：Real-IISR 在方法末尾突然插入数据采集。
 - 拼写赶工：EgoAVU "soficsticated"、RDFace "dserves"。
@@ -732,7 +726,7 @@ P6 贡献列表（bullet）+ 核心数字。
 - [ ] 洞察句紧跟痛点句（"To address this gap, we introduce..."）
 - [ ] 实验先证明数据可信，再证明方法有效，最后做消融
 - [ ] 预先回应"过拟合新基准""牺牲通用能力"类质疑
-- [ ] Limitations 写到数据集自身（规模、标注者背景、采集条件），并给出补救方向
+- [ ] 局限（最多 2 条）写到数据集自身的覆盖范围（规模、标注者背景、采集条件），并给出补救方向
 - [ ] 名字能读、能拆回全称；系列产出共享前缀；需要强调规模时把数字写进名字
 - [ ] 摘要最后一句写明开源地址或发布计划
 
@@ -779,7 +773,6 @@ P6 贡献列表（bullet）+ 核心数字。
 
 **4. 证据**
 - 客观指标 + 用户研究 + 效率对比三重链（CoordSpeaker、FEAT）。
-- 主动承认例外：《Towards Generalized Multimodal Homography Estimation》承认 DHN 在三个 case 下降；STARFlow-V 承认 "does not yet match the strongest diffusion-based video generators"。
 - 链式消融，每加一个模块给数字（FoleyDirector Tab.3：①Base → ②+STS → ③+RoPE → ④+Bi-Frame）。
 - 难量化的能力用定性图 + 呼吁看视频补强（4D Primitive-Mâché）。
 
@@ -789,7 +782,7 @@ P6 贡献列表（bullet）+ 核心数字。
 
 - **方法**：几乎全部是问题驱动的求解链，先一句自然语言讲动机再给编号公式。
 - **实验**：方法小节标题与实验小节标题同构，形成"方法-实验镜像"（PET-DINO "3.2 AFVPG" ↔ "4.6 Table5"；HouseCrafter "3.2 Floorplan-guided..." ↔ "4.3 Ablation"）。
-- **局限与结论**：推荐克制而具体的承认（Anatomica 两点；STARFlow-V "(1) Latency (2) Data quality" 各配 future work）。不推荐推到补充材料或附录（CoordSpeaker、MEDIC-AD、LEGION Appendix E），也不推荐用未来工作代替局限（HumanNOVA）。
+- **局限与结论**：局限最多 2 条，克制而具体（Anatomica 两点；STARFlow-V "(1) Latency (2) Data quality" 各配 future work）。
 
 ### 9.5 代表论文
 
@@ -803,7 +796,6 @@ P6 贡献列表（bullet）+ 核心数字。
 
 **常见失误**
 - 贡献列表与组件或实验粒度不对齐：FoleyDirector 把 3 个组件压成 1 条贡献；MEDIC-AD 贡献按框架 / 机制 / 评测横切，RQ 按三种能力纵切，二者只部分对应。
-- Limitations 被回避或外包：CoordSpeaker、MEDIC-AD、HouseCrafter、LEGION。
 - Figure 1 未被引用：FEAT、OmniVGGT、Chorus、4D Primitive-Mâché、PET-DINO。
 - 叙事顺序与写作顺序错位：HumanNOVA 引言"先数据后模型"，方法正文"先模型后数据"；实验预告顺序（Setup→Comparison→Ablation）与实际顺序（Setup→Ablation→Comparison）不一致。
 - 软性收尾冲淡结论：PET-DINO "We hope this work can provide new insights..."、LEGION 呼吁式收尾。
@@ -830,7 +822,7 @@ P6 贡献列表（bullet）+ 核心数字。
 
 ### 10.2 叙事骨架
 
-**主链**：领域重要性 → 现有方法瓶颈 → 瓶颈根因 → 核心洞察 → 方法设计 → 多维证据 → 意义与局限
+**主链**：领域重要性 → 现有方法瓶颈 → 瓶颈根因 → 核心洞察 → 方法设计 → 多维证据 → 局限（可选，最多 2 条）→ 意义
 
 | 变体 | 做法 | 代表 |
 |---|---|---|
@@ -858,7 +850,6 @@ P6 贡献列表（bullet）+ 核心数字。
 
 **4. 证据**
 - 逐步消融复现构建过程（DeltaTok 的 Step0→3）。
-- 诚实报告不利结果：DeltaTok 自曝 mean 分数 "modestly worse"；EDM 在 Limitations 承认高分辨率下优势衰减。
 - 多维交叉验证：速度、质量、内存、用户研究一起报（TurboVSR：DOVER + MUSIQ + user study + 4K 案例）。
 
 取名建议见 references/naming.md §6.2（效率优化型）。
@@ -867,7 +858,7 @@ P6 贡献列表（bullet）+ 核心数字。
 
 - **方法**：几乎全部是问题驱动的求解链，每小节先指出上一步遗留的新问题再给解法，段尾常点明局限为下一节铺垫（Turbo-GS 3.1→3.2→3.3；LinVideo selective transfer → ADM）。少数先给统一优化目标再拆子设计（LLMind：Eq.1 总目标 → BASS + CSF）。
 - **实验**：贡献逐条对应实验小节或消融表，句式模板 "We propose/introduce X, a Y that Z"；消融表命名复用方法小节标题（EDM Table 7 分 (a)(b)(c)(d) 对应四条贡献）。
-- **局限与结论**：多数把局限嵌入 "we leave this for future work"（SwiftTailor、TurboVSR），不推荐。推荐像 AdaptVision 那样把局限绑定到设计假设（"单一工具 / 固定 1/4 分辨率 / 两轮"），或像 Sparse-LaViDa 承认"需要额外训练"；ScoreLiDAR、Turbo-GS 给出了针对性、不夸大的局限。
+- **局限与结论**：局限最多 2 条，绑定到设计假设：推荐像 AdaptVision 那样写明"单一工具 / 固定 1/4 分辨率 / 两轮"，或像 Sparse-LaViDa 写明"需要额外训练"；ScoreLiDAR、Turbo-GS 给出了针对性、不夸大的局限。只写 "we leave this for future work"、不说边界在哪（SwiftTailor、TurboVSR）不推荐。
 
 ### 10.5 代表论文
 
@@ -883,7 +874,6 @@ P6 贡献列表（bullet）+ 核心数字。
 - 贡献与根因未一一对应，需要读者自己梳理（DeltaTok 三条根因对两条贡献）。
 - 图文数字不一致，引言复述的数字与 Figure 标注错位（Sparse-LaViDa 在编辑、数学推理两项）。
 - 拼写瑕疵（TurboVSR 结尾 "ratio" 误写 "ration"）。
-- 局限只用"未来工作"话术，或结论完全不谈局限（VMonarch、SigLino）。
 - Figure 1 未被引用（TE-VMamba、SwiftTailor、LinVideo）。
 
 **检查清单**（在 §3.8 基础上）
@@ -913,7 +903,7 @@ P6 贡献列表（bullet）+ 核心数字。
 | 变体 | 结构 | 代表 |
 |---|---|---|
 | 单贡献线性链 | CFG 重要 → 六种改进都是 heuristic → "overlook a fundamental aspect" → Theorem 1–4 → 方法 → 实验 | 《C²FG》 |
-| 双贡献并列 | 背景 → 缺口 → 贡献 1（完整分类）→ 贡献 2（形式化证明方法）→ 应用场景 → 局限声明 → 局限辩护 | 《PLMP》 |
+| 双贡献并列 | 背景 → 缺口 → 贡献 1（完整分类）→ 贡献 2（形式化证明方法）→ 应用场景 | 《PLMP》（原文还在引言里写了局限声明和辩护，本 skill 不采用，局限放在结论之前） |
 
 ### 11.3 逐步写法
 
@@ -931,7 +921,7 @@ P6 贡献列表（bullet）+ 核心数字。
 - 数字具体、可核验（《PLMP》：291、73、285、434、149、130/19）。
 - 用独立方法交叉验证（monodromy + Gröbner 基）。
 - 覆盖面拉满，并专挑强基线：《C²FG》五种骨架 × 四个数据集 × 两类采样器，专挑 "already difficult to improve" 的 SiT-XL/2 (REPA)。
-- 对做不到的部分坦诚说明（《PLMP》对 19 个问题写 "we study their equations explicitely after eliminating variables"）。
+- 证明覆盖的范围写清楚、不夸大（《PLMP》对 19 个问题写明 "we study their equations explicitely after eliminating variables"）。
 
 取名建议见 references/naming.md §6.2（理论分析型）。
 
@@ -939,7 +929,7 @@ P6 贡献列表（bullet）+ 核心数字。
 
 - **方法**：问题驱动的求解链。《PLMP》：先证必要条件 balanced（Sec.3）→ Jacobian 检验筛 minimal（Sec.4.1–4.2）→ stabilizer 理论证非最小（Sec.4.3）→ 计算 degree（Sec.5）；并在上一节末尾预告路线图（"Section 3 classifies...Section 4 determines...Section 5 computes..."）。
 - **实验**：逐条对应贡献。《C²FG》的 Toy Example / Table 1 对应 "SOTA performance"，Table 3（多采样步数、SDE/ODE）对应 "versatility"，SiT-XL/2 (REPA) + interval guidance 的结果专门对应 "orthogonal design enhances even exceptionally strong baselines"。
-- **局限与结论**：推荐《PLMP》的做法，把局限提前到引言（第 7–8 段）并主动辩护；《C²FG》把理论失效区间埋在 3.1 节末尾一句（"the theoretical bounds...become singular as t→0...we simply disregard this regime"），容易被忽略，说服力较弱。结论可以极短、逐字呼应引言和贡献措辞（《C²FG》仅 5 句、不含数字），也可以再点一次未来方向（《PLMP》的 partial visibility）。
+- **局限与结论**：定理成立的条件在定理处写明（《C²FG》在 3.1 节末尾说明 "the theoretical bounds...become singular as t→0...we simply disregard this regime"）；局限最多 2 条，一句话点出适用区间和后续方向，放在结论之前，不前置到引言。结论可以极短、逐字呼应引言和贡献措辞（《C²FG》仅 5 句、不含数字），也可以再点一次未来方向（《PLMP》的 partial visibility）。
 
 ### 11.5 代表论文
 
@@ -951,7 +941,6 @@ P6 贡献列表（bullet）+ 核心数字。
 **常见失误**（从两篇笔记中提炼出的隐患）
 - 贡献长度不均衡：《C²FG》三条贡献里"实验"一条堆了 SOTA、versatility、strong baseline、FID gains 四层信息，引言正文却缺少同等篇幅的铺垫，显得是临时补上的。
 - Teaser 图错位：《C²FG》的 Figure 1 是理论验证曲线（MSE / 余弦相似度），真正的流程示意图 Figure 2 不在第一页，也没被引言引用。
-- 局限内嵌、一笔带过：《C²FG》把 t→0 的失效区间埋在 3.1 节末尾。
 
 **检查清单**（在 §3.8 基础上）
 - [ ] 重要性句把研究对象挂到"地基"上（cornerstone / 被大量调用）
@@ -959,6 +948,6 @@ P6 贡献列表（bullet）+ 核心数字。
 - [ ] 每个定理或命题前有具体例子或 Intuitive Motivation 段落
 - [ ] 关键结论有独立方法交叉验证
 - [ ] 实验专挑最强、最难提升的基线
-- [ ] 做不到或失效的区间在引言或独立段落中主动说明，而不是埋在小节末尾
+- [ ] 定理成立的条件在定理处写明；局限不前置到引言
 - [ ] 贡献条目篇幅均衡，每条在引言正文都有铺垫
 - [ ] 简称 4–5 个字符、能独立读出，保留被改进对象的词根

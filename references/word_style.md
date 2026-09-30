@@ -53,14 +53,14 @@
 - 反例：CFG-Ctrl 中 e(t) 有五种说法；EthoCLIP 的图模块有四种命名；DOSFMVC / DOSMFVC / DOSFMNVC 三种拼写混用；WIR3D 的核心方法先后被叫作 "visually meaningful curves / semantically-informed curves / 3D strokes / visually-informed curves"；IDGH 用 flawed / terrible / inaccurate / detective 四个词形容同一缺陷。
 - 检查动作：建一张术语表（见 2.3 节），逐项全文搜索同义变体。
 
-### 原则 4：主动交代不利结果
-- 多批次把"主动披露劣势并给出机制解释"列为加分项。
-- 正例：`modestly better ... modestly worse`（A Frame is Worth One Token）；GlyphPrinter 用 "slightly inferior"；PromptMoE 写明 "not statistically significant"；GenErase 解释自己在 FID 上的劣势；E-RayZer、Cov2Pose 用 "comparable / trailing by X" 而不硬说 outperform；Janus-Faced Affinity Learning 在非最优子指标上反复用 "competitive"。
-- 反例：NRMF 写 "surpasses all prominent ... methods"，但 Table 4 中 VPoser 的 FID_p 更好；LRHDR 写 "outperforms previous methods"，Table 1 中 NECHDR 反超；Vanast 写 "across all metrics"，正文却承认 SSIM 只是 "comparable"。
-- 检查动作：逐张表找出本方法不是第一的格子，每一格都要在正文里有一句交代。
+### 原则 4：不主动示弱，但主张不越过证据
+- 本 skill 的口径见 `references/anti_defensive.md`：不说输，不主动罗列不足；遇到不利结果，按其第 3 节的顺序处理（删 → 收缩主张 → 换口径 → 解释为取舍 → 重组 → 重构故事 → 最后才直接说明）。
+- 正例（收缩措辞，而不是示弱）：Janus-Faced Affinity Learning 在非最优子指标上用 "competitive"；E-RayZer、Cov2Pose 用 "comparable" 而不硬说 outperform。
+- 反例（主张越过证据）：NRMF 写 "surpasses all prominent ... methods"，但 Table 4 中 VPoser 的 FID_p 更好；LRHDR 写 "outperforms previous methods"，Table 1 中 NECHDR 反超；Vanast 写 "across all metrics"，正文却承认 SSIM 只是 "comparable"。
+- 检查动作：逐张表找出本方法不是第一的格子，确认正文没有在这些格子上声称领先；不需要逐格写一句"我们不如 X"。
 
 ### 原则 5：摘要、引言、正文的结论强度保持一致
-- 反例：Gated KalmaNet、GenErase 的摘要都省略了正文里的 "on average"；HTNav 摘要写 "state-of-the-art across all scene levels"，实际 Val-Unseen SR 只有 17.69%；A Semantically Disentangled Unified Model 的摘要没有提不利的 P-AUROC。
+- 反例：Gated KalmaNet、GenErase 的摘要都省略了正文里的 "on average"；HTNav 摘要写 "state-of-the-art across all scene levels"，实际 Val-Unseen SR 只有 17.69%。
 - 正例：Gated KalmaNet 把提升严格限定在 "RAG and LongQA tasks"；3D Gaussian Hierarchies 默认用 comparable，只在局部指标上升级为 significantly。
 - 检查动作：把摘要中每个结果 claim 和正文对应的表逐一对照；正文里有的限定语（on average / on most metrics / in the X setting），摘要里也必须保留。
 
@@ -91,11 +91,11 @@
 - 反例："a significant advancement" 没有指标（Native and Compact Structured Latents）；"unifies all 4D tasks" 用了全称量词（D4RT）；"large-scale" 形容的只是 1.7K 病例的数据集（Gastric-X）；"training-free" 的 pipeline 里其实含有微调模型（Refracting Reality）。
 - 检查动作：对照第 2.4 节的精准/不精准对照表替换。
 
-### 原则 10：局限写具体，边界说清楚
-- Limitations 缺失或单薄是 9/9 批次的共同最大短板；有批次统计超过半数论文没有独立的 Limitations 小节（一批 7/20 篇，另一批十余篇/20 篇）。
-- 正例：`We do not claim ...`（Visual Diffusion Models are Geometric Solvers）；用让步句 `While X ..., it still has ...` 暴露边界（HiLoRA、MATLAT）；写出具体技术根因和可执行的改进方向。
-- 反例：只在结论最后写一句 "future work will explore more scenarios"。
-- 检查动作：Limitations 至少写 2 条，每条包含"在什么条件下 + 出现什么失败 + 可能原因"。
+### 原则 10：局限最多两条，写成"边界 + 方向"
+- 语料中多数论文没有独立的 Limitations 小节。本 skill 的做法：局限最多 2 条，每条一两句，写成"适用边界 + 后续方向"，放在结论之前或结论中间，不作为全文最后一句（`references/anti_defensive.md` 第 5 节）。
+- 正例：`We do not claim ...`（Visual Diffusion Models are Geometric Solvers）；`We focus on static scenes; handling dynamic objects is left for future work.`
+- 反例：罗列一长串不足；"our method still has significant shortcomings" 这类情绪化自评；只写一句空泛的 "future work will explore more scenarios"。
+- 检查动作：局限不超过 2 条；每条能看出边界是什么、下一步做什么。
 
 ### 原则 11：一条主线，方法是连续的求解链
 - 全文按"问题 → 原因 → 方法 → 结果"推进。
@@ -164,7 +164,7 @@
 1. 全称量词（all / every / any / across all metrics / fundamentally）只有在逐格核对了所有表格后才能用。反例：SpatialTree 写 "across all levels"，但 Table 3 有局部下降；PixelRush 写 "fundamentally break the conventional trade-off"，验证只覆盖两个模型。
 2. 百分比必须说明是相对还是绝对；小基数的相对降幅要同时给绝对值（反例：CausalVAD、ReMoT）。
 3. 摘要里的 claim 要保留正文中的所有限定语（on average / on X benchmark / under Y setting）。
-4. 平均值不能掩盖局部劣势：有子集或子指标变差，正文必须交代（反例：AdaptVision、CARE、CD-Buffer、Fresco）。
+4. 平均值不能用来夸大：有子集或子指标变差时，不写 all / consistently，把主张收缩到实际领先的范围（反例：AdaptVision、CARE、CD-Buffer、Fresco）。
 5. 限定语用于机制归因和局限段，不用来软化实测结果；实测结果用数字说话。
 6. 禁止在没有证据时使用 paradigm shift / a new paradigm / unprecedented / zero interference / does not suffer from any of the previous limitations（反例：GrOCE、ChordEdit、DiverseGRPO、RINO）。
 
@@ -235,7 +235,7 @@
 | catastrophic / staggering / remarkable leap | AD-GBC（+0.29 个百分点）、CausalVAD、ReMoT | 形容词强度必须和数量级匹配；小于 1 个百分点的变化不用情绪化形容词 |
 | significantly（没做显著性检验） | 多篇 | 做了检验才用；否则写 `by N points` |
 | innovatively / exceptional | GeoCoT 用 innovatively 2 次；多篇用 exceptional | 删除 |
-| zero interference / does not suffer from any limitations | GrOCE、RINO | 改为可测量的表述，并在局限一节说明例外 |
+| zero interference / does not suffer from any limitations | GrOCE、RINO | 改为可测量的表述，并把主张限定在实际验证过的范围 |
 | delve / paramount / tapestry / boasts / testament / unlock / game-changer | 顶会论文中几乎不出现 | 一律不用；出现即视为 AI 生成痕迹 |
 
 **扫描方法**：定稿前对上表每个词做全文计数。计数超过上限，或出现位置在摘要首句、结论末句，就逐一替换。计数用 `scripts/ai_style_scan.py` 完成（词表与上限以 `references/ai_words.json` 为准，见第 4.1 节），完整的自查步骤见第 4.9 节。
@@ -322,8 +322,8 @@
 | 数字与对比 | 对比句式：`from X to Y (+Z)`、`up to N×`、`outperforms Y by N%`；进阶：`72.40→76.21`（GeoAgent）、`92.40±0.11 (+0.43)`；相对/绝对明确标注 | 多批次 |
 | 图表引用 | `As shown in Fig. X, ...` 或把 `(Fig. X)` 嵌在句尾；每张图表在正文中至少被引用一次，并说明要看什么 | 多批次 |
 | 公式 | 直觉句 → 编号公式 → 逐项解释符号 | 几乎全部批次的共识 |
-| 语气 | 自信但克制：强结论配数字，机制和边界判断配 hedge 词；主动交代不利结果 | 9 批一致 |
-| Limitations | 独立小节或段落，至少 2 条，写"条件 + 失败 + 原因 + 方向" | 9/9 批次共同短板 |
+| 语气 | 自信但克制：强结论配数字，机制和边界判断配 hedge 词；不主动示弱，主张不越过证据（`references/anti_defensive.md`） | 9 批一致 |
+| Limitations | 最多 2 条，每条写"适用边界 + 后续方向"，放在结论之前或结论中间 | 本 skill 口径（`references/anti_defensive.md` 第 5 节） |
 | 校对重点 | 摘要、贡献列表、图注（语法拼写错误集中在这些地方：主谓不一致 "misalignment ... degrade"、"our approach generate"，冠词缺失，"the the"，LaTeX 残留） | Mirror Illusion Art、MedLIME、PixelRush、TMFS |
 
 ---
@@ -346,9 +346,9 @@
 | 方法（动词） | 选一个和机制对应的招牌动词贯穿全文 | recast（ChordEdit）、bridge（CoordSpeaker）、decouple（OVI-MAP） |
 | 实验：结果 | 强词 + 数字 + 范围；用箭头或括号标增量 | `up to +2.7/+6.9 mAP`（DetGain）；`72.40→76.21`（GeoAgent） |
 | 实验：效率 | 给可验证的具体数字，不用形容词 | Native and Compact Structured Latents；LagerNVS "30FPS+"；GenTract 用具体倍数替代 significantly |
-| 实验：不利结果 | 如实写 + 机制解释 | `modestly better ... modestly worse`（A Frame is Worth One Token）；GenErase；GlyphPrinter；Omni2Sound 对 HunyuanVideo-Foley 的说明 |
+| 实验：不利结果 | 按 `references/anti_defensive.md` 第 3 节处理；必须提及时用中性比较措辞 | `comparable` / `competitive with`（E-RayZer、Janus-Faced Affinity Learning）；把优势限定到具体条件 |
 | 讨论：归因 | 强证据用 demonstrate，弱证据用 suggest / hypothesize | GaussianVision、PGO 论文 |
-| 局限 | 让步句 + 具体边界 | `While X ..., it still has ...`（HiLoRA、MATLAT）；`We do not claim ...` |
+| 局限 | 边界 + 方向，一两句 | `We do not claim ...`（Visual Diffusion Models are Geometric Solvers）；`We focus on X; Y is left for future work.` |
 | 标题与正文呼应 | 标题中的比喻在引言里再用一次 | Seeing the Trees for the Forest 的引言写 `The trees are lost in the forest.` 呼应标题；Diving into ... ↔ `We dive into ...` |
 
 ### 6.2 最常见问题（按出现频次排序）与检查方法
@@ -356,10 +356,10 @@
 | # | 问题 | 频次 | 检查方法 |
 |---|---|---|---|
 | 1 | 修辞强度超出数据量级（全称量词、情绪化形容词、未加限定的 "the first"、相对/绝对混淆） | 9/9 批次 | 全文搜索第 3 节的词和 all / every / first / significantly，逐条找数字支撑；形容词强度和数量级不匹配就降级 |
-| 2 | Limitations 缺失或只有一句 | 9/9 批次，多批次超过半数论文 | 确认有独立的 Limitations 段，至少 2 条，每条包含条件、失败、原因 |
+| 2 | 防御性写作：自我削弱词、层层叠加的限定语、罗列不足、结论末尾自我否定 | 本 skill 口径 | 扫描脚本"自我削弱"类别清零；按 `references/anti_defensive.md` 第 7 节逐句自查 |
 | 3 | 术语和缩写全文漂移 | 9/9 批次，最高频的细节问题 | 按 2.3 节术语表逐项全文搜索；核对摘要、方法标题、图注、结论中的全称 |
 | 4 | 摘要比正文说得更强（丢掉 on average 等限定语，省略不利指标） | 多批次（LF-BVN、LRHDR、SignDINO、Gated KalmaNet、GenErase、HTNav） | 把摘要每个 claim 与对应表格对照，限定语逐一回填 |
-| 5 | 平均值掩盖局部劣势 | 多批次 | 每张表逐格标出非第一的格子，正文必须有交代 |
+| 5 | 平均值夸大：用 all / consistently 覆盖了局部下降 | 多批次 | 每张表逐格标出非第一的格子，确认正文没有在这些格子上声称领先 |
 | 6 | 套话集中在摘要首句和结论末句 | 两个批次专门指出 | 单独重读这两句，删除 seamless / comprehensive / novel / crucial |
 | 7 | 语法拼写错误集中在摘要、贡献列表、图注 | 多批次 | 对这三处单独做一遍主谓一致、冠词、重复词、LaTeX 残留检查 |
 | 8 | 贡献与实验没有一一对应 | 多批次（作为借鉴项的反面） | 画"贡献 → 实验小节"映射表，不允许空行 |
@@ -377,13 +377,13 @@
 3. [ ] 全文按"问题 → 原因 → 方法 → 结果"推进；方法各组件构成连续的求解链，而不是模块堆叠（原则 11）。
 4. [ ] 公式、超参数、实验设置与代码和实验记录一致；不一致处已问过用户（原则 12）。
 5. [ ] 每个强词（state-of-the-art / significantly / consistently / outperforms / all / the first）都有数字、范围或 "to our knowledge"。
-6. [ ] 摘要中的限定语与正文一致；不利指标在正文中有交代。
+6. [ ] 摘要中的限定语与正文一致；没有在不领先的指标上声称领先。
 7. [ ] 第 3 节的词表计数：leverage ≤ 2，crucial ≤ 2，seamless(ly) = 0（除非附有量化证据），novel / comprehensive / paradigm / unprecedented = 0。
 8. [ ] 按第 4.9 节完成去 AI 味自查：`scripts/ai_style_scan.py` 的 avoid 命中已全部处理、review 命中已逐条判断；人工检查过第 4.2–4.8 节。
 9. [ ] 术语表逐项全文搜索，没有同义变体，大小写和连字符统一；符号和缩写前后一致。
 10. [ ] 每个编号公式前面有一句直觉说明，后面有逐项的符号解释；每个新概念在第一次出现处就有解释（原则 13）。
 11. [ ] 核心现象有专名，并在摘要、引言、方法、实验中复用。
-12. [ ] 有独立的 Limitations，至少 2 条具体局限。
+12. [ ] 局限最多 2 条，写成"边界 + 方向"；全文没有自我削弱词，结论最后一句落在意义上（`references/anti_defensive.md` 第 7 节）。
 13. [ ] 方法名、子模块名、数据集名通过 references/naming.md 的检查清单（§2.3、§4.4、§7）。
 14. [ ] 摘要、贡献列表、图注单独校对一遍语法和拼写。
 15. [ ] 所有 `\ref` 和 `\cite` 都能正确解析；图表按顺序在正文中被引用，caption 能单独看懂。

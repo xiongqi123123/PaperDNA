@@ -4,7 +4,7 @@
 >
 > **数据来源**：CVPR 2026 + ICCV 2025 共 1040 篇精读笔记（Oral 195、Highlight 836、Best 9）。本章内容来自三份跨批次的"Related Work 写法"汇总，以及 `story_types.md` 各类型章节里与文献定位有关的条目。`references/corpus_stats.md` 里没有本章的专门统计（例如分组数、放在第几节的比例），下面说的"绝大多数""少数"都是汇总材料里的定性判断，不要当精确数字写进论文。
 >
-> **合并说明**：旧版 `sections/related_work.md` 的要求全部保留：按主题或技术路线分组、每组一段；段首概括共同思路、段尾说明区别；不写成 "A did X. B did Y." 式罗列，而是组织成指向缺口的论证链；比较写清假设、设定或代价上的差别；最接近的 1–3 篇单独比较；只引用 `.bib` 中已有的条目，描述要能在 `.paperdna/refs/` 笔记或用户提供的信息里找到依据，拿不准时标 `% TODO: verify`。`story_types.md` §3.4（方法）、§3.5（实验）、§3.6（局限与结论）的主体分别归 `sections/method.md`、`sections/experiments.md`、`sections/conclusion.md`；本文件只取其中与本章接口有关的四条：方法小节开头要交代遗留问题，所以 Related Work 末句要把问题交到方法手里（§3.6）；"首个框架"类声明必须有独立验证，所以对比表的每一列都要有实验兑现（§3.4）；局限要写成"失效场景 + 根因 + 方向"，这一要求同样用于描述前人工作的局限（§3.2）；本文自己的局限不要前置到 Related Work 里当反衬（§4）。"先直觉后公式"用于 Related Work 兼做背景铺垫的情形（§3.7）。
+> **合并说明**：旧版 `sections/related_work.md` 的要求全部保留：按主题或技术路线分组、每组一段；段首概括共同思路、段尾说明区别；不写成 "A did X. B did Y." 式罗列，而是组织成指向缺口的论证链；比较写清假设、设定或代价上的差别；最接近的 1–3 篇单独比较；只引用 `.bib` 中已有的条目，描述要能在 `.paperdna/refs/` 笔记或用户提供的信息里找到依据，拿不准时标 `% TODO: verify`。`story_types.md` §3.4（方法）、§3.5（实验）、§3.6（局限与结论）的主体分别归 `sections/method.md`、`sections/experiments.md`、`sections/conclusion.md`；本文件只取其中与本章接口有关的四条：方法小节开头要交代遗留问题，所以 Related Work 末句要把问题交到方法手里（§3.6）；"首个框架"类声明必须有独立验证，所以对比表的每一列都要有实验兑现（§3.4）；描述前人工作的局限要写到具体场景和原因（"失效场景 + 根因"，§3.2）；本文自己的局限不要前置到 Related Work 里（§4），它只在结论之前的 Limitations 段出现，最多 2 条（`references/anti_defensive.md` §5）。"先直觉后公式"用于 Related Work 兼做背景铺垫的情形（§3.7）。
 >
 > **相关文件**：分组名、缺口名、方法名的取法和全文措辞统一见 `references/naming.md`；"first""novel""significantly"等词的用法和结论强度见 `references/word_style.md`。本文件不重复这些内容。
 >
@@ -48,13 +48,13 @@
 | Preliminary / Background | 符号、基础公式 | 不要在综述段里夹大段公式，除非有意合并（§3.7） | 如果合并，给出的符号要被方法节复用 |
 | 方法 | 本文怎么做 | 不提前展开本文的模块细节 | 末句交出问题，方法首句接住 |
 | 实验 | 与前作的数值比较 | 不在这里报本文的实验数字（少数论文预告结果，如《GECKO》"significantly outperforms Intra and matches TANGLE"，只在结果本身就是定位依据时用） | 这里点名的最接近工作，实验里要作为基线出现 |
-| Limitations | 本文的失效场景 | 不把本文的局限前置到这里当反衬（反例：《Automated Model Evaluation for Object Detection》整节批评 BoS 三点局限） | — |
+| Limitations | 本文的适用边界与后续方向（最多 2 条） | 不把本文的局限前置到这里（反例：《Automated Model Evaluation for Object Detection》整节批评 BoS 三点局限） | — |
 | 附录 | 完整文献讨论 | — | 正文开头说明"完整讨论见附录" |
 
 ### 1.3 与实现一致
 
 - 写"Unlike X, our method does Y"之前，确认方法和代码里确实做了 Y，而且 X 确实没做（查 `.paperdna/refs/` 笔记或原文）。差别写错比不写更伤。
-- 对前作局限的描述要具体到假设、设定或代价，和 `story_types.md` §3.6 对本文局限的要求一样：写"在什么场景失效、因为什么"。例：《ForestFormer3D》直接批评 ForAINet "tends to over-segment trees...fails to accurately identify small trees"；《EcoSplat》点明前作 "provide neither explicit control...nor a guaranteed, optimal trade-off"。
+- 对前作局限的描述要具体到假设、设定或代价：写"在什么场景失效、因为什么"。例：《ForestFormer3D》直接批评 ForAINet "tends to over-segment trees...fails to accurately identify small trees"；《EcoSplat》点明前作 "provide neither explicit control...nor a guaranteed, optimal trade-off"。
 - 用 "first" / "unique" / "unexplored" 的声明，必须有检索依据，并在实验里有独立验证（`story_types.md` §3.5）；强度把握见 `word_style.md`。
 
 ---
@@ -259,7 +259,7 @@ Closest to our work is [X], which also [相同点]. However, [X] [不同点 1]; 
 | 首创声明过多 | 多处 "first"，显得用力过猛 | 《FILTR》 | 全节最多一处首创句，并用对比表或实验支撑；见 `word_style.md` |
 | 各组详略不均 | 核心组展开，边缘组一两句带过 | 《MedLIME》《MeshRipple》《OMG-Bench》《NI-Tex》 | 边缘组并入其他组或移到附录 |
 | 分组与贡献对应不清 | 读者看不出某段综述服务于方法的哪个设计 | 汇总中有个别论文被指出此问题 | 用结构 C，或在每组定位句里点出对应的模块名 |
-| 局限前置 | 把本文应在 Limitations 讲的对比内容放到这里反衬自己 | 《Automated Model Evaluation for Object Detection》整节批评 BoS 三点局限 | 这里只写前作局限；本文局限留给 Limitations（见 `sections/conclusion.md`） |
+| 局限前置 | 把本文应在 Limitations 讲的对比内容放到这里反衬自己 | 《Automated Model Evaluation for Object Detection》整节批评 BoS 三点局限 | 这里只写前作局限；本文局限留给结论之前的 Limitations 段，最多 2 条（见 `sections/conclusion.md`） |
 | 核心洞察未埋伏笔 | 方法里的关键设计动机在综述中毫无铺垫 | 《LayerTracer》的 "Spatiotemporal consistency" | 在最相关一组的共性局限里点出这个性质的缺失 |
 | 开篇无衔接 | 综述式总起句直接切入，或直接回到领域史起点 | 《RAVEN》《Modeling Saliency Dataset Bias》 | §3.1 |
 | 后置但无过渡 | 放到实验之后，却没有说明为何此时回顾 | 《Straighten Viscous Rectified Flow》 | 后置时开头一句说明"在看到 X 的结果后，我们把本文放回文献中定位" |

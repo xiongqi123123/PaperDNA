@@ -221,7 +221,7 @@
 9. `Unlike previous approaches that [做法A] or [做法B], [X] operates by [做法C], allowing [新自由度].` ——《AIM》
 10. `By using [X] rather than [Y] directly, we mitigate [Z] caused by [W].` ——《I'm a Map!》
 11. `We employ [具体技术] as our [模型角色] because it naturally restricts [变量] to become [期望性质].` ——《SAFT》（"because it naturally ..."：技术的固有属性刚好满足需求）
-12. `While [设计选择] may cause [代价] in [一般场景], in [特定场景], [代价被抵消的理由].` ——《TurboVSR》（主动承认代价，再说明为什么在本场景可以接受）
+12. `While [设计选择] may cause [代价] in [一般场景], in [特定场景], [代价被抵消的理由].` ——《TurboVSR》（解释为合理取舍：说明为什么代价在本场景可以接受，见 `references/anti_defensive.md` §3 第 4 步）
 
 ---
 
@@ -253,16 +253,16 @@
 ## 8. 与基线对比
 
 **用途**：不只报告数字，而是解释本文**为什么**比基线好、好在哪种条件下、代价是否更低。
-**注意**：对比句要点名具体基线，并指出**差异来源**（机制、资源、监督）。诚实地写出持平或落后的项（第 3 条），比全面碾压的说法更可信。`In stark contrast` / `fails catastrophically` 只用在差距确实悬殊时。
+**注意**：对比句要点名具体基线，并指出**差异来源**（机制、资源、监督）。不是全面领先时收缩主张：写清实际领先的范围，持平的项用 on par with / comparable to（第 3、7 条），不专门写一句落后（`references/anti_defensive.md` §3、§4）。`In stark contrast` / `fails catastrophically` 只用在差距确实悬殊时。
 
 1. `[基线] fails catastrophically when [条件变化]. In contrast, [方法]—which has [关键机制]—achieves [具体数值].` ——《Omnivorous Vision Encoder》
 2. `[Baseline]'s [metric] deteriorates from [X] to [Y]. In stark contrast, [Ours] demonstrates exceptional stability [..].` ——《CausalVAD》
-3. `Our method exceeds prior work on all [X] except for [Y], where we are roughly on par with [Z].` ——《CLIP Is Shortsighted》（主动报告例外）
+3. `Our method exceeds prior work on all [X] except for [Y], where we are roughly on par with [Z].` ——《CLIP Is Shortsighted》（收缩主张：写清领先范围和持平的项）
 4. `Compared to [baseline], ours achieves a higher/lower [metric] of [value], reflecting [interpretation].` ——《GardenDesigner》（数字后接解读）
 5. `[Method] achieves [metric1], significantly higher than [baseline1/2/3], improving [x]×–[y]×.` ——《PRISM》
 6. `Crucially, on [场景], [方法] improves by +[X]%, while [基线] gains only +[Y]%.` ——《AReS》（比较提升幅度）
 7. `Our approach achieves comparable performance to the state-of-the-art [基线名], despite significantly less [资源].` ——《MoRe》（持平但更省资源）
-8. `[X] consistently matches or outperforms [同类方法], while effectively narrowing the [差距] to [更强基线].` ——《ViT3》（跨类别对比：诚实承认仍有差距）
+8. `[X] consistently matches or outperforms [同类方法], while effectively narrowing the [差距] to [更强基线].` ——《ViT3》（跨类别对比：用 narrowing the gap 的中性说法）
 9. `This is remarkable, since [方法] did not use [某种监督/资源]—in contrast to [基线], which leveraged [资源] for training.` ——《Featurising Pixels...》
 10. `In contrast, our approach uses a simpler design that does not require [技巧A], [技巧B], or [技巧C] for training.` ——《CoTracker3》（以简单取胜）
 11. `Unlike [代表性前作], which requires [限制], our method generalizes to [范围] without [额外代价].` ——《LoftUp》《Radiant Foam》
@@ -293,30 +293,28 @@
 12. `By [V-ing X] and [V-ing Y], we envision [BENCHMARK] as a foundation for future research on [领域].` ——《VS-Bench》
 13. `These contributions together signal a new paradigm of [领域]—advancing from [旧范式] to [新范式].` ——《Visual Chronicles》
 14. `By releasing our [工具/资源] alongside [数据集], we aim to set a new standard for [研究方向].` ——《Multi-View 3D Point Tracking》（资源发布 + 意义，对应 43.1% 以资源发布收尾的摘要）
-15. `We hope this work encourages moving from [X] toward [Y].` ——《PHASE-Net》（谦逊式收尾）
+15. `We hope this work encourages moving from [X] toward [Y].` ——《PHASE-Net》（谦逊式收尾；只能跟在一句有依据的意义陈述之后，不能单独作为全文最后一句，见 `sections/conclusion.md` §3.7）
 
 ---
 
-## 10. 承认局限
+## 10. 局限：适用边界 + 方向
 
-**用途**：在 Limitations 或 Conclusion 里说明方法的边界和失败场景，并指出后续方向。
-**注意**：局限要具体到"在什么条件下、出现什么现象、根因是什么"（第 9、11 条）。不要写成变相夸奖（例如"我们的方法只在 N 个数据集上验证过"）。好的写法有三种：划定适用范围（第 1–3 条）、说明假设在什么情况下不成立（第 4–6 条）、承认失败并给出根因和方向（第 7–13 条）。
+**用途**：在结论之前的 Limitations 段或结论中间，用一两句说明方法的适用边界，并指出后续方向。
+**注意**：最多 2 条，每条一两句，写成"适用边界 + 后续方向"，根因可以省略（`references/anti_defensive.md` §5）。不放在摘要、引言里，不作为全文最后一句。不用自我削弱的写法（unfortunately、we must acknowledge、still lags behind、limited improvement），不写情绪化的自我评价，也不在局限里重提正文已经收缩掉的比较。不要写成变相夸奖（例如"我们的方法只在 N 个数据集上验证过"）。常用写法两种：划定适用范围（第 1–4 条）、说明依赖的假设并给出方向（第 5–13 条）。
 
 1. `[系统] is limited to being a [能力定位], not designed to [超范围能力1], [能力2] or [能力3].` ——《NitroGen》
 2. `Our approach is tailored to [适用场景]. It is not designed for [超出范围的场景].` ——《Clay-to-Stone》
-3. `Scope of this Work. We evaluate [具体条件] in [受控设定] [..]; this does not directly reflect [更广泛的真实场景].` ——《DENALI》（单独成段的"Scope"小标题）
-4. `A limitation is [constraint]; [assumption] may not hold in [failure condition]. Future work includes [A] and [B].` ——《Generalized-CVO》
-5. `[X] requires [前提条件]. Therefore, it cannot be trivially applied to [反例场景].` ——《NeoVerse》
-6. `While [property] is beneficial for [use case], it can become a limitation when [opposite use case].` ——《FlowEdit》（同一属性的两面）
-7. `While acceptable for [场景A], it hinders [场景B]. A promising direction is [改进方向].` ——《Inside-Out》
-8. `While our method achieves SOTA performance, several limitations remain. First, it does not explicitly [未建模因素], leading to [后果].` ——《GOR-IS》
-9. `We acknowledge that [不足现象]. This issue stems from [根因], making [子问题] an ill-posed problem.` ——《MikuDance》
-10. `Compared to SOTA methods, our method achieves competitive scores [..]. However, due to [根因], [局限描述], making it infeasible to [做不到的事].` ——《HccePose(BF)》
-11. `A limitation of [名称] is [具体问题]—a challenge widely shared by [同类资源]. We alleviated this through [缓解措施].` ——《Derm1M》（数据集类：说明是共性问题，并给出已做的缓解）
-12. `A remaining limitation is that [具体失败场景]; we believe this can be mitigated in future work.` ——《FEAT》
-13. `[X] can be improved in several aspects: (i) [..]; (ii) [..]; (iii) [..]. Future work should consider [direction].` ——《SceneMI》
-14. `This study constructs the first [X], but does not explore [Y]. This will be investigated along with [Z] in future work.` ——《SDTrack》
-15. `The main limitation of our method is [specific limitation]. [..] We leave this for future work.` ——《FlashDepth》
+3. `Scope of this Work. We evaluate [具体条件] in [受控设定] [..]; this does not directly reflect [更广泛的真实场景].` ——《DENALI》（单独成段的"Scope"小标题；放在基准设计处或结论之前，不放进引言）
+4. `We focus on [场景]; handling [更广的场景] is left for future work.` ——`anti_defensive.md` §5
+5. `Our method assumes [前提]; extending it to [放宽前提的设定] is a natural next step.` ——`anti_defensive.md` §5
+6. `A limitation is [constraint]; [assumption] may not hold in [failure condition]. Future work includes [A] and [B].` ——《Generalized-CVO》
+7. `[X] requires [前提条件]. Therefore, it cannot be trivially applied to [反例场景].` ——《NeoVerse》
+8. `While [property] is beneficial for [use case], it can become a limitation when [opposite use case].` ——《FlowEdit》（同一属性的两面）
+9. `While acceptable for [场景A], it hinders [场景B]. A promising direction is [改进方向].` ——《Inside-Out》
+10. `While our method achieves SOTA performance, several limitations remain. First, it does not explicitly [未建模因素], leading to [后果].` ——《GOR-IS》（只写两条时把 several 换成具体条数）
+11. `A remaining limitation is that [具体场景]; we believe this can be mitigated in future work.` ——《FEAT》
+12. `This study constructs the first [X], but does not explore [Y]. This will be investigated along with [Z] in future work.` ——《SDTrack》
+13. `The main limitation of our method is [specific limitation]. [..] We leave this for future work.` ——《FlashDepth》
 
 ---
 

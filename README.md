@@ -47,6 +47,7 @@
 - **Story first.** Before writing, PaperDNA picks one of 8 story types through a decision flow, then drafts the narrative skeleton and the hook. The abstract, introduction, method and experiments all follow that skeleton.
 - **Your voice.** It extracts a style profile from your past papers and logs every correction you make, so the same mistake never comes back.
 - **Reviewer's eye.** Each finished section goes to an independent reviewer subagent that never saw the drafting process, which keeps the review honest.
+- **Confident, not defensive.** A paper is a press conference, not a self-audit: no self-undermining words, unfavorable results are handled by narrowing claims rather than conceding, and limitations are capped at two, written as scope plus next step. Numbers and tables always stay accurate.
 - **Less AI tone.** A scanner flags AI-sounding and empty words line by line. Words that top papers also use, such as *leverage* and *crucial*, are capped rather than banned.
 
 ## What 1040 Top-Venue Papers Taught Us
@@ -77,6 +78,7 @@ Full statistics: [`references/corpus_stats.md`](references/corpus_stats.md).
 | "Turn these PDFs into evidence" | Reads the PDFs and writes reference notes with quotable sentences and page numbers; BibTeX only contains verified fields |
 | "Close-read this paper" | Breaks down the abstract and introduction sentence by sentence and extracts reusable patterns, wording and style |
 | "My LaTeX won't compile" | Reads the log, locates the first error, fixes it and recompiles, for up to 3 rounds |
+| "Make this more convincing" / "Cut it down" | Applies the press-release principle: reorganizes around the strongest advantage, narrows over-reaching claims, removes self-undermining wording, and runs the "don't hand the reviewer a knife" checklist |
 | "Never use this word again" | Records it in your error log or the AI-tone word list, then rewrites the sentence |
 
 ## Quick Start
@@ -134,6 +136,7 @@ references/
   sentence_bank.md             English templates and original sentences for 13 writing functions
   word_style.md                Principles, word choice, claim strength, de-AI rules, style defaults, final checklist
   naming.md                    Titles, method-name construction, first mention, naming process
+  anti_defensive.md            Press-release principle: unfavorable results, limitations (max 2), self-audit checklist
   corpus_stats.md              Corpus statistics
   ai_words.json                AI-tone and empty-word list (also read by the scanner)
   workflow.md / review.md      Writing workflow and review criteria
@@ -165,6 +168,7 @@ The scanner exits with code 1 when it finds hits, so it fits into pre-commit hoo
 | How a section is written | `references/sections/<section>.md` |
 | Reusable sentence patterns | `references/sentence_bank.md` |
 | Titles and method names | `references/naming.md` |
+| Unfavorable results, limitations, defensive wording | `references/anti_defensive.md` |
 | What the review checks | `references/review.md` |
 | Your own tone and habits | `profile/style_profile.md` |
 | Individual corrections | `profile/error_log.md` (merge recurring ones into your style profile) |
@@ -185,7 +189,7 @@ Issues and pull requests are welcome. When you change a guide, keep each rule in
 
 ## Acknowledgements
 
-PaperDNA started as a fork of [AI-Vibe-Writing-Skills](https://github.com/donghuixin/AI-Vibe-Writing-Skills) (MIT), which contributed the ideas of a style profile, an error log and spec-driven writing. PaperDNA rebuilt it as a Claude Code skill with corpus-driven guidance, a new workflow, review process and scripts. Thanks to the authors of all the papers in the corpus, whose writing is what this project learns from.
+PaperDNA started as a fork of [AI-Vibe-Writing-Skills](https://github.com/donghuixin/AI-Vibe-Writing-Skills) (MIT), which contributed the ideas of a style profile, an error log and spec-driven writing. The press-release principle against defensive writing is adapted from [anti-defensive-writing-Skill](https://github.com/Adkid-Zephyr/anti-defensive-writing-Skill) (MIT). License notices for both are in [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md). PaperDNA rebuilt the original fork as a Claude Code skill with corpus-driven guidance, a new workflow, review process and scripts. Thanks to the authors of all the papers in the corpus, whose writing is what this project learns from.
 
 ## License
 

@@ -11,7 +11,7 @@
 
 | 事项 | 默认做法 | 依据 |
 |---|---|---|
-| 整体骨架 | Setup → 主结果 → 消融 → 机制分析 / 泛化 / 效率 / 失败案例 | 各批次笔记里最常见的层次；《CARE》《OSA》《LoftUp》《Backdoor Mitigation by D3》 |
+| 整体骨架 | Setup → 主结果 → 消融 → 机制分析 / 泛化 / 效率 | 各批次笔记里最常见的层次；《CARE》《OSA》《LoftUp》《Backdoor Mitigation by D3》 |
 | 节首 | 1–3 句路标句，预告各小节要回答的问题 | 《D4RT》《E-RayZer》《PanoEnv》《MoGA》 |
 | 对应关系 | 贡献 i ↔ 方法 3.i ↔ 实验小节 / 表 i；每条贡献至少一个实验 | 8 份批次材料中最一致的规律；《ChordEdit》《PHASE-Net》《NoiseQuery》 |
 | 小节标题 | 写成要回答的问题，或用 RQ1/Q1 编号复用引言表述 | 《VeriDou》RQ1–RQ5、《URICA》、《PAVAS》、《MTU3D》 |
@@ -21,7 +21,7 @@
 | 消融 | 累加式（Baseline → +A → +B）或减法式（w/o A）；变体名与方法小节的模块名一致；顺序与引言挑战顺序一致 | 《PPCL》《MARCO》《MatAnyone2》《PiLoT》 |
 | 机制实验 | 至少一处实验回答"为什么有效"，直接验证洞察本身 | 《LoftUp》Fig.8、《Dissecting GCD》5.4、《The Devil Is in Gradient Entanglement》 |
 | 排除替代解释 | 参数量、训练时长、数据规模、外部先验等混淆因素各配一个对照 | 《Structure Matters》《DiverseGRPO》《No Calibration, No Depth, No Problem》 |
-| 不利结果 | 在正文如实报告，写"现象 + 具体机制归因"；结论里也要提 | 《Radiance Meshes》《M3DLayout》《AT-VLA》 |
+| 不利结果 | 不主动示弱，不说输。按 `references/anti_defensive.md` §3 的顺序处理：删 → 收缩主张 → 换口径 → 解释为取舍 → 重组实验 → 重构故事 → 最后才用一句事实性的话说明。表格数字照实，文字主张不越过表格 | 解释为取舍或换口径：《Radiance Meshes》《M3DLayout》《AT-VLA》；写法见 §3.8 |
 | 数字一致 | 同一数字在摘要、引言、贡献、正文、表格、结论中写法一致 | 反例《AsymLoc》95% / 95.5% / 96% |
 | 统计 | 只有做过显著性检验才写 significant；能报方差就报 | 早期规范；《FedHarmony》Wilcoxon、《D-Convexity》10 次配对 t-test |
 | 表图 caption | 单独看得懂：比较了什么、指标方向（↑/↓）、最优标注方式 | 早期规范 |
@@ -37,7 +37,7 @@
 1. **是否更好**：在公认的数据集、指标和强基线上，结果如何（主结果）。
 2. **每个设计是否必要**：去掉或替换某个模块会怎样（消融）。
 3. **为什么有效**：增益来自哪里，洞察本身是否成立（机制分析）。
-4. **是否可信、边界在哪**：提升是否来自不公平因素，泛化、效率、失败场景如何（排除替代解释、鲁棒性、失败案例）。
+4. **是否可信、适用范围多大**：提升是否来自不公平因素，泛化、效率如何（排除替代解释、鲁棒性）。
 
 《NuWa》把这四类问题压成三段式："主结果证明有效 + 机理分析证明可信 + 消融证明每个设计都必要"。《LoftUp》的分工最清楚：5.1 回答整体是否更强，Tab.1/Fig.5/Fig.7 回答训练目标本身是否有效、能否迁移，Tab.4 回答架构本身是否更优，Tab.5 回答分辨率泛化，Tab.6 回答效率代价，Fig.8 的注意力可视化回答"为什么有效"，从"是否好"一层层推进到"为什么好"。
 
@@ -50,9 +50,9 @@
 | 引言 / 贡献列表 | 贡献列表定义了实验要兑现的清单。74.4% 的论文用 bullet 列贡献（`references/corpus_stats.md`），实验小节应能逐条对上。引言里提出的 RQ、"How to...?" 问句、挑战编号，实验里原样复用（《AdvDreamer》三段 "How to...?" ↔ ❶❷❸ 三个模块 ↔ RQ1–RQ3）。 |
 | 方法 | 方法按问题驱动的求解链写，每个小节解决上一节遗留的问题（story_types §3.4）。实验的消融应沿着这条链逐环验证：变体名复用方法小节的模块名（《AT-VLA》Ex1 "With Adaptive Cross Attention"），方法小节末尾可以预告 "which are ablated in Section 4.3"（《Human-in-the-Loop Local Corrections》）。方法里提出的假设在实验中要有对应的消融（《Spherical Leech Quantization》Table 8 对应 Sec. 3.3 的假设）。 |
 | 相关工作 | 基线按相关工作的分类分组，并在实验里点名回指（《D4RT》"4.2 对比 3.2 中的方法，4.3 对比 3.1 中的方法"；《RawMetaDiff》single-frame / generative / dual-frame 三组）。 |
-| 摘要 / 结论 | 实验中的核心数字是摘要、引言、贡献、结论引用的唯一来源，四处必须一致（story_types §3.7）。结论要收进实验里暴露的不利结果和代价，不能只挑好的说。 |
-| 局限 | 失败案例和负面结果在实验章里报告并归因；Limitations 小节（通常在结论前后）把它们整理成"失效场景 + 根因 + 方向"。各类型中约六到七成论文没有独立 Limitations，这一点不要模仿（story_types §3.6）。具体写法见 references/sections/conclusion.md。 |
-| 补充材料 | 可以放额外数据集、超参细节、更多可视化；**不能**把某条贡献的唯一验证或失败案例分析整体推过去（见 §4）。 |
+| 摘要 / 结论 | 实验中的核心数字是摘要、引言、贡献、结论引用的唯一来源，四处必须一致（story_types §3.7）。结论里的主张不越过实验表格：不是第一的地方收缩主张，也不在结论里专门写一句输了（`references/anti_defensive.md` §3）。 |
+| 局限 | 局限最多 2 条，每条写成"适用边界 + 方向"，放在结论之前的 Limitations 段或结论中间（`references/anti_defensive.md` §5）。实验里的不利结果按 §3.8 处理，不搬进局限。顶会论文多数不设独立 Limitations 小节，本 skill 的做法是最多 2 条、简短。具体写法见 references/sections/conclusion.md。 |
+| 补充材料 | 可以放额外数据集、超参细节、更多可视化；失败案例和次要结果放这里即可；**不能**把某条贡献的唯一验证整体推过去（见 §4）。 |
 
 ---
 
@@ -64,12 +64,12 @@
 4.1 Experimental Setup（Datasets / Baselines / Metrics / Implementation Details）
 4.2 Main Results（与 SOTA 对比：定量表 + 定性图）
 4.3 Ablation Study（逐组件；必要时再加设计选择对比、超参敏感性）
-4.4 Analysis（机制分析 / 可视化 / 泛化 / 效率 / 鲁棒性 / 失败案例，按需要取 1–3 项）
+4.4 Analysis（机制分析 / 可视化 / 泛化 / 效率 / 鲁棒性，按需要取 1–3 项）
 ```
 
 代表：《CARE》4.1→4.2→4.3；《CD-Buffer》4.1–4.5；《OSA》4.1–4.4；《GrOCE》5.2–5.6；《SEELE》4.2 整体效果 → 4.3 消融拆出 HP / CR 各自的加速倍数（2.8×、1.3×）和质量增量（0.23 dB / 0.03 dB PSNR）→ 4.4 超参数敏感性；《Wavelet-Driven》Table 1 主对比 → Table 2 真实数据泛化 → Table 3 模块消融 → Table 4–8 超参消融；《Backdoor Mitigation by D3》4.2 主结果 / 4.3 机制理解（t-SNE）/ 4.4 自适应攻击（主动设想最强反驳）/ 4.5 超参消融。
 
-第 4 层按需要追加专门小节：诊断实验（《DUV-SLAM》4.3 Diagnostic）、应用展示（《WonderPlay》、《Video Motion Graphs》4.3 Applications）、防御评估、真实世界测试、失败案例（《Clay-to-Stone》4.4 Qualitative Analysis and Failure Cases）。
+第 4 层按需要追加专门小节：诊断实验（《DUV-SLAM》4.3 Diagnostic）、应用展示（《WonderPlay》、《Video Motion Graphs》4.3 Applications）、防御评估、真实世界测试。失败案例小节可选，不作为默认推荐，通常放补充材料即可（正文单设的例子：《Clay-to-Stone》4.4 Qualitative Analysis and Failure Cases）。
 
 ### 2.2 四种组织手法（可叠加使用）
 
@@ -184,7 +184,7 @@
 3. **分段归因**：多个数据集时，逐个说明增益来自哪里，而不是只说"全面领先"（《Real-World Point Tracking》5.3 按 EgoPoints / RoboTAP / Kinetics / DAVIS 逐段归因）。
 4. **数字后紧跟一句解释**：这个数字说明了什么、对应哪条贡献。
 5. **定性图佐证定量**（DreamLayer Fig.8/9），图里指出具体看哪里。
-6. **不利项在同一段里说**（写法见 §3.8）。
+6. **不利项按 §3.8 处理**：先收缩主张、换口径或解释为取舍，不单独写一句输了。
 
 **句式模板**：
 - "As shown in Tab. 1, our method achieves ..."（多篇通用）
@@ -294,59 +294,49 @@
 
 - **泛化**：跨数据集、跨架构、跨输入设定（《SinGeo》5.4 跨架构泛化；《RnG》4.3.2 泛化到任意输入视角数；《ReAttnCLIP》plug-and-play 泛化；《HG-Lane》4.4 对 CLRNet 加入 / 不加入生成数据前后对比）。
 - **效率**：贡献里提到"高效""轻量""simple yet effective"或标题里有 "Fast"，就必须有 FLOPs / 延迟 / 内存数字（《Few-Shot Pattern Detection》FLOPs 3.04T vs 5.08T / 4.72T；《Sparfels》Running Time 单独成节；《ViterbiPlanNet》Parameter / Sample Efficiency）。反例：《Missing No More》贡献 3 声称低开销，全文无 FLOPs 数据。
-- **主动量化代价**："each additional retrospective stage adds about 0.07 G FLOPs and 0.03 s of latency"（《Recover to Predict》）。代价数字进了表，结论里也要提（反例：《Bidirectional Likelihood Estimation》每条查询多 0.46 秒，结论未提）。
+- **量化代价**："each additional retrospective stage adds about 0.07 G FLOPs and 0.03 s of latency"（《Recover to Predict》）。代价数字照实进表；代价小时，可以把它写成优势（开销低）。
 - **人工成本可以量化**：《CountSE》标注每张图的耗时 "11.1s" / "0.7s"。
 - **鲁棒性和效率实验要写进贡献列表**，否则就是"锦上添花"（反例：《CoST》4.6 / 4.7 鲁棒性与推理速度不在贡献列表；《UniDxMD》4.5 节、《DataTailor》4.3 节）。
 
-### 3.8 失败案例与负面结果
+### 3.8 不利结果与失败案例
 
-**原则**：效果不好的设置也要报告，并在讨论中解释，或者列为局限（早期规范）。多数论文回避负面结果（《RawMetaDiff》《SAQN》《V²-SAM》《VMonarch》），但笔记中主动坦诚的写法普遍被认为更可信。
+**原则**：不主动示弱，不说输。实验不是结果仓库，每个实验都要承担论证职责（`references/anti_defensive.md` §6）。遇到对本文不利的结果，按 `anti_defensive.md` §3 的顺序处理，能在前一步解决就不走到后一步；只有无法回避、并且确实影响核心结论时，才用一句事实性的话说明。
 
-**写法一：专设小节，具体到可核查的案例**
-- 要素：具体输入 / 场景 + 错成什么样 + 机制归因 +（可选）改进方向，最好配图并指到子图。
+**底线**：
+- 表格和数字照实，不删改、不挑选对自己有利的子集；领域公认的主指标照常报告。
+- 文字里的主张不越过表格：本方法不是第一的格子，不在文字里声称领先（反例：《SeeGroup》声称 "all metrics"，实际是 14/15），也不需要专门写一句"我们在这里不如 X"。
+- 不编造解释：让步句里的"语境"必须是真的机制解释或真实的设计取舍，不是借口。把负面结果一律用 "This suggests that..." 正面带过（《ProGait》步态分类准确率 37%–45%、双视角融合反而降准）会削弱可信度。
+
+**处理顺序在实验章里的写法**：
+
+1. **删除或移到补充材料**：与核心主张无关的不利设置、次要数据集，不进正文主线。
+2. **收缩主张**：把 "outperforms all methods" 收缩为实际范围。
+   - "with the sole exception of D3 still outperforming AsymLoc by 0.1% on Scannet@20°"（《AsymLoc》）
+   - "ranking second ... delivering a close runner-up performance"（《Sequential keypoint density estimator》）
+   - 用中性的比较措辞：comparable to / competitive with / on par with / within 0.3 points of（`anti_defensive.md` §4）
+3. **换评价口径**：换成更能体现本文价值的维度，前提是新口径确实是本文的目标（`anti_defensive.md` §2 第 3 条）。
+   - "While 3DGS achieves higher quality, it suffers from popping artifacts ..."（《Radiance Meshes》，把比较落到一致性这一本文目标上）
+   - "We do not aim for a state-of-the-art captioning model for each dataset."（《CaptionSmiths》4.1，主动声明目标）
+4. **解释为目标差异或合理取舍**（只在属实时用）：
+   - 《M3DLayout》把 FID 的差距解释为目标差异，再转正面："This is primarily because ... whereas our method generates scenes with more than 12 objects ..."
+   - "EDM's significant relative efficiency advantage declines moderately with increasing image resolution ... However, semi-dense matchers generally achieve optimal performance without requiring extremely high resolutions."（EDM）
+   - 《AT-VLA》Unscrew Lid 任务：基线在理想抓取姿态下测试，本文设定下抓取可能打滑，差距来自测试条件，给出具体机制
+   - "due to the trade-off between distortion in different areas, ..."（《PriOr-Flow》，把差距落到取舍上）
+5. **重组实验**：让优势成为表格、图和正文叙述的中心，次要结果移到补充材料。
+6. **直接说明**（最后一步）：一句事实，不加情绪化修饰；归因没有实验支撑时用 likely / might / We hypothesize，不要写成定论（"a slight decrease is observed ... might be due to ..."《StolenLoRA》；"We hypothesize that ..."《Stochastic Gradient Estimation》）。
+
+**消融里的非单调现象**：饱和、拐点、组合反而更差，给一句机制解释即可（"A possible explanation is that overly distant frames introduce noisy or less relevant motion, outweighing the benefits of a longer context."《TeFlow》）。
+
+**失败案例（可选，不作为默认推荐）**：需要时放补充材料即可，正文不必单设小节。写法：具体输入 / 场景 + 错成什么样 + 机制归因，最好配图并指到子图。可参考的写法（原文多在正文，照搬时放补充材料）：
 - 《2D-LFM》4.4 "Failure cases: monocular depth ambiguity"："limbs may flip in depth, extreme foreshortening can shorten limbs, and occluded landmarks may collapse"
 - 《Clay-to-Stone》4.4："a flip-top bottle cap is misclassified as a slide cap"
 - 《Retrieve and Segment》："RNS incorrectly segments part of an orange towel as a swimsuit, likely due to insufficient contextual information..."
 - 《UniPart》："For inputs with high structural complexity, our joint generation of geometry and segmentation may fail..."
-- 《UniPhys》5.4："Failures mainly occur when the obstacle approaches from the front..."
-- 《ReCoVEr / Removing Cost Volumes》4.3："either fails to detect motions entirely or predicts motions going in the wrong direction"
-- 《Consensus-Driven Active Model Selection》"Limitations and failure analysis"：CivilComments（98% vs 54%）和 CoLA（只预测负类）两个案例
 - 《Find Any Part in 3D》5.2.4 "Failure Modes"：微波炉被 voxel 下采样误分割
-- 《Visual Test-time Scaling》专设 "Failure Case Analysis" 列六类失败原因；《Structural Action Transformer》4.5 讨论单摄像头遮挡、运动学 / 接触几何失配
-- 《CHTR》6.3 承认生僻字笔顺预测错误并归因于数据稀缺；《Corvid》4.4 车道宽度误判归因为缺乏世界常识
-- 《BUFFER-X》5.4 局限具体到公式（Eq.9 在 10–30% 重叠场景非全局最优）
 - 《Combinative Matching》把失败模式对应到 Fig.9 具体子图并给改进建议；《PR-MaGIC》4.4 配 Fig.7 给四类失败场景
 - 《Vector Prism》5.3 用具体反例说明边界（闪电被定义为单个原子级 `<path>`，无法响应 "shatter into pieces"）
 
-**写法二：在主结果或消融段内一两句承认，紧跟归因**
-- "with the sole exception of D3 still outperforming AsymLoc by 0.1% on Scannet@20°"（《AsymLoc》）
-- "though falls short on MVBench and LongVideoBench likely due to differing training recipes"（《Attend Before Attention》，弱推测语气）
-- "due to the trade-off between distortion in different areas, our method is slightly inferior to PanoFlow in the equatorial regions"（《PriOr-Flow》）
-- "our method significantly surpasses token merging approaches but slightly underperforms ViT3D"（《TrajViT》）
-- "which we attribute to the insufficient size of the context network ... but leave further analysis to future work"（《MEMFOF》）
-- "further scaling yields diminishing returns ... We hypothesize this behavior may be related to overfitting"（《BiFlow》）
-- "A possible explanation is that overly distant frames introduce noisy or less relevant motion, outweighing the benefits of a longer context."（《TeFlow》）
-- "the network sometimes struggles to accurately infer plausible textures on the back of the subjects"（《HumanNOVA》4.3）
-- "it ranks second ... slightly behind DPFlow"（《Optical Flow Matching》）；"ranking second ... delivering a close runner-up performance"（《Sequential keypoint density estimator》）
-- "a slight decrease is observed ... might be due to ..."（《StolenLoRA》）；"We hypothesize that ..."（《Stochastic Gradient Estimation》，把归因标为假设而非定论）
-- "existing networks struggle to learn reflective and transparent materials without large performance drops"（《What Makes Good Synthetic Training Data》）
-- 《Gated KalmaNet》："no clear winner"；"All models struggle to perform better than random chance"，并给出归因
-- "MSPT is weaker on Elasticity"；《Ov3R》承认 VGGT-SLAM 在 7Scenes 上更准；《CLIP Is Shortsighted》承认在 COCO 上被 SmartCLIP 反超
-- 《AT-VLA》Unscrew Lid 任务略逊基线：抓取不牢导致打滑，基线在理想抓取姿态下测试，给出具体机制
-
-**写法三：让步句，先承认再给语境**
-- "Although our method performs worse than BokehDiff in some non-parameterized metrics, this is mainly because ..."（《Towards Photorealistic Bokeh》）
-- 《M3DLayout》先承认 FID 落后，再给根因，再转正面："This is primarily because ... whereas our method generates scenes with more than 12 objects ..."
-- "While 3DGS achieves higher quality, it suffers from popping artifacts ..."（《Radiance Meshes》，同时如实报告 PSNR 落后、训练开销 7.4 倍）
-- "EDM's significant relative efficiency advantage declines moderately with increasing image resolution ... However, semi-dense matchers generally achieve optimal performance without requiring extremely high resolutions."（EDM）
-- 《GENMO》专设 "Discussion on HumanML3D Performance" 解释为何不如 EMDM（表征转换引入分布偏移）
-
-**分寸**：
-- 让步句里的"语境"必须是真的机制解释，不是借口。把负面结果一律用 "This suggests that..." 正面带过（《ProGait》步态分类准确率 37%–45%、双视角融合反而降准）会削弱可信度。
-- 归因没有实验支撑时用 likely / might / We hypothesize，不要写成定论。
-- 负面结果的数字要能支撑后面 Limitations 的陈述（《TMFS》说强湍流下复原效果不理想，与 Table 1 中 PSNR 仅 19.671 相互印证）。
-- 局限写成"失效场景 + 根因 + 方向"：《Gallant》在 Pile 地形约 80% 失败，归因于 LiDAR 10Hz 延迟；《HairCUP》四条局限各配 because（story_types §3.6）。
-- 实验里承认过的弱点，结论和 Limitations 里不能消失（反例：《Real-Time Neural Video Compression》局限清单未提 4.2 节已承认的 MCL-JCV 表现较差；《SoccerMaster》Table 4 的弱点在结论中被略去；《PRISM》stability 不如 ProtoPNet 未在结论提及；《CARE》ROI features 不优于 WSI features 未在结论提及）。
+**与局限的关系**：局限最多 2 条，写成"适用边界 + 方向"，见 `references/sections/conclusion.md` §3.4；实验里的不利结果不搬进局限，也不在结论里重新提起已经收缩掉的比较。
 
 ### 3.9 数字、表格与图
 
@@ -372,19 +362,18 @@
 | 1 | 贡献没有对应实验 | 《MeshFlow》贡献 3 无对应小节；《Missing No More》声称低开销但无 FLOPs；《Fed-ADE》理论部分无经验 regret 曲线；《Scalable Dual Fingerprinting》贡献 2 的效率声明无量化；《Heuristic Self-Paced Learning》贡献 1 无单一对应实验 | 写完贡献列表后逐条找对应的表 / 图 / 小节，找不到就补实验或删改贡献 |
 | 2 | 数据集、理论界、"首个框架"类贡献没有独立验证 | 《Ditto-1M》数据集质量无独立定量实验；《UltraFlux》只做静态统计；《Stable Mean Flow》误差上界无数值验证；《SADTR》缺"理论预测 vs 实测"；DiffPS 首创性只靠文献对比；《UniPhys》数据集没做质量评测；《CFG-Ctrl》"统一"本身没被量化 | 数据集做人工核验 / 下游收益；理论界画预测与实测对照；"统一"给映射表或对照实验 |
 | 3 | 核心卖点缺受控消融，只能从横向对比推断因果 | 《SparseWorld-TC》"去 BEV / 去 token" | 为卖点单独设计 w/o 或替换实验 |
-| 4 | 贡献的唯一验证被推到附录 | 《SliderEdit》贡献 2（PPS loss）；3DReflecNet 声称五项任务，两项推迟到补充材料；《OralGPT-Plus》失败案例推到附录，正文一句带过；《Diving into Monocular Priors》《CorrCLIP》多处 "detailed in the supplementary" | 每条贡献至少在正文有一张表或一段结论；附录只放补充细节 |
+| 4 | 贡献的唯一验证被推到附录 | 《SliderEdit》贡献 2（PPS loss）；3DReflecNet 声称五项任务，两项推迟到补充材料；《Diving into Monocular Priors》《CorrCLIP》多处 "detailed in the supplementary" | 每条贡献至少在正文有一张表或一段结论；附录只放补充细节 |
 | 5 | 实验超出贡献列表（锦上添花） | 《CoST》4.6 / 4.7；《HDW-SR》β 灵敏度消融不对应任何贡献；《UniDxMD》4.5、《DataTailor》4.3 | 要么写进贡献，要么降为分析小节并说明目的 |
 | 6 | 引言强调的效果没有定量实验 | 《Radiant Foam》光线追踪反射 / 折射只有定性图；《VeilGen》只有定性图；《DropletVideo》缺与 SOTA 的定量表 | 至少补一组定量对比；无 GT 时说明原因（《Planar Affine Rectification》） |
 | 7 | 贡献条数与实验对不上 | MV-Fashion 5 条贡献只有 3 个实验小节；MEDIC-AD 贡献按框架 / 机制 / 评测横切，RQ 按能力纵切，只部分对应 | 按贡献顺序重排实验小节 |
 | 8 | 措辞强于数字 | 《SeeGroup》"all metrics" 实为 14/15；《FlexMem》51.0→45.7 写成 "minimal"；《CAC》声称 "embodied AI" 超出实验范围 | 按 references/word_style.md 调整强度，写出实际比例 |
 | 9 | 数字口径不一致 | 《AsymLoc》95% / 95.5% / 96%；《Counterfactual VLA》20.5% vs 14.7% | 定稿前全文搜索每个核心数字 |
-| 10 | 回避负面结果 | 《Batch Loss Score》α∈[0.5,0.6] 低于 baseline 未展开；《BiPreManip》Pliers 25% / 29% 未讨论；《One-to-More》screw 类别偏低未讨论；《Stable Mean Flow》超参敏感（FID 85.41→331.23）未列为局限；《RS-vHeat》未超过 SkySense / RVSA 未提 | 在正文按 §3.8 的写法报告并归因，结论同步 |
+| 10 | 在文字里专门说输，或把不占优的指标设成主战场 | "our method still lags far behind X on Y"、"unfortunately, ..."（`references/anti_defensive.md` §4 列出的自我削弱写法） | 按 §3.8 的顺序处理：收缩主张、换口径、解释为取舍，次要结果移到补充材料；表格数字照实 |
 | 11 | 消融中的异常只报数字 | 《Keep It Frozen》PSN 参数占比、RMB 超 12 层饱和；《Premier》线性组合更差 | 每个非单调现象给一句解释或列为边界 |
 | 12 | 消融止步于"数字更好" | CoopTrack、Height-Fidelity | 加一组机制实验（§3.5） |
-| 13 | 实验发现未收进结论 | 《GS-MoE》按类别训练 expert 的可扩展性代价；《When Do Models Actually Decide》（正面：在 Discussion 主动承认 6.4 节的异质性未转化为效率收益） | 结论与 Limitations 引用实验里暴露的代价 |
-| 14 | 小节之间无过渡 | 《MOFA-VTON》；《BiPreManip》方法与实验之间无过渡；《Dataset Distillation via VLM》《Derm1M》4.1 生硬起头 | 每个小节首句交代它回答的问题（§3.10） |
-| 15 | 超参只在一个数据集调好就统一使用 | 《The Devil Is in Gradient Entanglement》 | 说明调参来源，或补敏感性实验 |
-| 16 | 预告顺序与实际顺序不一致 | HumanNOVA | 写完后回头改路标句 |
+| 13 | 小节之间无过渡 | 《MOFA-VTON》；《BiPreManip》方法与实验之间无过渡；《Dataset Distillation via VLM》《Derm1M》4.1 生硬起头 | 每个小节首句交代它回答的问题（§3.10） |
+| 14 | 超参只在一个数据集调好就统一使用 | 《The Devil Is in Gradient Entanglement》 | 说明调参来源，或补敏感性实验 |
+| 15 | 预告顺序与实际顺序不一致 | HumanNOVA | 写完后回头改路标句 |
 
 ---
 
@@ -397,12 +386,12 @@
 3. **列质疑清单**。站在审稿人角度写出 3–5 个"提升是否只是因为……"的问题，在用户已有实验里找对照（§3.6 表格）；缺的列给用户，建议补做。
 4. **定骨架和小节标题**：默认四层（§2.1），选用 RQ / 问句标题 / 方法-实验镜像 / 重复模板（§2.2）。
 5. **写 Setup**：数据集（含划分）→ 指标（新指标先直觉后公式）→ 基线（分组、版本、是否重训、比较范围）→ 实现细节（骨干、超参、硬件、时长）。
-6. **写主结果**：结论句 → 具体数字（绝对值 + 增量）→ 逐数据集归因 → 定性图 → 不利项与归因。
+6. **写主结果**：结论句 → 具体数字（绝对值 + 增量）→ 逐数据集归因 → 定性图 → 不利项按 §3.8 处理。
 7. **写消融**：动机开头句 → 按方法顺序逐行给数字 → 解释每行 → 讨论异常。
 8. **写机制分析、泛化、效率**：每个小节首句写它回答的问题。
-9. **写失败案例**：具体场景 + 错误表现 + 机制归因 + 方向，配图。
+9. **（可选）失败案例**：需要时放补充材料，写具体场景 + 错误表现 + 机制归因。
 10. **最后写节首路标句**，确保与实际小节顺序一致；补齐小节之间的过渡句。
-11. **回填其他章节**：把最终数字同步给摘要、引言、贡献、结论；把实验里承认的弱点同步给 Limitations 和结论。
+11. **回填其他章节**：把最终数字同步给摘要、引言、贡献、结论；确认结论里的主张不越过实验表格。
 
 ### 5.2 检查清单
 
@@ -434,11 +423,11 @@
 - [ ] caption 单独可读，标明指标方向和最优标注方式，全文统一
 - [ ] 每张表 / 图在正文被引用，并说明它回答什么问题
 
-**诚实性**
-- [ ] 不利结果在正文报告，有具体机制归因；无实验支撑的归因用了 likely / We hypothesize
+**不利结果与底线**
+- [ ] 表格和数字照实，领域公认的主指标照常报告；文字主张不越过表格，不是第一的地方收缩了主张
+- [ ] 不利结果按 §3.8（`references/anti_defensive.md` §3）的顺序处理，没有专门写一句输了，没有自我削弱词
+- [ ] 解释为目标差异或取舍时，解释属实；无实验支撑的归因用了 likely / We hypothesize
 - [ ] 消融中的饱和、拐点、非单调现象都有讨论
-- [ ] 有失败案例（具体场景 + 错误表现 + 归因），配图
-- [ ] 实验里承认的弱点和代价在 Limitations 与结论中同样出现
 
 **行文**
 - [ ] 节首有路标句；每个小节首句交代它回答的问题

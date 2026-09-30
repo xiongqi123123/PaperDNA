@@ -47,6 +47,7 @@
 - **故事先行**：动笔前按判断流程从 8 种叙事类型里选好讲法，写出叙事骨架和钩子；摘要、引言、方法、实验都按这个骨架展开。
 - **你的文风**：从你过去的论文里提取文风画像；每次纠正都记进错题本，同样的错误不会再犯。
 - **审稿人视角**：每写完一节，交给一个没看过写作过程的独立子代理审查，避免自己审自己时放水。
+- **不写防御性论文**：论文是一场发布会，不是自我审查报告。不用自我削弱词，不利结果靠收缩主张来处理而不是认输，局限最多写 2 条，写成"适用边界 + 后续方向"；数字和表格始终照实。
 - **去 AI 味**：扫描脚本逐行标出 AI 味和空洞用词；leverage、crucial 这类顶会论文也常用的词设为限量词，而不是一律禁用。
 
 ## 从 1040 篇顶会论文里学到的几件事
@@ -77,6 +78,7 @@
 | "把这几篇 PDF 整理成证据" | 读 PDF，写文献笔记（可引用原句带页码），BibTeX 只填确认过的字段 |
 | "精读这篇范文" | 按模板逐句拆解摘要和引言，提炼句式、用词和写法 |
 | "LaTeX 编译报错了" | 读日志、定位第一个错误、修复、重新编译，最多 3 轮 |
+| "让这段更有说服力" / "帮我压缩篇幅" | 按发布会原则处理：围绕最强的优势重组，收缩越过证据的主张，删掉自我削弱的措辞，再跑一遍"不给审稿人递刀子"自查 |
 | "以后别用这个词" | 写进错题本或 AI 味词表，并改写刚才的句子 |
 
 ## 快速开始
@@ -134,6 +136,7 @@ references/
   sentence_bank.md             句式库：13 类写作功能的英文模板与原句
   word_style.md                写作原则、用词、结论强度、去 AI 味、风格参数、定稿检查清单
   naming.md                    取名：标题结构、方法名构造、首次引入、取名流程
+  anti_defensive.md            发布会原则：不利结果的处理顺序、局限（最多 2 条）、交稿前自查
   corpus_stats.md              语料统计
   ai_words.json                AI 味与空洞用词表（扫描脚本也读它）
   workflow.md / review.md      写作流程、审查标准
@@ -165,6 +168,7 @@ python3 scripts/parse_pdf.py paper.pdf --main-only -o paper.txt  # PDF 转文本
 | 某个章节怎么写 | `references/sections/<节>.md` |
 | 可复用句式 | `references/sentence_bank.md` |
 | 标题与方法名 | `references/naming.md` |
+| 不利结果、局限、防御性措辞 | `references/anti_defensive.md` |
 | 审查查什么 | `references/review.md` |
 | 我自己的语气和习惯 | `profile/style_profile.md` |
 | 具体的纠正记录 | `profile/error_log.md`（同类条目多了，合并进文风画像） |
@@ -185,7 +189,7 @@ python3 scripts/parse_pdf.py paper.pdf --main-only -o paper.txt  # PDF 转文本
 
 ## 致谢
 
-PaperDNA 最初 fork 自 [AI-Vibe-Writing-Skills](https://github.com/donghuixin/AI-Vibe-Writing-Skills)（MIT），上游提供了文风画像、错题本和规范驱动写作的思路。PaperDNA 把它重建为 Claude Code skill，改由语料驱动规范，并重写了写作流程、审查和脚本。也感谢语料中所有论文的作者，这个项目学习的正是他们的写作。
+PaperDNA 最初 fork 自 [AI-Vibe-Writing-Skills](https://github.com/donghuixin/AI-Vibe-Writing-Skills)（MIT），上游提供了文风画像、错题本和规范驱动写作的思路。反防御性写作的发布会原则改编自 [anti-defensive-writing-Skill](https://github.com/Adkid-Zephyr/anti-defensive-writing-Skill)（MIT）。两者的许可声明见 [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md)。PaperDNA 把最初 fork 的项目重建为 Claude Code skill，改由语料驱动规范，并重写了写作流程、审查和脚本。也感谢语料中所有论文的作者，这个项目学习的正是他们的写作。
 
 ## 许可证
 

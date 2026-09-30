@@ -402,7 +402,8 @@
 **注意**：
 - 数字的写法见第 3.3 节。
 - "achieving A while maintaining / without compromising B" 是回应 trade-off 类问题的标准写法。
-- 结论强度不能超过正文证据。材料中的反例：《AVGGT》摘要写 "matching or slightly improving"，但正文部分指标下降；《D4RT》摘要写 "sets a new state of the art … across a wide spectrum"，但表格里部分指标并非最优。有例外时改用 "competitive / on par with"。
+- 结论强度不能超过正文证据。材料中的反例：《AVGGT》摘要写 "matching or slightly improving"，但正文部分指标下降；《D4RT》摘要写 "sets a new state of the art … across a wide spectrum"，但表格里部分指标并非最优。有例外时改用 "competitive / on par with"，或把主张收缩到实际领先的范围。
+- 摘要只建立问题、缺口、方案、最强结果和意义，不提不足、不写局限，也不专门写一句不如谁（`references/anti_defensive.md` §0、§3）。
 
 ### 2.9 泛化（Generalization）
 
@@ -669,6 +670,7 @@
 - [ ] 多指标用 respectively；效率型写了"增益 + 质量不降"（while maintaining / without compromising）
 - [ ] 效率优化型给出了倍数或百分比
 - [ ] SOTA / the first / outperform 的强度与正文证据一致；有例外时改用 competitive / on par with
+- [ ] 摘要里没有局限、不足或自我削弱的句子
 
 **措辞**
 - [ ] 没有 [n] 引用编号（除非是在把关键发现归功于他人）

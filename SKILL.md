@@ -1,6 +1,6 @@
 ---
 name: paperdna
-description: 学术论文写作与修改助手，规范提炼自 1040 篇 CVPR 2026 / ICCV 2025 获奖、oral 与 highlight 论文。用于构思论文的叙事与故事线，撰写、重写、润色或审查论文与学位论文章节（Abstract、Introduction、Related Work、Method、Experiments、Conclusion），起标题和方法名，编辑 LaTeX 论文与修复编译错误，去除 AI 味，精读范文学习写法，阅读文献 PDF 并整理为可引用的证据，以及维护个人文风画像和错题本。Use when the user drafts, revises, polishes, proofreads or reviews an academic paper or thesis (LaTeX or Markdown), plans a paper's story, names a method or titles a paper, asks to reduce AI tone in academic writing, close-reads exemplar papers, or wants to read papers as evidence for writing.
+description: 学术论文写作与修改助手，规范提炼自 1040 篇 CVPR 2026 / ICCV 2025 获奖、oral 与 highlight 论文。用于构思论文的叙事与故事线，撰写、重写、润色或审查论文与学位论文章节（Abstract、Introduction、Related Work、Method、Experiments、Conclusion），起标题和方法名，编辑 LaTeX 论文与修复编译错误，去除 AI 味与防御性写作，精读范文学习写法，阅读文献 PDF 并整理为可引用的证据，以及维护个人文风画像和错题本。Use when the user drafts, revises, polishes, proofreads or reviews an academic paper or thesis (LaTeX or Markdown), plans a paper's story, names a method or titles a paper, asks to reduce AI tone or defensive, self-undermining writing, close-reads exemplar papers, or wants to read papers as evidence for writing.
 ---
 
 # PaperDNA
@@ -24,7 +24,8 @@ description: 学术论文写作与修改助手，规范提炼自 1040 篇 CVPR 2
 1. `profile/style_profile.md`：文风画像
 2. `profile/error_log.md`：错题本
 3. `references/word_style.md` 第 4 节：去 AI 味规则
-4. 论文仓库中存在 `.paperdna/spec.md` 时也要读。其中的术语、数字和约束优先于其他所有规则。
+4. `references/anti_defensive.md` 第 0 节：不写防御性论文（不主动示弱，局限最多 2 条）
+5. 论文仓库中存在 `.paperdna/spec.md` 时也要读。其中的术语、数字和约束优先于其他所有规则。
 
 ## 按任务选择
 
@@ -37,6 +38,7 @@ description: 学术论文写作与修改助手，规范提炼自 1040 篇 CVPR 2
 | 起标题、给方法取名 | `references/naming.md` | 产出 3–5 个候选，说明各自的取舍 |
 | 从零写一篇，或大改结构 | `references/workflow.md` | 完整流程：spec（含故事类型和取名）→ 大纲 → 写作 → 审查 |
 | 审稿式自查 | `references/review.md` | 用独立子代理审查（见 workflow 第 4 步） |
+| 压缩篇幅、处理不利结果、让论文更有说服力、rebuttal 前自查 | `references/anti_defensive.md` | 按不利材料的处理顺序和"不给审稿人递刀子"自查清单执行 |
 | 精读一篇范文，学习它的写法 | `references/close_reading.md` | 按精读模板写笔记 |
 | 读文献或 PDF | `references/literature.md` | |
 | 语法和拼写校对 | `references/proofread.md` | 改动最小化 |
