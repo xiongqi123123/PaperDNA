@@ -45,7 +45,7 @@ description: 学术论文写作与修改助手，规范提炼自 1040 篇 CVPR 2
 | 审稿式自查 | `references/review.md` | 用独立子代理审查（见 workflow 第 4 步） |
 | 压缩篇幅、处理不利结果、让论文更有说服力、rebuttal 前自查 | `references/anti_defensive.md` | 按不利材料的处理顺序和"不给审稿人递刀子"自查清单执行 |
 | 精读一篇范文，学习它的写法 | `references/close_reading.md` | 按精读模板写笔记 |
-| 读文献或 PDF | `references/literature.md` | |
+| 读文献或 PDF，加引用 | `references/literature.md` | 加引用按第 5 节选定的引用方式 |
 | 语法和拼写校对 | `references/proofread.md` | 改动最小化 |
 | LaTeX 编辑或编译报错 | `references/latex.md` | |
 | 学位论文 | 另外读 `references/thesis.md` | |
@@ -59,7 +59,8 @@ description: 学术论文写作与修改助手，规范提炼自 1040 篇 CVPR 2
 ## 硬规则
 
 - 写作顺序：Method → Experiments → Conclusion → Introduction 与 Related Work → Abstract。Method 不引用实验；Introduction 不引用方法和实验，首页 Figure 1 除外（`references/workflow.md` 第 3 节）。
-- 不编造引用、数据或实验结果。缺依据的地方写 `% TODO: ...` 并告诉用户。只引用 `.bib` 中已有或用户提供的文献。
+- 不编造引用、数据或实验结果。缺依据的地方写 `% TODO: ...` 并告诉用户。只引用 `.bib` 中已有、用户提供，或方式 A 下经独立核查通过的文献。
+- 引用方式：spec 的"流程设置 → 引用方式"为空时，第一次写这篇论文或第一次需要加引用之前，先问用户选 A（自动检索 + 独立子代理核查虚假和幻觉引用）还是 B（Claude 指出引哪篇，用户提供 BibTeX），写进 spec 后不再问（`references/literature.md` 第 5 节）。
 - 技术描述要与代码、公式和实验设置一致。论文仓库或用户指定的位置有代码和结果时，先读再写。
 - 编辑 `.tex` 时不破坏 `\cite{}`、`\ref{}`、`\label{}` 和公式环境，也不做与任务无关的排版改动。
 - 大范围重写（跨段落的结构调整，或用户说"重写"）时，先给出修改方案：目标、影响哪些段落、对应的 DoD 变化。用户同意后再动笔。

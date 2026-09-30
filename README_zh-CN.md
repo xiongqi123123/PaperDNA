@@ -6,7 +6,7 @@
   <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-yellow.svg" alt="License: MIT"></a>
   <img src="https://img.shields.io/badge/Claude%20Code-plugin-8A63D2" alt="Claude Code plugin">
   <img src="https://img.shields.io/badge/Codex-plugin-111111" alt="Codex plugin">
-  <img src="https://img.shields.io/badge/version-1.1.0-informational" alt="Version 1.1.0">
+  <img src="https://img.shields.io/badge/version-1.2.0-informational" alt="Version 1.2.0">
   <img src="https://img.shields.io/badge/corpus-1040%20papers-2F80ED" alt="Corpus: 1040 papers">
   <img src="https://img.shields.io/badge/venues-CVPR%202026%20%7C%20ICCV%202025-0F9D58" alt="Venues: CVPR 2026 | ICCV 2025">
   <img src="https://img.shields.io/badge/python-3.8%2B-3776AB?logo=python&logoColor=white" alt="Python 3.8+">
@@ -78,6 +78,7 @@
 | "给方法起个名字" | 按取名流程给出 3–5 个标题和方法名候选，逐项检查并查重 |
 | "审一下第 3 节" | 独立子代理审查：阻断问题、建议改进、DoD 核对、阅读体验 |
 | "把这几篇 PDF 整理成证据" | 读 PDF，写文献笔记（可引用原句带页码），BibTeX 只填确认过的字段 |
+| "这里加上引用" | 第一次用时问你这篇论文的引用怎么处理。A：自动在 Semantic Scholar / arXiv / Crossref 检索并加 BibTeX，再由独立子代理逐条核查虚假和幻觉引用；B：正文先放 `\cite{TODO:...}` 占位，告诉你该引哪篇，你把 BibTeX 贴回来 |
 | "精读这篇范文" | 按模板逐句拆解摘要和引言，提炼句式、用词和写法 |
 | "LaTeX 编译报错了" | 读日志、定位第一个错误、修复、重新编译，最多 3 轮 |
 | "让这段更有说服力" / "帮我压缩篇幅" | 按发布会原则处理：围绕最强的优势重组，收缩越过证据的主张，删掉自我削弱的措辞，再跑一遍"不给审稿人递刀子"自查 |

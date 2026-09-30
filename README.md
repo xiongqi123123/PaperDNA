@@ -6,7 +6,7 @@
   <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-yellow.svg" alt="License: MIT"></a>
   <img src="https://img.shields.io/badge/Claude%20Code-plugin-8A63D2" alt="Claude Code plugin">
   <img src="https://img.shields.io/badge/Codex-plugin-111111" alt="Codex plugin">
-  <img src="https://img.shields.io/badge/version-1.1.0-informational" alt="Version 1.1.0">
+  <img src="https://img.shields.io/badge/version-1.2.0-informational" alt="Version 1.2.0">
   <img src="https://img.shields.io/badge/corpus-1040%20papers-2F80ED" alt="Corpus: 1040 papers">
   <img src="https://img.shields.io/badge/venues-CVPR%202026%20%7C%20ICCV%202025-0F9D58" alt="Venues: CVPR 2026 | ICCV 2025">
   <img src="https://img.shields.io/badge/python-3.8%2B-3776AB?logo=python&logoColor=white" alt="Python 3.8+">
@@ -78,6 +78,7 @@ Full statistics: [`skills/paperdna/references/corpus_stats.md`](skills/paperdna/
 | "Name my method" | Proposes 3–5 title and method-name candidates, checks each against the naming checklist, and searches for name collisions |
 | "Review Section 3" | An independent subagent reports blocking issues, suggestions, definition-of-done checks and readability problems |
 | "Turn these PDFs into evidence" | Reads the PDFs and writes reference notes with quotable sentences and page numbers; BibTeX only contains verified fields |
+| "Add citations here" | On first use it asks how to handle citations for this paper. A: searches Semantic Scholar / arXiv / Crossref, adds BibTeX, and an independent subagent checks every new entry for fake or hallucinated citations. B: leaves `\cite{TODO:...}` placeholders and tells you which papers to cite; you paste the BibTeX |
 | "Close-read this paper" | Breaks down the abstract and introduction sentence by sentence and extracts reusable patterns, wording and style |
 | "My LaTeX won't compile" | Reads the log, locates the first error, fixes it and recompiles, for up to 3 rounds |
 | "Make this more convincing" / "Cut it down" | Applies the press-release principle: reorganizes around the strongest advantage, narrows over-reaching claims, removes self-undermining wording, and runs the "don't hand the reviewer a knife" checklist |

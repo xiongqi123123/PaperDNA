@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.0 — 2026-09-30
+
+- Citation modes, chosen once per paper and stored in `.paperdna/spec.md` (asked the first time PaperDNA writes the paper or first needs a citation). See `skills/paperdna/references/literature.md` §5.
+  - A: Claude searches Semantic Scholar / arXiv / Crossref, fetches BibTeX from DOI, CVF or arXiv pages, and an independent subagent checks every new entry for fake citations (does not exist, wrong metadata) and hallucinated citations (the paper does not support the sentence citing it). Entries that fail are removed or turned into TODOs.
+  - B: Claude writes `\cite{TODO:<key>}` placeholders, tells the user which papers to cite and why, and the user pastes the BibTeX.
+- Updated the citation hard rule in `SKILL.md`, the spec template, the workflow and the review criteria.
+
 ## 1.1.0 — 2026-09-30
 
 - Writing order: Method → Experiments → Conclusion → Introduction and Related Work → Abstract (`skills/paperdna/references/workflow.md` §3, also a hard rule in `SKILL.md`).

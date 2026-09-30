@@ -7,6 +7,7 @@
 - 确认论文仓库根目录和主文件（如 `main.tex`），不确定就问用户。
 - 没有 `.paperdna/` 时按 SKILL.md 的说明创建。
 - 找到代码和实验结果的位置（日志、csv、画表脚本），记到 spec 的"基本信息"里。
+- spec 的"引用方式"为空时，问用户选方式 A 还是 B（`references/literature.md` 第 5 节），写进 spec。
 
 ## 1. Spec
 
@@ -51,6 +52,7 @@
 3. 按大纲逐段写，满足每段的 DoD，同时遵守文风画像、错题本和去 AI 味规则（`references/word_style.md` 第 4 节）。先确定每句话的功能，再到 `references/sentence_bank.md` 的对应类别里挑句式，替换成本文的具体内容；同一个句式在全文中不要反复使用。用词和风格参数遵循 `references/word_style.md` 第 2、5 节。
 4. 直接写入论文文件（.tex 或 .md），并把大纲中这一节的 `status` 改为 `drafted`。
 5. 写完按 `references/word_style.md` 第 4.9 节自查：运行扫描脚本，level=avoid 的命中全部处理，level=review 的命中逐条判断；再人工检查脚本查不出的项。
+6. 引用按 spec 的引用方式处理：方式 A 在审查前把本节新加的引用交独立子代理核查；方式 B 用 `\cite{TODO:...}` 占位，汇报时列出（`references/literature.md` 第 5 节）。
 
 ## 4. 审查
 
@@ -71,7 +73,7 @@
 
 - 修正阻断问题后重新审查。最多进行 spec 中"最大修订轮次"规定的轮数，默认 3 轮。
 - 达到上限仍有阻断问题时停下，把剩余问题列给用户决定。
-- 审查通过后，把这一节的 `status` 改为 `reviewed`，并向用户汇报三件事：改了什么；哪些建议项没有改；还有哪些 TODO（缺引用、缺数据）。
+- 审查通过后，把这一节的 `status` 改为 `reviewed`，并向用户汇报三件事：改了什么；哪些建议项没有改；还有哪些 TODO（缺数据；缺引用，方式 B 下列出每个 `\cite{TODO:...}` 要引哪篇）。
 
 ## 6. 沉淀反馈
 

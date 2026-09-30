@@ -1,7 +1,7 @@
 {
   "name": "paperdna",
   "displayName": "PaperDNA",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Corpus-grounded academic paper writing: story types, section guides, sentence bank, word choice, naming, anti-defensive writing and independent review, distilled from 1040 CVPR 2026 / ICCV 2025 award, oral and highlight papers.",
   "author": {
     "name": "xiongqi123123",
