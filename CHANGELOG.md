@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.1 — 2026-10-01
+
+- README: Claude Code install commands now use the HTTPS URL, so installation no longer fails with `Host key verification failed` on machines without GitHub SSH set up. Added manual update commands and a note that auto-update is off by default.
+
 ## 1.2.0 — 2026-09-30
 
 - Citation modes, chosen once per paper and stored in `.paperdna/spec.md` (asked the first time PaperDNA writes the paper or first needs a citation). See `skills/paperdna/references/literature.md` §5.

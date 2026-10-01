@@ -6,7 +6,7 @@
   <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-yellow.svg" alt="License: MIT"></a>
   <img src="https://img.shields.io/badge/Claude%20Code-plugin-8A63D2" alt="Claude Code plugin">
   <img src="https://img.shields.io/badge/Codex-plugin-111111" alt="Codex plugin">
-  <img src="https://img.shields.io/badge/version-1.2.0-informational" alt="Version 1.2.0">
+  <img src="https://img.shields.io/badge/version-1.2.1-informational" alt="Version 1.2.1">
   <img src="https://img.shields.io/badge/corpus-1040%20papers-2F80ED" alt="Corpus: 1040 papers">
   <img src="https://img.shields.io/badge/venues-CVPR%202026%20%7C%20ICCV%202025-0F9D58" alt="Venues: CVPR 2026 | ICCV 2025">
   <img src="https://img.shields.io/badge/python-3.8%2B-3776AB?logo=python&logoColor=white" alt="Python 3.8+">
@@ -99,18 +99,25 @@
 在 Claude Code 会话中输入：
 
 ```
-/plugin marketplace add xiongqi123123/PaperDNA
+/plugin marketplace add https://github.com/xiongqi123123/PaperDNA.git
 /plugin install paperdna@paperdna
 ```
 
 也可以在终端里执行：
 
 ```bash
-claude plugin marketplace add xiongqi123123/PaperDNA
+claude plugin marketplace add https://github.com/xiongqi123123/PaperDNA.git
 claude plugin install paperdna@paperdna
 ```
 
-文风画像、错题本和个人补充词表保存在插件的数据目录（`~/.claude/plugins/data/…`），插件更新时不会丢失。更新插件用 `/plugin update paperdna@paperdna`，也可以在 `/plugin` 里为 `paperdna` 市场打开自动更新。
+文风画像、错题本和个人补充词表保存在插件的数据目录（`~/.claude/plugins/data/…`），插件更新时不会丢失。插件默认不会自动更新。可以在 `/plugin` → Marketplaces 里为 `paperdna` 打开自动更新，也可以手动更新后重启 Claude Code：
+
+```bash
+claude plugin marketplace update paperdna
+claude plugin update paperdna@paperdna
+```
+
+安装命令特意写成 HTTPS 地址：`xiongqi123123/PaperDNA` 这种简写可能走 SSH 克隆，在没有用 SSH 连过 GitHub 的机器上会报 `Host key verification failed`。
 
 <details>
 <summary>参与开发：从本地仓库安装</summary>
@@ -131,7 +138,7 @@ codex plugin marketplace add xiongqi123123/PaperDNA
 codex plugin add paperdna@paperdna
 ```
 
-安装后新开一个会话即可使用。同一次安装也适用于 Codex 桌面版（安装后重启应用）。在 Codex 中，个人画像保存在 `~/.paperdna/profile/`。更新用 `codex plugin marketplace upgrade`，卸载用 `codex plugin remove paperdna`。
+安装后新开一个会话即可使用。同一次安装也适用于 Codex 桌面版（安装后重启应用）。在 Codex 中，个人画像保存在 `~/.paperdna/profile/`。更新用 `codex plugin marketplace upgrade paperdna`，再执行 `codex plugin add paperdna@paperdna`；卸载用 `codex plugin remove paperdna`。
 
 ### 第一次使用
 

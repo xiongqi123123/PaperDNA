@@ -6,7 +6,7 @@
   <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-yellow.svg" alt="License: MIT"></a>
   <img src="https://img.shields.io/badge/Claude%20Code-plugin-8A63D2" alt="Claude Code plugin">
   <img src="https://img.shields.io/badge/Codex-plugin-111111" alt="Codex plugin">
-  <img src="https://img.shields.io/badge/version-1.2.0-informational" alt="Version 1.2.0">
+  <img src="https://img.shields.io/badge/version-1.2.1-informational" alt="Version 1.2.1">
   <img src="https://img.shields.io/badge/corpus-1040%20papers-2F80ED" alt="Corpus: 1040 papers">
   <img src="https://img.shields.io/badge/venues-CVPR%202026%20%7C%20ICCV%202025-0F9D58" alt="Venues: CVPR 2026 | ICCV 2025">
   <img src="https://img.shields.io/badge/python-3.8%2B-3776AB?logo=python&logoColor=white" alt="Python 3.8+">
@@ -99,18 +99,25 @@ Full statistics: [`skills/paperdna/references/corpus_stats.md`](skills/paperdna/
 In a Claude Code session:
 
 ```
-/plugin marketplace add xiongqi123123/PaperDNA
+/plugin marketplace add https://github.com/xiongqi123123/PaperDNA.git
 /plugin install paperdna@paperdna
 ```
 
 Or from your shell:
 
 ```bash
-claude plugin marketplace add xiongqi123123/PaperDNA
+claude plugin marketplace add https://github.com/xiongqi123123/PaperDNA.git
 claude plugin install paperdna@paperdna
 ```
 
-Your style profile, error log and personal word list live in the plugin's data directory (`~/.claude/plugins/data/…`), so they survive plugin updates. To update, run `/plugin update paperdna@paperdna`, or enable auto-update for the `paperdna` marketplace in `/plugin`.
+Your style profile, error log and personal word list live in the plugin's data directory (`~/.claude/plugins/data/…`), so they survive plugin updates. Updates are not automatic by default. Either enable auto-update for the `paperdna` marketplace in `/plugin` → Marketplaces, or update by hand and restart Claude Code:
+
+```bash
+claude plugin marketplace update paperdna
+claude plugin update paperdna@paperdna
+```
+
+The install commands use the HTTPS URL on purpose: the `xiongqi123123/PaperDNA` shorthand may clone over SSH and fail with `Host key verification failed` on machines that have never connected to GitHub over SSH.
 
 <details>
 <summary>For contributors: install from a local clone</summary>
@@ -131,7 +138,7 @@ codex plugin marketplace add xiongqi123123/PaperDNA
 codex plugin add paperdna@paperdna
 ```
 
-Start a new thread afterwards. The same install also covers the Codex desktop app (restart it after installing). In Codex, your profile lives in `~/.paperdna/profile/`. To update, run `codex plugin marketplace upgrade`; to uninstall, `codex plugin remove paperdna`.
+Start a new thread afterwards. The same install also covers the Codex desktop app (restart it after installing). In Codex, your profile lives in `~/.paperdna/profile/`. To update, run `codex plugin marketplace upgrade paperdna` and then `codex plugin add paperdna@paperdna`; to uninstall, `codex plugin remove paperdna`.
 
 ### First run
 
